@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		36BF3AEA21CC343A006122C2 /* Start.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36BF3AE821CC343A006122C2 /* Start.storyboard */; };
+		36BF3AED21CC349B006122C2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36BF3AEB21CC349B006122C2 /* Main.storyboard */; };
 		849DA6C721C989ED0061C5BD /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849DA6C621C989ED0061C5BD /* HomeViewController.swift */; };
 		849DA6C921C98A5B0061C5BD /* DiscoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849DA6C821C98A5B0061C5BD /* DiscoverViewController.swift */; };
 		849DA6CB21C98A830061C5BD /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849DA6CA21C98A830061C5BD /* CameraViewController.swift */; };
@@ -41,6 +42,7 @@
 
 /* Begin PBXFileReference section */
 		36BF3AE921CC343A006122C2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Instagram/Base.lproj/Start.storyboard; sourceTree = "<group>"; };
+		36BF3AEC21CC349B006122C2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Instagram/Instagram/Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		849DA6C621C989ED0061C5BD /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		849DA6C821C98A5B0061C5BD /* DiscoverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverViewController.swift; sourceTree = "<group>"; };
 		849DA6CA21C98A830061C5BD /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 				849DA6CE21C98AED0061C5BD /* ProfileViewController.swift */,
 				84D130F621BBFCB400589B10 /* SignInViewController.swift */,
 				36BF3AE821CC343A006122C2 /* Start.storyboard */,
+				36BF3AEB21CC349B006122C2 /* Main.storyboard */,
 				84D130CF21BBFA3400589B10 /* Assets.xcassets */,
 				84D130D121BBFA3400589B10 /* LaunchScreen.storyboard */,
 				84D130D421BBFA3400589B10 /* Info.plist */,
@@ -250,6 +253,7 @@
 				84D130D321BBFA3400589B10 /* LaunchScreen.storyboard in Resources */,
 				36BF3AEA21CC343A006122C2 /* Start.storyboard in Resources */,
 				84D130D021BBFA3400589B10 /* Assets.xcassets in Resources */,
+				36BF3AED21CC349B006122C2 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -323,6 +327,14 @@
 				36BF3AE921CC343A006122C2 /* Base */,
 			);
 			name = Start.storyboard;
+			sourceTree = "<group>";
+		};
+		36BF3AEB21CC349B006122C2 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				36BF3AEC21CC349B006122C2 /* Base */,
+			);
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 		84D130D121BBFA3400589B10 /* LaunchScreen.storyboard */ = {
