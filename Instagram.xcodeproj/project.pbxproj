@@ -98,6 +98,34 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		36D0DA4D21CC47D40065CC58 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				3603B6E421CC3A9C008BCB8C /* Start.storyboard */,
+				3603B6E321CC3A9C008BCB8C /* Main.storyboard */,
+				36D0DA4321CC3C700065CC58 /* Home.storyboard */,
+				36D0DA4521CC3CAC0065CC58 /* Discover.storyboard */,
+				36D0DA4721CC3CCD0065CC58 /* Camera.storyboard */,
+				36D0DA4921CC3CEB0065CC58 /* Activity.storyboard */,
+				36D0DA4B21CC3D080065CC58 /* Profile.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		36D0DA4E21CC47EE0065CC58 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				84D130FA21BC0B8200589B10 /* SignUpViewController.swift */,
+				849DA6C621C989ED0061C5BD /* HomeViewController.swift */,
+				849DA6C821C98A5B0061C5BD /* DiscoverViewController.swift */,
+				849DA6CA21C98A830061C5BD /* CameraViewController.swift */,
+				849DA6CC21C98AC10061C5BD /* ActivityViewController.swift */,
+				849DA6CE21C98AED0061C5BD /* ProfileViewController.swift */,
+				84D130F621BBFCB400589B10 /* SignInViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
 		84D130BC21BBFA3200589B10 = {
 			isa = PBXGroup;
 			children = (
@@ -122,22 +150,10 @@
 			isa = PBXGroup;
 			children = (
 				84D130C821BBFA3200589B10 /* AppDelegate.swift */,
-				84D130FA21BC0B8200589B10 /* SignUpViewController.swift */,
-				849DA6C621C989ED0061C5BD /* HomeViewController.swift */,
-				849DA6C821C98A5B0061C5BD /* DiscoverViewController.swift */,
-				849DA6CA21C98A830061C5BD /* CameraViewController.swift */,
-				849DA6CC21C98AC10061C5BD /* ActivityViewController.swift */,
-				849DA6CE21C98AED0061C5BD /* ProfileViewController.swift */,
-				84D130F621BBFCB400589B10 /* SignInViewController.swift */,
-				3603B6E521CC3A9C008BCB8C /* LaunchScreen.storyboard */,
-				3603B6E421CC3A9C008BCB8C /* Start.storyboard */,
-				3603B6E321CC3A9C008BCB8C /* Main.storyboard */,
-				36D0DA4321CC3C700065CC58 /* Home.storyboard */,
-				36D0DA4521CC3CAC0065CC58 /* Discover.storyboard */,
-				36D0DA4721CC3CCD0065CC58 /* Camera.storyboard */,
-				36D0DA4921CC3CEB0065CC58 /* Activity.storyboard */,
-				36D0DA4B21CC3D080065CC58 /* Profile.storyboard */,
+				36D0DA4E21CC47EE0065CC58 /* ViewControllers */,
+				36D0DA4D21CC47D40065CC58 /* Storyboards */,
 				84D130CF21BBFA3400589B10 /* Assets.xcassets */,
+				3603B6E521CC3A9C008BCB8C /* LaunchScreen.storyboard */,
 				84D130D421BBFA3400589B10 /* Info.plist */,
 			);
 			path = Instagram;
@@ -469,7 +485,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = IOSapp.Instagram;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -486,7 +502,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = IOSapp.Instagram;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

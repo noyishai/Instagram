@@ -86,6 +86,10 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ZUM-P6-JCu"/>
                     </view>
+                    <connections>
+                        <outlet property="emailTextField" destination="g3C-w9-B58" id="ijw-BT-ndS"/>
+                        <outlet property="passwordTextField" destination="4YA-gf-L1H" id="WfL-f1-QZT"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -153,6 +157,10 @@
                                     </button>
                                 </subviews>
                             </stackView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="avatar-1577909_640" translatesAutoresizingMaskIntoConstraints="NO" id="rJv-OH-NID">
+                                <rect key="frame" x="147" y="61" width="80" height="80"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -168,6 +176,12 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="G21-Ql-2mi"/>
                     </view>
+                    <connections>
+                        <outlet property="emailTextField" destination="Hbd-f3-hvf" id="5u9-Jd-eEn"/>
+                        <outlet property="passwordTextField" destination="KcH-T0-J7n" id="Hsk-85-fOo"/>
+                        <outlet property="profileImage" destination="rJv-OH-NID" id="mPE-Tx-yst"/>
+                        <outlet property="usernameTextField" destination="NjC-xy-hSQ" id="fMZ-Da-F6A"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="u4R-Kh-dxg" sceneMemberID="firstResponder"/>
             </objects>
@@ -182,7 +196,10 @@
             <point key="canvasLocation" x="1685" y="331"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="avatar-1577909_640" width="640" height="640"/>
+    </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="wJ9-Kp-gSJ"/>
+        <segue reference="4nU-s2-CNv"/>
     </inferredMetricsTieBreakers>
 </document>
