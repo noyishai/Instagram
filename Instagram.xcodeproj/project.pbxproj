@@ -7,13 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		36BF3AEA21CC343A006122C2 /* Start.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36BF3AE821CC343A006122C2 /* Start.storyboard */; };
 		849DA6C721C989ED0061C5BD /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849DA6C621C989ED0061C5BD /* HomeViewController.swift */; };
 		849DA6C921C98A5B0061C5BD /* DiscoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849DA6C821C98A5B0061C5BD /* DiscoverViewController.swift */; };
 		849DA6CB21C98A830061C5BD /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849DA6CA21C98A830061C5BD /* CameraViewController.swift */; };
 		849DA6CD21C98AC10061C5BD /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849DA6CC21C98AC10061C5BD /* ActivityViewController.swift */; };
 		849DA6CF21C98AED0061C5BD /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849DA6CE21C98AED0061C5BD /* ProfileViewController.swift */; };
 		84D130C921BBFA3200589B10 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D130C821BBFA3200589B10 /* AppDelegate.swift */; };
-		84D130CE21BBFA3200589B10 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84D130CC21BBFA3200589B10 /* Main.storyboard */; };
 		84D130D021BBFA3400589B10 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84D130CF21BBFA3400589B10 /* Assets.xcassets */; };
 		84D130D321BBFA3400589B10 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84D130D121BBFA3400589B10 /* LaunchScreen.storyboard */; };
 		84D130DE21BBFA3400589B10 /* InstagramTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D130DD21BBFA3400589B10 /* InstagramTests.swift */; };
@@ -40,6 +40,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		36BF3AE921CC343A006122C2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Instagram/Base.lproj/Start.storyboard; sourceTree = "<group>"; };
 		849DA6C621C989ED0061C5BD /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		849DA6C821C98A5B0061C5BD /* DiscoverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverViewController.swift; sourceTree = "<group>"; };
 		849DA6CA21C98A830061C5BD /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
@@ -47,7 +48,6 @@
 		849DA6CE21C98AED0061C5BD /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		84D130C521BBFA3200589B10 /* Instagram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Instagram.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84D130C821BBFA3200589B10 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		84D130CD21BBFA3200589B10 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		84D130CF21BBFA3400589B10 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		84D130D221BBFA3400589B10 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		84D130D421BBFA3400589B10 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -117,7 +117,7 @@
 				849DA6CC21C98AC10061C5BD /* ActivityViewController.swift */,
 				849DA6CE21C98AED0061C5BD /* ProfileViewController.swift */,
 				84D130F621BBFCB400589B10 /* SignInViewController.swift */,
-				84D130CC21BBFA3200589B10 /* Main.storyboard */,
+				36BF3AE821CC343A006122C2 /* Start.storyboard */,
 				84D130CF21BBFA3400589B10 /* Assets.xcassets */,
 				84D130D121BBFA3400589B10 /* LaunchScreen.storyboard */,
 				84D130D421BBFA3400589B10 /* Info.plist */,
@@ -248,8 +248,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				84D130D321BBFA3400589B10 /* LaunchScreen.storyboard in Resources */,
+				36BF3AEA21CC343A006122C2 /* Start.storyboard in Resources */,
 				84D130D021BBFA3400589B10 /* Assets.xcassets in Resources */,
-				84D130CE21BBFA3200589B10 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -317,12 +317,12 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		84D130CC21BBFA3200589B10 /* Main.storyboard */ = {
+		36BF3AE821CC343A006122C2 /* Start.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				84D130CD21BBFA3200589B10 /* Base */,
+				36BF3AE921CC343A006122C2 /* Base */,
 			);
-			name = Main.storyboard;
+			name = Start.storyboard;
 			sourceTree = "<group>";
 		};
 		84D130D121BBFA3400589B10 /* LaunchScreen.storyboard */ = {

@@ -147,6 +147,9 @@
                                         <state key="normal" title="Sign up">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                                         </state>
+                                        <connections>
+                                            <segue destination="T17-5g-uYD" kind="presentation" id="4nU-s2-CNv"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -392,4 +395,7 @@
         <image name="Search" width="48" height="48"/>
         <image name="Search_Selected" width="48" height="48"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="wJ9-Kp-gSJ"/>
+    </inferredMetricsTieBreakers>
 </document>
