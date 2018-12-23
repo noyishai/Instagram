@@ -11,7 +11,7 @@
 		3603B6E621CC3A9C008BCB8C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3603B6E321CC3A9C008BCB8C /* Main.storyboard */; };
 		3603B6E721CC3A9C008BCB8C /* Start.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3603B6E421CC3A9C008BCB8C /* Start.storyboard */; };
 		3603B6E821CC3A9C008BCB8C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3603B6E521CC3A9C008BCB8C /* LaunchScreen.storyboard */; };
-		360BE80F21CF825500EB5C4C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 360BE80E21CF825500EB5C4C /* GoogleService-Info.plist */; };
+		360BE81121CF90D000EB5C4C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 360BE81021CF90D000EB5C4C /* GoogleService-Info.plist */; };
 		36D0DA4421CC3C700065CC58 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36D0DA4321CC3C700065CC58 /* Home.storyboard */; };
 		36D0DA4621CC3CAC0065CC58 /* Discover.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36D0DA4521CC3CAC0065CC58 /* Discover.storyboard */; };
 		36D0DA4821CC3CCD0065CC58 /* Camera.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36D0DA4721CC3CCD0065CC58 /* Camera.storyboard */; };
@@ -55,7 +55,7 @@
 		3603B6E321CC3A9C008BCB8C /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		3603B6E421CC3A9C008BCB8C /* Start.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Start.storyboard; sourceTree = "<group>"; };
 		3603B6E521CC3A9C008BCB8C /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
-		360BE80E21CF825500EB5C4C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		360BE81021CF90D000EB5C4C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		36D0DA4321CC3C700065CC58 /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		36D0DA4521CC3CAC0065CC58 /* Discover.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Discover.storyboard; sourceTree = "<group>"; };
 		36D0DA4721CC3CCD0065CC58 /* Camera.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Camera.storyboard; sourceTree = "<group>"; };
@@ -183,7 +183,7 @@
 				36D0DA4D21CC47D40065CC58 /* Storyboards */,
 				84D130CF21BBFA3400589B10 /* Assets.xcassets */,
 				3603B6E521CC3A9C008BCB8C /* LaunchScreen.storyboard */,
-				360BE80E21CF825500EB5C4C /* GoogleService-Info.plist */,
+				360BE81021CF90D000EB5C4C /* GoogleService-Info.plist */,
 				84D130D421BBFA3400589B10 /* Info.plist */,
 			);
 			path = Instagram;
@@ -335,7 +335,7 @@
 				3603B6E621CC3A9C008BCB8C /* Main.storyboard in Resources */,
 				3603B6E721CC3A9C008BCB8C /* Start.storyboard in Resources */,
 				36D0DA4C21CC3D080065CC58 /* Profile.storyboard in Resources */,
-				360BE80F21CF825500EB5C4C /* GoogleService-Info.plist in Resources */,
+				360BE81121CF90D000EB5C4C /* GoogleService-Info.plist in Resources */,
 				36D0DA4621CC3CAC0065CC58 /* Discover.storyboard in Resources */,
 				36D0DA4A21CC3CEB0065CC58 /* Activity.storyboard in Resources */,
 			);
@@ -367,6 +367,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Instagram/Pods-Instagram-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
@@ -374,6 +375,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
