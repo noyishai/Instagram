@@ -50,6 +50,16 @@ class SignUpViewController: UIViewController {
         
         profileImage.layer.cornerRadius = 40
         profileImage.clipsToBounds = true
+        
+        let tapProfileImageGesture = UITapGestureRecognizer(target: self, action: #selector(SignUpViewController.handleSelectProfileImageView))
+        profileImage.addGestureRecognizer(tapProfileImageGesture)
+        profileImage.isUserInteractionEnabled = true
+    }
+    
+    func handleSelectProfileImageView() {
+        let pickerController = UIImagePickerController()
+        pickerController.delegate = self
+        present(pickerController, animated: true, completion: nil)
     }
     
     @IBAction func dismiss_onClick(_ sender: Any) {
@@ -59,6 +69,7 @@ class SignUpViewController: UIViewController {
         Auth.auth().createUser(withEmail: emailTextField.text!, password: passwordTextField.text!) { (authDataResult:AuthDataResult?, error:Error?) in
             if error != nil {
                 print(error!.localizedDescription)
+                return
             }
             let ref = Database.database().reference()
             let usersReference = ref.child("users")
@@ -66,5 +77,11 @@ class SignUpViewController: UIViewController {
             let newUserReference = usersReference.child(uid!)
             newUserReference.setValue(["username": self.usernameTextField.text!, "email": self.emailTextField.text!])
         }
+    }
+}
+
+extension SignUpViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        
     }
 }
