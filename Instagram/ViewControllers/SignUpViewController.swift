@@ -9,6 +9,7 @@
 import UIKit
 import FirebaseAuth
 import FirebaseDatabase
+import FirebaseStorage
 
 class SignUpViewController: UIViewController {
 
@@ -16,6 +17,8 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var profileImage: UIImageView!
+    
+    var selectedImage: UIImage?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,23 +68,45 @@ class SignUpViewController: UIViewController {
     @IBAction func dismiss_onClick(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
+    
     @IBAction func signUpBtn_TouchUpInside(_ sender: Any) {
+        // need to move to FIrebase Model
         Auth.auth().createUser(withEmail: emailTextField.text!, password: passwordTextField.text!) { (authDataResult:AuthDataResult?, error:Error?) in
             if error != nil {
                 print(error!.localizedDescription)
                 return
             }
-            let ref = Database.database().reference()
-            let usersReference = ref.child("users")
             let uid = authDataResult?.user.uid
-            let newUserReference = usersReference.child(uid!)
-            newUserReference.setValue(["username": self.usernameTextField.text!, "email": self.emailTextField.text!])
+            let storageRef = Storage.storage().reference(forURL: "gs://instagram-a9572.appspot.com").child("profile_image").child(uid!)
+            if let profileImg = self.selectedImage, let imageData = UIImageJPEGRepresentation(profileImg, 0.1){
+                storageRef.putData(imageData, metadata: nil, completion: { (metadata, error) in
+                    if error != nil {
+                        return // error
+                    }
+                    storageRef.downloadURL( completion: { (url, error) in
+                        if error != nil {
+                            return // error
+                        }
+                        guard let profileImageUrl = url?.absoluteString else { return }
+                        let ref = Database.database().reference()
+                        let usersReference = ref.child("users")
+                        let newUserReference = usersReference.child(uid!)
+                        newUserReference.setValue(["username": self.usernameTextField.text!, "email": self.emailTextField.text!, "profileImageUrl": profileImageUrl])
+                    })
+                })
+            }
         }
     }
 }
 
 extension SignUpViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        if let image = info["UIImagePickerControllerOriginalImage"] as? UIImage{
+            selectedImage = image
+            profileImage.image = image
+        }
+        dismiss(animated: true, completion: nil)
         
     }
 }
+
