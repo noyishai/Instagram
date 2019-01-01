@@ -12,7 +12,7 @@ import FirebaseDatabase
 import FirebaseStorage
 
 class SignUpViewController: UIViewController {
-
+    
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -23,7 +23,7 @@ class SignUpViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // username text field design
         usernameTextField.backgroundColor = UIColor.clear
         usernameTextField.tintColor = UIColor.white
@@ -62,7 +62,7 @@ class SignUpViewController: UIViewController {
         let tapProfileImageGesture = UITapGestureRecognizer(target: self, action: #selector(SignUpViewController.handleSelectProfileImageView))
         profileImage.addGestureRecognizer(tapProfileImageGesture)
         profileImage.isUserInteractionEnabled = true
-        
+        signUpButton.isEnabled = false
         // Observer to see if user input did change
         handleTextField()
     }
@@ -72,7 +72,7 @@ class SignUpViewController: UIViewController {
         usernameTextField.addTarget(self, action: #selector(SignUpViewController.textFieldDidChange), for: UIControlEvents.editingChanged)
         emailTextField.addTarget(self, action: #selector(SignUpViewController.textFieldDidChange), for: UIControlEvents.editingChanged)
         passwordTextField.addTarget(self, action: #selector(SignUpViewController.textFieldDidChange), for: UIControlEvents.editingChanged)
-
+        
     }
     
     // Checking if the userinputs are not empty and if not changing the Sign Up botton color and enables is
@@ -97,40 +97,17 @@ class SignUpViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
-    // Signup botton calls the createUser from Firebase to create a user
+    // Signup botton calls the signUp from AuthService to create a user
     @IBAction func signUpBtn_TouchUpInside(_ sender: Any) {
-        // need to move to FIrebase Model
-        Auth.auth().createUser(withEmail: emailTextField.text!, password: passwordTextField.text!) { (authDataResult:AuthDataResult?, error:Error?) in
-            if error != nil {
-                print(error!.localizedDescription)
-                return
-            }
-            let uid = authDataResult?.user.uid
-            let storageRef = Storage.storage().reference(forURL: "gs://instagram-a9572.appspot.com").child("profile_image").child(uid!)
-            if let profileImg = self.selectedImage, let imageData = UIImageJPEGRepresentation(profileImg, 0.1){
-                storageRef.putData(imageData, metadata: nil, completion: { (metadata, error) in
-                    if error != nil {
-                        return // error
-                    }
-                    storageRef.downloadURL( completion: { (url, error) in
-                        if error != nil {
-                            return // error
-                        }
-                        guard let profileImageUrl = url?.absoluteString else { return }
-                        self.setUserInformation(profileImageUrl: profileImageUrl, username: self.usernameTextField.text!, email: self.emailTextField.text!, uid: uid!)
-                    })
-                })
-            }
+        if let profileImg = self.selectedImage, let imageData = UIImageJPEGRepresentation(profileImg, 0.1){
+            AuthService.signUp(username: usernameTextField.text!, email: emailTextField.text!, password: passwordTextField.text!, imageData: imageData, onSuccess: {
+                self.performSegue(withIdentifier: "SignUpToTabBarVC", sender: nil)
+            }, onError: { (errorString) in
+                print(errorString!)
+            })
+        } else {
+            print("Profile image can't be empty")
         }
-    }
-    
-    // Sets the user information
-    func setUserInformation(profileImageUrl: String, username: String, email: String, uid: String){
-            let ref = Database.database().reference()
-            let usersReference = ref.child("users")
-            let newUserReference = usersReference.child(uid)
-            newUserReference.setValue(["username": username, "email": email, "profileImageUrl": profileImageUrl])
-        self.performSegue(withIdentifier: "SignUpToTabBarVC", sender: nil)
     }
 }
 
@@ -142,7 +119,6 @@ extension SignUpViewController: UIImagePickerControllerDelegate, UINavigationCon
             profileImage.image = image
         }
         dismiss(animated: true, completion: nil)
-        
     }
 }
 

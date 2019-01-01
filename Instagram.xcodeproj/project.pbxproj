@@ -11,6 +11,8 @@
 		3603B6E621CC3A9C008BCB8C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3603B6E321CC3A9C008BCB8C /* Main.storyboard */; };
 		3603B6E721CC3A9C008BCB8C /* Start.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3603B6E421CC3A9C008BCB8C /* Start.storyboard */; };
 		3603B6E821CC3A9C008BCB8C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3603B6E521CC3A9C008BCB8C /* LaunchScreen.storyboard */; };
+		3607E4F921DBBDA30009A196 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3607E4F821DBBDA30009A196 /* AuthService.swift */; };
+		3607E4FB21DBCB110009A196 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3607E4FA21DBCB110009A196 /* Config.swift */; };
 		360BE81121CF90D000EB5C4C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 360BE81021CF90D000EB5C4C /* GoogleService-Info.plist */; };
 		36D0DA4421CC3C700065CC58 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36D0DA4321CC3C700065CC58 /* Home.storyboard */; };
 		36D0DA4621CC3CAC0065CC58 /* Discover.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36D0DA4521CC3CAC0065CC58 /* Discover.storyboard */; };
@@ -55,6 +57,8 @@
 		3603B6E321CC3A9C008BCB8C /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		3603B6E421CC3A9C008BCB8C /* Start.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Start.storyboard; sourceTree = "<group>"; };
 		3603B6E521CC3A9C008BCB8C /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		3607E4F821DBBDA30009A196 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		3607E4FA21DBCB110009A196 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		360BE81021CF90D000EB5C4C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		36D0DA4321CC3C700065CC58 /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		36D0DA4521CC3CAC0065CC58 /* Discover.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Discover.storyboard; sourceTree = "<group>"; };
@@ -179,6 +183,8 @@
 			isa = PBXGroup;
 			children = (
 				84D130C821BBFA3200589B10 /* AppDelegate.swift */,
+				3607E4F821DBBDA30009A196 /* AuthService.swift */,
+				3607E4FA21DBCB110009A196 /* Config.swift */,
 				36D0DA4E21CC47EE0065CC58 /* ViewControllers */,
 				36D0DA4D21CC47D40065CC58 /* Storyboards */,
 				84D130CF21BBFA3400589B10 /* Assets.xcassets */,
@@ -462,9 +468,11 @@
 				84D130FB21BC0B8200589B10 /* SignUpViewController.swift in Sources */,
 				84D130F721BBFCB400589B10 /* SignInViewController.swift in Sources */,
 				84D130C921BBFA3200589B10 /* AppDelegate.swift in Sources */,
+				3607E4F921DBBDA30009A196 /* AuthService.swift in Sources */,
 				849DA6C721C989ED0061C5BD /* HomeViewController.swift in Sources */,
 				849DA6CD21C98AC10061C5BD /* ActivityViewController.swift in Sources */,
 				849DA6C921C98A5B0061C5BD /* DiscoverViewController.swift in Sources */,
+				3607E4FB21DBCB110009A196 /* Config.swift in Sources */,
 				849DA6CF21C98AED0061C5BD /* ProfileViewController.swift in Sources */,
 				849DA6CB21C98A830061C5BD /* CameraViewController.swift in Sources */,
 			);

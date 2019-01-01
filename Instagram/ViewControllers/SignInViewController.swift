@@ -10,7 +10,7 @@ import UIKit
 import FirebaseAuth
 
 class SignInViewController: UIViewController {
-
+    
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var signInButton: UIButton!
@@ -38,6 +38,8 @@ class SignInViewController: UIViewController {
         bottomLayerPassword.backgroundColor = UIColor(red: 50/255, green: 50/255, blue: 25/255, alpha: 1).cgColor
         passwordTextField.layer.addSublayer(bottomLayerPassword)
         
+        signInButton.isEnabled = false
+        
         // Observer to see if user input did change
         handleTextField()
     }
@@ -55,10 +57,9 @@ class SignInViewController: UIViewController {
     func handleTextField() {
         emailTextField.addTarget(self, action: #selector(SignUpViewController.textFieldDidChange), for: UIControlEvents.editingChanged)
         passwordTextField.addTarget(self, action: #selector(SignUpViewController.textFieldDidChange), for: UIControlEvents.editingChanged)
-        
     }
     
-    // Checking if the userinputs are not empty and if not changing the Sign In botton color and enables is
+    // Checking if the user inputs are not empty and if not changing the Sign In botton color and enables is
     func textFieldDidChange() {
         guard let email = emailTextField.text, !email.isEmpty, let password = passwordTextField.text, !password.isEmpty else {
             signInButton.setTitleColor(UIColor.lightText, for: UIControlState.normal)
@@ -71,13 +72,12 @@ class SignInViewController: UIViewController {
     
     // Sign In button calls the signIn from Firebase to login using user inputs
     @IBAction func signInButton_TouchUpInside(_ sender: Any) {
-        Auth.auth().signIn(withEmail: emailTextField.text!, password: passwordTextField.text!) { (authDataResult:AuthDataResult?, error:Error?) in
-            if error != nil {
-                print(error!.localizedDescription)
-                return // Error
-            }
+        AuthService.signIn(email: emailTextField.text!, password: passwordTextField.text!, onSuccess: {
             self.performSegue(withIdentifier: "SignInToTabBarVC", sender: nil)
-        }
+        }, onError: { error in
+            print(error!)
+        })
     }
+    
     
 }
