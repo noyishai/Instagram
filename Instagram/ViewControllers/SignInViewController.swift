@@ -42,6 +42,15 @@ class SignInViewController: UIViewController {
         handleTextField()
     }
     
+    // Override viewDidApear to make sure viewDidApear will load first, then the automatic login will perform
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        // Automaticly login the user if the credentials already exists
+        if Auth.auth().currentUser != nil {
+            self.performSegue(withIdentifier: "SignInToTabBarVC", sender: nil)
+        }
+    }
+    
     // Observer to see if user input did change
     func handleTextField() {
         emailTextField.addTarget(self, action: #selector(SignUpViewController.textFieldDidChange), for: UIControlEvents.editingChanged)
@@ -60,6 +69,7 @@ class SignInViewController: UIViewController {
         signInButton.isEnabled = true
     }
     
+    // Sign In button calls the signIn from Firebase to login using user inputs
     @IBAction func signInButton_TouchUpInside(_ sender: Any) {
         Auth.auth().signIn(withEmail: emailTextField.text!, password: passwordTextField.text!) { (authDataResult:AuthDataResult?, error:Error?) in
             if error != nil {
