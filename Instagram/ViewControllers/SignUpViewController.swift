@@ -63,6 +63,7 @@ class SignUpViewController: UIViewController {
         profileImage.addGestureRecognizer(tapProfileImageGesture)
         profileImage.isUserInteractionEnabled = true
         
+        // Observer to see if user input did change
         handleTextField()
     }
     
@@ -85,6 +86,7 @@ class SignUpViewController: UIViewController {
         signUpButton.isEnabled = true
     }
     
+    // Profile image selector
     func handleSelectProfileImageView() {
         let pickerController = UIImagePickerController()
         pickerController.delegate = self
@@ -95,6 +97,7 @@ class SignUpViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
+    // Signup botton calls the createUser from Firebase to create a user
     @IBAction func signUpBtn_TouchUpInside(_ sender: Any) {
         // need to move to FIrebase Model
         Auth.auth().createUser(withEmail: emailTextField.text!, password: passwordTextField.text!) { (authDataResult:AuthDataResult?, error:Error?) in
@@ -114,21 +117,23 @@ class SignUpViewController: UIViewController {
                             return // error
                         }
                         guard let profileImageUrl = url?.absoluteString else { return }
-                        let ref = Database.database().reference()
-                        let usersReference = ref.child("users")
-                        let newUserReference = usersReference.child(uid!)
-                        newUserReference.setValue(["username": self.usernameTextField.text!, "email": self.emailTextField.text!, "profileImageUrl": profileImageUrl])
+                        self.setUserInformation(profileImageUrl: profileImageUrl, username: self.usernameTextField.text!, email: self.emailTextField.text!, uid: uid!)
                     })
                 })
             }
         }
     }
     
-    func setUserInformation(profileImageUrl: String, username: string, email: String, uid: String){
-        
+    // Sets the user information
+    func setUserInformation(profileImageUrl: String, username: String, email: String, uid: String){
+            let ref = Database.database().reference()
+            let usersReference = ref.child("users")
+            let newUserReference = usersReference.child(uid)
+            newUserReference.setValue(["username": username, "email": email, "profileImageUrl": profileImageUrl])
     }
 }
 
+// Setting the profileImage to be the selectedImage from the gallery
 extension SignUpViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let image = info["UIImagePickerControllerOriginalImage"] as? UIImage{
