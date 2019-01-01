@@ -180,6 +180,7 @@
                         <outlet property="emailTextField" destination="Hbd-f3-hvf" id="5u9-Jd-eEn"/>
                         <outlet property="passwordTextField" destination="KcH-T0-J7n" id="Hsk-85-fOo"/>
                         <outlet property="profileImage" destination="rJv-OH-NID" id="mPE-Tx-yst"/>
+                        <outlet property="signUpButton" destination="NyU-VN-Aj9" id="Dm7-dl-26u"/>
                         <outlet property="usernameTextField" destination="NjC-xy-hSQ" id="fMZ-Da-F6A"/>
                     </connections>
                 </viewController>
