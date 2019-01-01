@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class SignInViewController: UIViewController {
 
@@ -58,4 +59,15 @@ class SignInViewController: UIViewController {
         signInButton.setTitleColor(UIColor.white, for: UIControlState.normal)
         signInButton.isEnabled = true
     }
+    
+    @IBAction func signInButton_TouchUpInside(_ sender: Any) {
+        Auth.auth().signIn(withEmail: emailTextField.text!, password: passwordTextField.text!) { (authDataResult:AuthDataResult?, error:Error?) in
+            if error != nil {
+                print(error!.localizedDescription)
+                return // Error
+            }
+            self.performSegue(withIdentifier: "SignInToTabBarVC", sender: nil)
+        }
+    }
+    
 }

@@ -54,7 +54,7 @@
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
-                                            <segue destination="8Ma-1M-uzk" kind="presentation" id="wJ9-Kp-gSJ"/>
+                                            <action selector="signInButton_TouchUpInside:" destination="BYZ-38-t0r" eventType="touchUpInside" id="wxl-d9-s8M"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -90,6 +90,7 @@
                         <outlet property="emailTextField" destination="g3C-w9-B58" id="ijw-BT-ndS"/>
                         <outlet property="passwordTextField" destination="4YA-gf-L1H" id="WfL-f1-QZT"/>
                         <outlet property="signInButton" destination="86G-VD-FWG" id="Fz0-Bt-smp"/>
+                        <segue destination="8Ma-1M-uzk" kind="presentation" identifier="SignInToTabBarVC" id="Amb-3Z-CpY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -185,12 +186,13 @@
                         <outlet property="profileImage" destination="rJv-OH-NID" id="mPE-Tx-yst"/>
                         <outlet property="signUpButton" destination="NyU-VN-Aj9" id="Dm7-dl-26u"/>
                         <outlet property="usernameTextField" destination="NjC-xy-hSQ" id="fMZ-Da-F6A"/>
+                        <segue destination="8Ma-1M-uzk" kind="presentation" identifier="SignUpToTabBarVC" id="6eg-hD-Phf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="u4R-Kh-dxg" sceneMemberID="firstResponder"/>
                 <exit id="Y2n-3s-LVe" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="582" y="753"/>
+            <point key="canvasLocation" x="582" y="741"/>
         </scene>
         <!--TabBarId-->
         <scene sceneID="SQ5-C2-t7u">
@@ -204,4 +206,7 @@
     <resources>
         <image name="avatar-1577909_640" width="640" height="640"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="6eg-hD-Phf"/>
+    </inferredMetricsTieBreakers>
 </document>
