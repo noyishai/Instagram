@@ -67,6 +67,12 @@ class SignUpViewController: UIViewController {
         handleTextField()
     }
     
+    // Makes the app tocuh sensitive everywhere on the screen
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        // Makes the keyboard to close
+        view.endEditing(true)
+    }
+    
     // Observer to see if user input did change
     func handleTextField() {
         usernameTextField.addTarget(self, action: #selector(SignUpViewController.textFieldDidChange), for: UIControlEvents.editingChanged)
@@ -99,14 +105,23 @@ class SignUpViewController: UIViewController {
     
     // Signup botton calls the signUp from AuthService to create a user
     @IBAction func signUpBtn_TouchUpInside(_ sender: Any) {
+        // Makes the keyboard to close
+        view.endEditing(true)
+        
+        // Using external library ProgressHUD to show the user the sign in progress
+        ProgressHUD.show("SignUp in progress", interaction: false)
+        
         if let profileImg = self.selectedImage, let imageData = UIImageJPEGRepresentation(profileImg, 0.1){
             AuthService.signUp(username: usernameTextField.text!, email: emailTextField.text!, password: passwordTextField.text!, imageData: imageData, onSuccess: {
+                // Using external library ProgressHUD to show the user the if the sign up succeeded
+                ProgressHUD.showSuccess("SignUp Success")
                 self.performSegue(withIdentifier: "SignUpToTabBarVC", sender: nil)
             }, onError: { (errorString) in
-                print(errorString!)
+                // Using external library ProgressHUD to show the user the error returned from Firebase
+                ProgressHUD.showError(errorString!)
             })
         } else {
-            print("Profile image can't be empty")
+            ProgressHUD.showError("Profile image can't be empty")
         }
     }
 }

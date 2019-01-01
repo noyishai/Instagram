@@ -44,6 +44,12 @@ class SignInViewController: UIViewController {
         handleTextField()
     }
     
+    // Makes the app tocuh sensitive everywhere on the screen
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        // Makes the keyboard to close
+        view.endEditing(true)
+    }
+    
     // Override viewDidApear to make sure viewDidApear will load first, then the automatic login will perform
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -72,10 +78,19 @@ class SignInViewController: UIViewController {
     
     // Sign In button calls the signIn from Firebase to login using user inputs
     @IBAction func signInButton_TouchUpInside(_ sender: Any) {
+        // Makes the keyboard to close
+        view.endEditing(true)
+        
+        // Using external library ProgressHUD to show the user the sign in progress
+        ProgressHUD.show("SignIn in progress", interaction: false)
+        
         AuthService.signIn(email: emailTextField.text!, password: passwordTextField.text!, onSuccess: {
+            // Using external library ProgressHUD to show the user the if the sign in succeeded
+            ProgressHUD.showSuccess("SignIn Success")
             self.performSegue(withIdentifier: "SignInToTabBarVC", sender: nil)
         }, onError: { error in
-            print(error!)
+            // Using external library ProgressHUD to show the user the error returned from Firebase
+            ProgressHUD.showError(error!)
         })
     }
     
