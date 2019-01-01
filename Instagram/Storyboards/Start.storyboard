@@ -89,6 +89,7 @@
                     <connections>
                         <outlet property="emailTextField" destination="g3C-w9-B58" id="ijw-BT-ndS"/>
                         <outlet property="passwordTextField" destination="4YA-gf-L1H" id="WfL-f1-QZT"/>
+                        <outlet property="signInButton" destination="86G-VD-FWG" id="Fz0-Bt-smp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -152,6 +153,8 @@
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
+                                            <action selector="signInBotton:" destination="Y2n-3s-LVe" eventType="touchUpInside" id="fVb-6W-ytI"/>
+                                            <action selector="signInButton:" destination="Y2n-3s-LVe" eventType="touchUpInside" id="xME-wh-602"/>
                                             <action selector="signUpBtn_TouchUpInside:" destination="ECk-2Z-pt9" eventType="touchUpInside" id="LRp-Wm-AAr"/>
                                         </connections>
                                     </button>
@@ -185,6 +188,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="u4R-Kh-dxg" sceneMemberID="firstResponder"/>
+                <exit id="Y2n-3s-LVe" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="582" y="753"/>
         </scene>
