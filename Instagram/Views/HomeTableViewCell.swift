@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseDatabase
 
 class HomeTableViewCell: UITableViewCell {
     
@@ -25,15 +26,32 @@ class HomeTableViewCell: UITableViewCell {
             updateView()
         }
     }
+    
     // Updates the cells with posts data
     func updateView() {
         captionLabel.text = post?.caption
-        profileImageView.image = UIImage(named: "photo1.jpeg")
-        nameLabel.text = "Ronen"
         if let photoUrlString = post?.photoUrl {
             let photoUrl = URL(string: photoUrlString)
             // Uses SDWebimage to download the photo from the url
             postImageView.sd_setImage(with: photoUrl)
+        }
+        setupUserInfo()
+    }
+    
+    // Gets the user data for specific user ID
+    func setupUserInfo() {
+        if let uid = post?.uid {
+            Database.database().reference().child("users").child(uid).observeSingleEvent(of: DataEventType.value, with:  { (snapshot: DataSnapshot) in
+                // Creates dictionary from the database loaded from Firebase
+                if let dict = snapshot.value as? [String: Any] {
+                    let user = User.transformUser(dict: dict)
+                    self.nameLabel.text = user.username
+                    if let photoUrlString = user.profileImageUrl {
+                        let photoUrl = URL(string: photoUrlString)
+                        self.profileImageView.sd_setImage(with: photoUrl)
+                    }
+                }
+            })
         }
     }
     
