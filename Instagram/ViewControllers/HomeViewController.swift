@@ -14,6 +14,8 @@ import SDWebImage
 class HomeViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
+    
     var posts = [Post]()
     var users = [User]()
     
@@ -40,12 +42,14 @@ class HomeViewController: UIViewController {
     
     // Load posts and observe for new added posts and ignore unchanged posts
     func loadPosts() {
+        activityIndicatorView.startAnimating()
         Database.database().reference().child("posts").observe(.childAdded) { (snapshot: DataSnapshot) in
             // Creates dictionary from the database loaded from Firebase
             if let dict = snapshot.value as? [String: Any] {
                 let newPost = Post.transformPostPhoto(dict: dict)
                 self.fetchUser(uid: newPost.uid!, completed: {
                     self.posts.append(newPost)
+                    self.activityIndicatorView.stopAnimating()
                     self.tableView.reloadData()
                 })
             }

@@ -129,13 +129,18 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="byN-gJ-RxH">
+                                <rect key="frame" x="177" y="323" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="4Lv-v8-VOD" firstAttribute="trailing" secondItem="UmF-rN-O6Z" secondAttribute="trailing" id="ONq-zD-7gz"/>
                             <constraint firstItem="4Lv-v8-VOD" firstAttribute="top" secondItem="f4X-ES-e5b" secondAttribute="top" id="S1t-ge-4xz"/>
                             <constraint firstItem="4Lv-v8-VOD" firstAttribute="leading" secondItem="UmF-rN-O6Z" secondAttribute="leading" id="dgq-iG-Kw4"/>
+                            <constraint firstItem="byN-gJ-RxH" firstAttribute="centerX" secondItem="UmF-rN-O6Z" secondAttribute="centerX" id="gaM-hW-kPl"/>
                             <constraint firstItem="4Lv-v8-VOD" firstAttribute="bottom" secondItem="UmF-rN-O6Z" secondAttribute="bottom" id="kQL-Ok-9G1"/>
+                            <constraint firstItem="byN-gJ-RxH" firstAttribute="centerY" secondItem="UmF-rN-O6Z" secondAttribute="centerY" id="z46-o0-wkd"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="UmF-rN-O6Z"/>
                     </view>
@@ -147,6 +152,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="activityIndicatorView" destination="byN-gJ-RxH" id="24e-ED-Gpj"/>
                         <outlet property="tableView" destination="4Lv-v8-VOD" id="JuF-wr-IaB"/>
                     </connections>
                 </viewController>
