@@ -16,7 +16,29 @@
                     <view key="view" contentMode="scaleToFill" id="f4X-ES-e5b">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="4Lv-v8-VOD">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PostCell" id="onY-WV-LUT">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="onY-WV-LUT" id="DId-4G-kze">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="4Lv-v8-VOD" firstAttribute="trailing" secondItem="UmF-rN-O6Z" secondAttribute="trailing" id="ONq-zD-7gz"/>
+                            <constraint firstItem="4Lv-v8-VOD" firstAttribute="top" secondItem="f4X-ES-e5b" secondAttribute="top" id="S1t-ge-4xz"/>
+                            <constraint firstItem="4Lv-v8-VOD" firstAttribute="leading" secondItem="UmF-rN-O6Z" secondAttribute="leading" id="dgq-iG-Kw4"/>
+                            <constraint firstItem="4Lv-v8-VOD" firstAttribute="bottom" secondItem="UmF-rN-O6Z" secondAttribute="bottom" id="kQL-Ok-9G1"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="UmF-rN-O6Z"/>
                     </view>
                     <navigationItem key="navigationItem" title="Home" id="WeF-rK-zmg">
@@ -26,10 +48,13 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="4Lv-v8-VOD" id="JuF-wr-IaB"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9Fm-JR-cWZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2510" y="-644"/>
+            <point key="canvasLocation" x="2509.5999999999999" y="-644.52773613193403"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="8mO-f2-cNg">

@@ -125,7 +125,7 @@ class CameraViewController: UIViewController {
     }
 }
 
-// Setting the photo to be the selectedImage from the gallery
+// Sets the photo to be the selectedImage from the gallery
 extension CameraViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let image = info["UIImagePickerControllerOriginalImage"] as? UIImage{
