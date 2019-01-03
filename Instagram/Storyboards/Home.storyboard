@@ -21,7 +21,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PostCell" rowHeight="567" id="onY-WV-LUT">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PostCell" rowHeight="567" id="onY-WV-LUT" customClass="HomeTableViewCell" customModule="Instagram" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="567"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="onY-WV-LUT" id="DId-4G-kze">
@@ -34,7 +34,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ss8-xi-vQ8">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ss8-xi-vQ8">
                                                     <rect key="frame" x="0.0" y="59" width="375" height="320"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="320" id="dN9-VN-ASx"/>
@@ -61,24 +61,29 @@
                                                     </constraints>
                                                 </view>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zfd-Y7-O3I">
-                                                    <rect key="frame" x="15" y="436" width="46" height="24"/>
+                                                    <rect key="frame" x="15" y="436" width="46" height="73"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="10"/>
                                                     <state key="normal" title="Like first">
                                                         <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </state>
                                                 </button>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q5n-0P-LeS">
-                                                    <rect key="frame" x="15" y="465" width="345" height="16"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q5n-0P-LeS">
+                                                    <rect key="frame" x="15" y="514" width="345" height="16"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholderImg" translatesAutoresizingMaskIntoConstraints="NO" id="4PC-HW-7U9">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholderImg" translatesAutoresizingMaskIntoConstraints="NO" id="4PC-HW-7U9">
                                                     <rect key="frame" x="15" y="15" width="36" height="36"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="36" id="9l1-eN-AHa"/>
                                                         <constraint firstAttribute="height" constant="36" id="pIX-45-xzr"/>
                                                     </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="18"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
                                                 </imageView>
                                             </subviews>
                                             <constraints>
@@ -96,6 +101,7 @@
                                                 <constraint firstItem="4PC-HW-7U9" firstAttribute="leading" secondItem="DId-4G-kze" secondAttribute="leading" constant="15" id="Pc0-mz-zDa"/>
                                                 <constraint firstItem="X8p-j0-XoD" firstAttribute="leading" secondItem="rpH-rH-zZ0" secondAttribute="trailing" constant="62" id="ReD-0X-U3r"/>
                                                 <constraint firstItem="SVJ-Ki-PY9" firstAttribute="height" secondItem="rpH-rH-zZ0" secondAttribute="height" id="UVE-9i-wpT"/>
+                                                <constraint firstAttribute="bottom" secondItem="q5n-0P-LeS" secondAttribute="bottom" constant="37" id="azv-vQ-NKx"/>
                                                 <constraint firstItem="ss8-xi-vQ8" firstAttribute="leading" secondItem="DId-4G-kze" secondAttribute="leading" id="c80-gv-pa1"/>
                                                 <constraint firstItem="zfd-Y7-O3I" firstAttribute="top" secondItem="ptc-cC-U89" secondAttribute="bottom" constant="7" id="f5d-MF-OSN"/>
                                                 <constraint firstItem="X8p-j0-XoD" firstAttribute="leading" secondItem="SVJ-Ki-PY9" secondAttribute="trailing" constant="20" id="h9H-bL-0XL"/>
@@ -110,6 +116,16 @@
                                                 <constraint firstItem="2Ue-5O-m8l" firstAttribute="centerY" secondItem="4PC-HW-7U9" secondAttribute="centerY" id="yU1-i4-gf1"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="captionLabel" destination="q5n-0P-LeS" id="9wT-IF-CMu"/>
+                                            <outlet property="commentImageView" destination="SVJ-Ki-PY9" id="SSY-Fc-xgR"/>
+                                            <outlet property="likeCountButton" destination="zfd-Y7-O3I" id="xPf-YA-Yvo"/>
+                                            <outlet property="likeImageView" destination="rpH-rH-zZ0" id="R2r-jD-2rV"/>
+                                            <outlet property="nameLabel" destination="2Ue-5O-m8l" id="Y7N-fM-PRJ"/>
+                                            <outlet property="postImageView" destination="ss8-xi-vQ8" id="YzB-kl-XT4"/>
+                                            <outlet property="profileImageView" destination="4PC-HW-7U9" id="VQh-XL-GLR"/>
+                                            <outlet property="shareImageView" destination="X8p-j0-XoD" id="TIm-z1-aD1"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>

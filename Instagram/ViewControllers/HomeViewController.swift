@@ -18,6 +18,10 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Lets the tableView estimight it's height for better performance
+        tableView.estimatedRowHeight = 521
+        // Lets the cells to automatic adjust it's size based on it's content
+        tableView.rowHeight = UITableViewAutomaticDimension
         tableView.dataSource = self
         loadPosts()
     }
@@ -51,13 +55,18 @@ class HomeViewController: UIViewController {
 extension HomeViewController: UITableViewDataSource {
     // Sets the number of tableView rows to be the number of posts stored in the Firebase Database
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return posts.count
+//        return posts.count
+        return 10
     }
     
     // Defines how each cell of the tableView should look like
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell", for: indexPath)
-        cell.textLabel?.text = posts[indexPath.row].caption
+        let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell", for: indexPath) as! HomeTableViewCell
+        cell.profileImageView.image = UIImage(named: "photo1.jpeg")
+        cell.nameLabel.text = "Ronen"
+        cell.postImageView.image = UIImage(named: "photo2.jpeg")
+        cell.captionLabel.text = "Short TextShort TextShort TextShort TextShort TextShort TextShort TextShort TextShort TextShort TextShort TextShort TextShort TextShort TextShort TextShort TextShort TextShort TextShort TextShort TextShort TextShort TextShort TextShort TextShort TextShort TextShort TextShort TextShort TextShort TextShort TextShort TextShort TextShort TextShort Text"
+//        cell.textLabel?.text = posts[indexPath.row].caption
         return cell
     }
 }
