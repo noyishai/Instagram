@@ -19,7 +19,24 @@ class HomeTableViewCell: UITableViewCell {
     @IBOutlet weak var likeCountButton: UIButton!
     @IBOutlet weak var captionLabel: UILabel!
     
-
+    // Ovserver which wait to see if the post instance variable is set
+    var post: Post? {
+        didSet {
+            updateView()
+        }
+    }
+    // Updates the cells with posts data
+    func updateView() {
+        captionLabel.text = post?.caption
+        profileImageView.image = UIImage(named: "photo1.jpeg")
+        nameLabel.text = "Ronen"
+        if let photoUrlString = post?.photoUrl {
+            let photoUrl = URL(string: photoUrlString)
+            // Uses SDWebimage to download the photo from the url
+            postImageView.sd_setImage(with: photoUrl)
+        }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

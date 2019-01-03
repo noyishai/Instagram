@@ -9,6 +9,7 @@
 import UIKit
 import FirebaseAuth
 import FirebaseDatabase
+import SDWebImage
 
 class HomeViewController: UIViewController {
     
@@ -55,18 +56,14 @@ class HomeViewController: UIViewController {
 extension HomeViewController: UITableViewDataSource {
     // Sets the number of tableView rows to be the number of posts stored in the Firebase Database
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return posts.count
-        return 10
+        return posts.count
     }
     
     // Defines how each cell of the tableView should look like
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell", for: indexPath) as! HomeTableViewCell
-        cell.profileImageView.image = UIImage(named: "photo1.jpeg")
-        cell.nameLabel.text = "Ronen"
-        cell.postImageView.image = UIImage(named: "photo2.jpeg")
-        cell.captionLabel.text = "Short TextShort TextShort TextShort TextShort TextShort TextShort TextShort TextShort TextShort TextShort TextShort TextShort TextShort TextShort TextShort TextShort TextShort TextShort TextShort TextShort TextShort TextShort TextShort TextShort TextShort TextShort TextShort TextShort TextShort TextShort TextShort TextShort TextShort TextShort Text"
-//        cell.textLabel?.text = posts[indexPath.row].caption
+        let post = posts[indexPath.row]
+        cell.post = post
         return cell
     }
 }
