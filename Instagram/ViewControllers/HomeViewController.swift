@@ -15,7 +15,7 @@ class HomeViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     var posts = [Post]()
-    
+    var users = [User]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,13 +44,26 @@ class HomeViewController: UIViewController {
             // Creates dictionary from the database loaded from Firebase
             if let dict = snapshot.value as? [String: Any] {
                 let newPost = Post.transformPostPhoto(dict: dict)
-                self.posts.append(newPost)
-                self.tableView.reloadData()
+                self.fetchUser(uid: newPost.uid!, completed: {
+                    self.posts.append(newPost)
+                    self.tableView.reloadData()
+                })
             }
         }
         
     }
     
+    // Given user ID gives the data
+    func fetchUser(uid: String, completed: @escaping () -> Void) {
+        Database.database().reference().child("users").child(uid).observeSingleEvent(of: DataEventType.value, with:  { (snapshot: DataSnapshot) in
+            // Creates dictionary from the database loaded from Firebase
+            if let dict = snapshot.value as? [String: Any] {
+                let user = User.transformUser(dict: dict)
+                self.users.append(user)
+                completed()
+            }
+        })
+    }
 }
 
 extension HomeViewController: UITableViewDataSource {
@@ -63,7 +76,9 @@ extension HomeViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell", for: indexPath) as! HomeTableViewCell
         let post = posts[indexPath.row]
+        let user = users[indexPath.row]
         cell.post = post
+        cell.user = user
         return cell
     }
 }

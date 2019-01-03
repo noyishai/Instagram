@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import FirebaseDatabase
 
 class HomeTableViewCell: UITableViewCell {
     
@@ -27,6 +26,12 @@ class HomeTableViewCell: UITableViewCell {
         }
     }
     
+    var user: User? {
+        didSet {
+            setupUserInfo()
+        }
+    }
+    
     // Updates the cells with posts data
     func updateView() {
         captionLabel.text = post?.caption
@@ -38,26 +43,27 @@ class HomeTableViewCell: UITableViewCell {
         setupUserInfo()
     }
     
-    // Gets the user data for specific user ID
+    // Gets the user data
     func setupUserInfo() {
-        if let uid = post?.uid {
-            Database.database().reference().child("users").child(uid).observeSingleEvent(of: DataEventType.value, with:  { (snapshot: DataSnapshot) in
-                // Creates dictionary from the database loaded from Firebase
-                if let dict = snapshot.value as? [String: Any] {
-                    let user = User.transformUser(dict: dict)
-                    self.nameLabel.text = user.username
-                    if let photoUrlString = user.profileImageUrl {
-                        let photoUrl = URL(string: photoUrlString)
-                        self.profileImageView.sd_setImage(with: photoUrl)
-                    }
-                }
-            })
+        nameLabel.text = user?.username
+        if let photoUrlString = user?.profileImageUrl {
+            let photoUrl = URL(string: photoUrlString)
+            profileImageView.sd_setImage(with: photoUrl, placeholderImage: UIImage(named: "placeholderImg"))
         }
+        
     }
     
+    // What to do with the cells when loaded to memory and didnt downloaded items from database
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        nameLabel.text = ""
+        captionLabel.text = ""
+    }
+    
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        profileImageView.image = UIImage(named: "placeholderImg")
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
