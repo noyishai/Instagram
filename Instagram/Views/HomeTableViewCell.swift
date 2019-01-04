@@ -22,6 +22,7 @@ class HomeTableViewCell: UITableViewCell {
     @IBOutlet weak var captionLabel: UILabel!
     
     var homeVC: HomeViewController?
+    var postRef: DatabaseReference!
     
     // Ovserver which wait to see if the post instance variable is set
     var post: Post? {
@@ -45,16 +46,25 @@ class HomeTableViewCell: UITableViewCell {
             // Uses SDWebimage to download the photo from the url
             postImageView.sd_setImage(with: photoUrl)
         }
-        
-        // Checks if the user liked the post
-        if let currentUser = Auth.auth().currentUser {
-            Api.User.REF_USERS.child(currentUser.uid).child("likes").child(post!.id!).observeSingleEvent(of: .value) { (snapshot: DataSnapshot) in
-                if let _ = snapshot.value as? NSNull {
-                    self.likeImageView.image = UIImage(named: "like")
-                } else {
-                    self.likeImageView.image = UIImage(named: "likeSelected")
-                }
+        updateLike(post: post!)
+        // Observe for childChanged, in this case for the likesCount to change by other users
+        Api.Post.REF_POSTS.child(post!.id!).observe(DataEventType.childChanged) { (snapshot: DataSnapshot) in
+            if let value = snapshot.value as? Int {
+                self.likeCountButton.setTitle("\(value) Likes", for: UIControlState.normal)
             }
+        }
+    }
+    
+    // Checks if the post liked or not and change the like image accordingly + increase/decrease the likesCount
+    func updateLike(post: Post) {
+        let imageName = post.likes == nil || !post.isLiked! ? "like" : "likeSelected"
+        likeImageView.image = UIImage(named: imageName)
+        // Checks if someoene liked the post and changes the title benif
+        guard let count = post.likeCount else { return }
+        if count != 0 {
+            likeCountButton.setTitle("\(count) Likes", for: UIControlState.normal)
+        } else {
+            likeCountButton.setTitle("Like First", for: UIControlState.normal)
         }
     }
     
@@ -89,22 +99,48 @@ class HomeTableViewCell: UITableViewCell {
     func commentImageView_TouchUpInside() {
         if let id = post?.id {
             homeVC?.performSegue(withIdentifier: "CommentSegue", sender: id)
-
         }
     }
     
     // What to perform when like pressed
     func likeImageView_TouchUpInside() {
-        // Checks if the user liked the post
-        if let currentUser = Auth.auth().currentUser {
-            Api.User.REF_USERS.child(currentUser.uid).child("likes").child(post!.id!).observeSingleEvent(of: .value) { (snapshot: DataSnapshot) in
-                if let _ = snapshot.value as? NSNull {
-                    Api.User.REF_USERS.child(currentUser.uid).child("likes").child(self.post!.id!).setValue(true)
-                    self.likeImageView.image = UIImage(named: "likeSelected")
+        postRef = Api.Post.REF_POSTS.child(post!.id!)
+        incrementLikes(forRef: postRef)
+    }
+    
+    // Google's runTransactionBlock to increase likes
+    // When you click on like, it creates likes dictionary and likeCount (counter) under the post. The dictionary hold the userId's which liked the phost
+    func incrementLikes(forRef ref: DatabaseReference) {
+        ref.runTransactionBlock({ (currentData: MutableData) -> TransactionResult in
+            if var post = currentData.value as? [String : AnyObject], let uid = Auth.auth().currentUser?.uid {
+                var likes: Dictionary<String, Bool>
+                likes = post["likes"] as? [String : Bool] ?? [:]
+                var likeCount = post["likeCount"] as? Int ?? 0
+                if let _ = likes[uid] {
+                    // Unlike the post and remove self from likes
+                    likeCount -= 1
+                    likes.removeValue(forKey: uid)
                 } else {
-                    Api.User.REF_USERS.child(currentUser.uid).child("likes").child(self.post!.id!).removeValue()
-                    self.likeImageView.image = UIImage(named: "like")
+                    // Like the post and add self to likes
+                    likeCount += 1
+                    likes[uid] = true
                 }
+                post["likeCount"] = likeCount as AnyObject?
+                post["likes"] = likes as AnyObject?
+                
+                // Set value and report transaction success
+                currentData.value = post
+                
+                return TransactionResult.success(withValue: currentData)
+            }
+            return TransactionResult.success(withValue: currentData)
+        }) { (error, committed, snapshot) in
+            if let error = error {
+                print(error.localizedDescription)
+            }
+            if let dict = snapshot?.value as? [String: Any] {
+                let post = Post.transformPostPhoto(dict: dict, key: snapshot!.key)
+                self.updateLike(post: post)
             }
         }
     }

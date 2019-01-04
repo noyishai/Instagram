@@ -7,12 +7,16 @@
 //
 
 import Foundation
+import FirebaseAuth
 
 class Post {
     var caption: String?
     var photoUrl: String?
     var uid: String?
     var id: String?
+    var likeCount: Int?
+    var likes: Dictionary<String, Any>?
+    var isLiked: Bool?
 }
 
 // Extension to Post which will replace inits for more clear coding instead of overriding inits
@@ -24,6 +28,13 @@ extension Post {
         post.caption = dict["caption"] as? String // The extracted caption from Firebase Database
         post.photoUrl = dict["photoUrl"] as? String // The extracted photoUrl from Firebase Database
         post.uid = dict["uid"] as? String // The extracted UID from Firebase Database
+        post.likeCount = dict["likeCount"] as? Int
+        post.likes = dict["likes"] as? Dictionary<String, Any>
+        if let currentUserId = Auth.auth().currentUser?.uid {
+            if post.likes != nil {
+                post.isLiked = post.likes![currentUserId] != nil
+            }
+        }
         return post
     }
     

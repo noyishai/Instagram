@@ -14,7 +14,7 @@ class CommentApi {
     
     // Gets the comments and observes for new ones
     func observeComments(withPostId id: String, completion: @escaping (Comment) -> Void) {
-        REF_COMMENTS.child(id).observeSingleEvent(of: .value) { (snapshot: DataSnapshot) in
+        REF_COMMENTS.child(id).observeSingleEvent(of: DataEventType.value) { (snapshot: DataSnapshot) in
             if let dict = snapshot.value as? [String: Any] {
                 let newComment = Comment.transformComment(dict: dict)
                 completion(newComment)

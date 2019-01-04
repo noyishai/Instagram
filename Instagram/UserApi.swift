@@ -14,7 +14,7 @@ class UserApi {
     
     // Gets the users and observes for new ones
     func observeUser(withId uid: String, completion: @escaping (User) -> Void) {
-        REF_USERS.child(uid).observeSingleEvent(of: .value) { (snapshot: DataSnapshot) in
+        REF_USERS.child(uid).observeSingleEvent(of: DataEventType.value) { (snapshot: DataSnapshot) in
             // Creates dictionary from the database loaded from Firebase
             if let dict = snapshot.value as? [String: Any] {
                 let user = User.transformUser(dict: dict)
