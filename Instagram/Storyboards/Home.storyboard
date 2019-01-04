@@ -85,14 +85,6 @@
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </imageView>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vht-FL-lS7">
-                                                    <rect key="frame" x="164" y="259" width="46" height="30"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <state key="normal" title="Button"/>
-                                                    <connections>
-                                                        <action selector="button_TouchUpInside:" destination="AMH-Nt-S8Z" eventType="touchUpInside" id="qbD-yu-q70"/>
-                                                    </connections>
-                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="rpH-rH-zZ0" firstAttribute="top" secondItem="ss8-xi-vQ8" secondAttribute="bottom" constant="15" id="2sU-iT-Yhs"/>

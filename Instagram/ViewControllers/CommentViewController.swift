@@ -20,10 +20,11 @@ class CommentViewController: UIViewController {
     var comments = [Comment]()
     var users = [User]()
     
-    let postId = "-LVKMhxW1UyugO8FpXJN"
+    var postId: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "Comment"
         tableView.dataSource = self
         // Lets the tableView estimight it's height for better performance
         tableView.estimatedRowHeight = 77
@@ -38,9 +39,16 @@ class CommentViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
     
+    // What to do when the view appears
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = true // Hides the tabBar
+    }
+    
+    // What to do when the view disappears
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.tabBarController?.tabBar.isHidden = false // Enables the tabBar
     }
     
     @IBAction func sendButton_TouchUpInside(_ sender: Any) {
@@ -58,8 +66,7 @@ class CommentViewController: UIViewController {
                 ProgressHUD.showError(error!.localizedDescription)
                 return
             }
-            let postId = "-LVKMhxW1UyugO8FpXJN"
-            let postCommentRef = Database.database().reference().child("post-comments").child(postId).child(newCommentId!)
+            let postCommentRef = Database.database().reference().child("post-comments").child(self.postId).child(newCommentId!)
             postCommentRef.setValue(true, withCompletionBlock: { (error: Error?, ref: DatabaseReference) in
                 if error != nil {
                     ProgressHUD.showError(error!.localizedDescription)

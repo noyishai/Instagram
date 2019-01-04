@@ -19,6 +19,8 @@ class HomeTableViewCell: UITableViewCell {
     @IBOutlet weak var likeCountButton: UIButton!
     @IBOutlet weak var captionLabel: UILabel!
     
+    var homeVC: HomeViewController?
+    
     // Ovserver which wait to see if the post instance variable is set
     var post: Post? {
         didSet {
@@ -57,8 +59,17 @@ class HomeTableViewCell: UITableViewCell {
         super.awakeFromNib()
         nameLabel.text = ""
         captionLabel.text = ""
+        let tapCommentGesture = UITapGestureRecognizer(target: self, action: #selector(self.commentImageView_TouchUpInside))
+        commentImageView.addGestureRecognizer(tapCommentGesture)
+        commentImageView.isUserInteractionEnabled = true
     }
     
+    func commentImageView_TouchUpInside() {
+        if let id = post?.id {
+            homeVC?.performSegue(withIdentifier: "CommentSegue", sender: id)
+
+        }
+    }
     
     override func prepareForReuse() {
         super.prepareForReuse()

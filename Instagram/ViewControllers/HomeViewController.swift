@@ -29,14 +29,6 @@ class HomeViewController: UIViewController {
         loadPosts()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.tabBarController?.tabBar.isHidden = false // Enables the tabBar
-    }
-    
-    @IBAction func button_TouchUpInside(_ sender: Any) {
-        performSegue(withIdentifier: "CommentSegue", sender: nil)
-    }
     @IBAction func logout_TouchUpInside(_ sender: Any) {
         do {
             try Auth.auth().signOut()
@@ -54,7 +46,7 @@ class HomeViewController: UIViewController {
         Database.database().reference().child("posts").observe(.childAdded) { (snapshot: DataSnapshot) in
             // Creates dictionary from the database loaded from Firebase
             if let dict = snapshot.value as? [String: Any] {
-                let newPost = Post.transformPostPhoto(dict: dict)
+                let newPost = Post.transformPostPhoto(dict: dict, key: snapshot.key) // snapshot.key returns the post id which firebase created
                 self.fetchUser(uid: newPost.uid!, completed: {
                     self.posts.append(newPost)
                     self.activityIndicatorView.stopAnimating()
@@ -76,6 +68,14 @@ class HomeViewController: UIViewController {
             }
         })
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "CommentSegue" {
+            let commentVC = segue.destination as! CommentViewController
+            let postId = sender as! String
+            commentVC.postId = postId
+        }
+    }
 }
 
 extension HomeViewController: UITableViewDataSource {
@@ -91,6 +91,7 @@ extension HomeViewController: UITableViewDataSource {
         let user = users[indexPath.row]
         cell.post = post
         cell.user = user
+        cell.homeVC = self
         return cell
     }
 }
