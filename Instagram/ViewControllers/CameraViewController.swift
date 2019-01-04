@@ -79,10 +79,10 @@ class CameraViewController: UIViewController {
         // Creates new random ID for each post
         let newPostId = postsReference.childByAutoId().key
         let newPostReference = postsReference.child(newPostId!)
-        guard Auth.auth().currentUser != nil else {
+        guard let currentUser = Auth.auth().currentUser else {
             return
         }
-        let currentUserId = Auth.auth().currentUser?.uid
+        let currentUserId = currentUser.uid
         newPostReference.setValue(["uid": currentUserId, "photoUrl": photoUrl, "caption": captionTextView.text!], withCompletionBlock: { (error: Error?, ref: DatabaseReference) in
             if error != nil {
                 ProgressHUD.showError(error!.localizedDescription)
