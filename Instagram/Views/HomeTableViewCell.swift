@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import FirebaseDatabase
+import FirebaseAuth
 
 class HomeTableViewCell: UITableViewCell {
     
@@ -43,6 +45,17 @@ class HomeTableViewCell: UITableViewCell {
             // Uses SDWebimage to download the photo from the url
             postImageView.sd_setImage(with: photoUrl)
         }
+        
+        // Checks if the user liked the post
+        if let currentUser = Auth.auth().currentUser {
+            Api.User.REF_USERS.child(currentUser.uid).child("likes").child(post!.id!).observeSingleEvent(of: .value) { (snapshot: DataSnapshot) in
+                if let _ = snapshot.value as? NSNull {
+                    self.likeImageView.image = UIImage(named: "like")
+                } else {
+                    self.likeImageView.image = UIImage(named: "likeSelected")
+                }
+            }
+        }
     }
     
     // Gets the user data
@@ -59,15 +72,40 @@ class HomeTableViewCell: UITableViewCell {
         super.awakeFromNib()
         nameLabel.text = ""
         captionLabel.text = ""
+        // Gesture to specify what to do when you press comment
         let tapCommentGesture = UITapGestureRecognizer(target: self, action: #selector(self.commentImageView_TouchUpInside))
         commentImageView.addGestureRecognizer(tapCommentGesture)
         commentImageView.isUserInteractionEnabled = true
+        
+        // Gesture to specify what to do when you press like
+        let tapLikeGesture = UITapGestureRecognizer(target: self, action: #selector(self.likeImageView_TouchUpInside))
+        likeImageView.addGestureRecognizer(tapLikeGesture)
+        likeImageView.isUserInteractionEnabled = true
+        
+
     }
     
+    // What to perform when comment pressed
     func commentImageView_TouchUpInside() {
         if let id = post?.id {
             homeVC?.performSegue(withIdentifier: "CommentSegue", sender: id)
 
+        }
+    }
+    
+    // What to perform when like pressed
+    func likeImageView_TouchUpInside() {
+        // Checks if the user liked the post
+        if let currentUser = Auth.auth().currentUser {
+            Api.User.REF_USERS.child(currentUser.uid).child("likes").child(post!.id!).observeSingleEvent(of: .value) { (snapshot: DataSnapshot) in
+                if let _ = snapshot.value as? NSNull {
+                    Api.User.REF_USERS.child(currentUser.uid).child("likes").child(self.post!.id!).setValue(true)
+                    self.likeImageView.image = UIImage(named: "likeSelected")
+                } else {
+                    Api.User.REF_USERS.child(currentUser.uid).child("likes").child(self.post!.id!).removeValue()
+                    self.likeImageView.image = UIImage(named: "like")
+                }
+            }
         }
     }
     
