@@ -46,7 +46,14 @@ class HomeTableViewCell: UITableViewCell {
             // Uses SDWebimage to download the photo from the url
             postImageView.sd_setImage(with: photoUrl)
         }
-        updateLike(post: post!)
+        
+        // Observe for single change to update the posts while scrolling down so we wont have the image move between posts
+        Api.Post.REF_POSTS.child(post!.id!).observeSingleEvent(of: DataEventType.value) { (snapshot: DataSnapshot) in
+            if let dict = snapshot.value as? [String: Any] {
+                let post = Post.transformPostPhoto(dict: dict, key: snapshot.key)
+                self.updateLike(post: post)
+            }
+        }
         // Observe for childChanged, in this case for the likesCount to change by other users
         Api.Post.REF_POSTS.child(post!.id!).observe(DataEventType.childChanged) { (snapshot: DataSnapshot) in
             if let value = snapshot.value as? Int {
