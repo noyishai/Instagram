@@ -15,11 +15,13 @@ class CommentViewController: UIViewController {
     @IBOutlet weak var commentTextField: UITextField!
     @IBOutlet weak var sendButton: UIButton!
     
+    let postId = "-LVKMhxW1UyugO8FpXJN"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         sendButton.isEnabled = false
         handleTextField()
-        // Do any additional setup after loading the view.
+        loadComments()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -42,8 +44,27 @@ class CommentViewController: UIViewController {
                 ProgressHUD.showError(error!.localizedDescription)
                 return
             }
+            let postId = "-LVKMhxW1UyugO8FpXJN"
+            let postCommentRef = Database.database().reference().child("post-comments").child(postId)
+            postCommentRef.setValue(true, withCompletionBlock: { (error, ref) in
+                if error != nil {
+                    ProgressHUD.showError(error!.localizedDescription)
+                    return
+                }
+            })
             self.empty()
         })
+    }
+    
+    // Getting comments and observe for new ones realtime
+    func loadComments() {
+        let postCommentRef = Database.database().reference().child("post-comments").child(self.postId)
+        postCommentRef.observe(.childAdded) { (snapshot: DataSnapshot) in
+            Database.database().reference().child("comments").child(snapshot.key).observeSingleEvent(of: .value, with: { (snapshotComment: DataSnapshot) in
+                
+            })
+        }
+        
     }
     
     func empty() {
