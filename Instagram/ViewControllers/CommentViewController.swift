@@ -11,7 +11,7 @@ import FirebaseDatabase
 import FirebaseAuth
 
 class CommentViewController: UIViewController {
-
+    
     @IBOutlet weak var commentTextField: UITextField!
     @IBOutlet weak var sendButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
@@ -53,7 +53,7 @@ class CommentViewController: UIViewController {
     
     @IBAction func sendButton_TouchUpInside(_ sender: Any) {
         let ref = Database.database().reference()
-        let commentsReference = ref.child("comments")
+        let commentsReference = Api.Comment.REF_COMMENTS
         // Creates new random ID for each post
         let newCommentId = commentsReference.childByAutoId().key
         let newCommentReference = commentsReference.child(newCommentId!)
@@ -66,7 +66,7 @@ class CommentViewController: UIViewController {
                 ProgressHUD.showError(error!.localizedDescription)
                 return
             }
-            let postCommentRef = Database.database().reference().child("post-comments").child(self.postId).child(newCommentId!)
+            let postCommentRef = Api.Post_Comment.REF_POSTS_COMMENTS.child(self.postId).child(newCommentId!)
             postCommentRef.setValue(true, withCompletionBlock: { (error: Error?, ref: DatabaseReference) in
                 if error != nil {
                     ProgressHUD.showError(error!.localizedDescription)
@@ -102,35 +102,23 @@ class CommentViewController: UIViewController {
     
     // Getting comments and observe for new ones realtime
     func loadComments() {
-        let postCommentRef = Database.database().reference().child("post-comments").child(self.postId)
-        postCommentRef.observe(.childAdded) { (snapshot: DataSnapshot) in
-            print("Observe key")
-            print(snapshot.key)
+            Api.Post_Comment.REF_POSTS_COMMENTS.child(self.postId).observe(.childAdded) { (snapshot: DataSnapshot) in
             // Retriving comments data from Firebase Database
-            Database.database().reference().child("comments").child(snapshot.key).observeSingleEvent(of: .value, with: { (snapshotComment: DataSnapshot) in
-                // Creates dictionary from the database loaded from Firebase
-                if let dict = snapshotComment.value as? [String: Any] {
-                    let newComment = Comment.transformComment(dict: dict)
-                    self.fetchUser(uid: newComment.uid!, completed: {
-                        self.comments.append(newComment)
-                        self.tableView.reloadData()
-                    })
-                }
+            Api.Comment.observeComments(withPostId: snapshot.key, completion: { (comment: Comment) in
+                self.fetchUser(uid: comment.uid!, completed: {
+                    self.comments.append(comment)
+                    self.tableView.reloadData()
+                })
             })
         }
-
     }
-
+    
     // Given user ID gives the data
     func fetchUser(uid: String, completed: @escaping () -> Void) {
-        Database.database().reference().child("users").child(uid).observeSingleEvent(of: DataEventType.value, with:  { (snapshot: DataSnapshot) in
-            // Creates dictionary from the database loaded from Firebase
-            if let dict = snapshot.value as? [String: Any] {
-                let user = User.transformUser(dict: dict)
-                self.users.append(user)
-                completed()
-            }
-        })
+        Api.User.observeUser(withId: uid) { (user: User) in
+            self.users.append(user)
+            completed()
+        }
     }
     
     // Clearing the comment section

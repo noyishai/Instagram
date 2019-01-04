@@ -43,30 +43,21 @@ class HomeViewController: UIViewController {
     // Load posts and observe for new added posts and ignore unchanged posts
     func loadPosts() {
         activityIndicatorView.startAnimating()
-        Database.database().reference().child("posts").observe(.childAdded) { (snapshot: DataSnapshot) in
-            // Creates dictionary from the database loaded from Firebase
-            if let dict = snapshot.value as? [String: Any] {
-                let newPost = Post.transformPostPhoto(dict: dict, key: snapshot.key) // snapshot.key returns the post id which firebase created
-                self.fetchUser(uid: newPost.uid!, completed: {
-                    self.posts.append(newPost)
-                    self.activityIndicatorView.stopAnimating()
-                    self.tableView.reloadData()
-                })
-            }
+        Api.Post.observePosts { (post) in
+            self.fetchUser(uid: post.uid!, completed: {
+                self.posts.append(post)
+                self.activityIndicatorView.stopAnimating()
+                self.tableView.reloadData()
+            })
         }
-        
     }
     
     // Given user ID gives the data
     func fetchUser(uid: String, completed: @escaping () -> Void) {
-        Database.database().reference().child("users").child(uid).observeSingleEvent(of: DataEventType.value, with:  { (snapshot: DataSnapshot) in
-            // Creates dictionary from the database loaded from Firebase
-            if let dict = snapshot.value as? [String: Any] {
-                let user = User.transformUser(dict: dict)
-                self.users.append(user)
-                completed()
-            }
-        })
+        Api.User.observeUser(withId: uid) { (user: User) in
+            self.users.append(user)
+            completed()
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
