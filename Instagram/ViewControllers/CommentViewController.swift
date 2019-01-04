@@ -15,6 +15,7 @@ class CommentViewController: UIViewController {
     @IBOutlet weak var commentTextField: UITextField!
     @IBOutlet weak var sendButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var constraintToBottom: NSLayoutConstraint!
     
     var comments = [Comment]()
     var users = [User]()
@@ -32,6 +33,9 @@ class CommentViewController: UIViewController {
         sendButton.isEnabled = false
         handleTextField()
         loadComments()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -63,7 +67,30 @@ class CommentViewController: UIViewController {
                 }
             })
             self.empty()
+            self.view.endEditing(true)
         })
+    }
+    
+    // Makes the app tocuh sensitive everywhere on the screen
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        // Makes the keyboard to close
+        view.endEditing(true)
+        print("test")
+    }
+    
+    func keyboardWillShow(_ notification: NSNotification){
+        let keyboardFrame = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as AnyObject).cgRectValue
+        UIView.animate(withDuration: 0.3) {
+            self.constraintToBottom.constant = -(keyboardFrame!.height)
+            self.view.layoutIfNeeded()
+        }
+    }
+    
+    func keyboardWillHide(_ notification: NSNotification){
+        UIView.animate(withDuration: 0.3) {
+            self.constraintToBottom.constant = 0
+            self.view.layoutIfNeeded()
+        }
     }
     
     // Getting comments and observe for new ones realtime
