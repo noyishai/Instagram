@@ -26,6 +26,7 @@ class HomeTableViewCell: UITableViewCell {
         }
     }
     
+    // Ovserver which wait to see if the user instance variable is set
     var user: User? {
         didSet {
             setupUserInfo()
@@ -40,7 +41,6 @@ class HomeTableViewCell: UITableViewCell {
             // Uses SDWebimage to download the photo from the url
             postImageView.sd_setImage(with: photoUrl)
         }
-        setupUserInfo()
     }
     
     // Gets the user data
@@ -50,7 +50,6 @@ class HomeTableViewCell: UITableViewCell {
             let photoUrl = URL(string: photoUrlString)
             profileImageView.sd_setImage(with: photoUrl, placeholderImage: UIImage(named: "placeholderImg"))
         }
-        
     }
     
     // What to do with the cells when loaded to memory and didnt downloaded items from database
@@ -63,6 +62,7 @@ class HomeTableViewCell: UITableViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
+        print("Reusing cell")
         profileImageView.image = UIImage(named: "placeholderImg")
     }
 

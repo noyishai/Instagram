@@ -14,11 +14,21 @@ class CommentViewController: UIViewController {
 
     @IBOutlet weak var commentTextField: UITextField!
     @IBOutlet weak var sendButton: UIButton!
+    @IBOutlet weak var tableView: UITableView!
+    
+    var comments = [Comment]()
+    var users = [User]()
     
     let postId = "-LVKMhxW1UyugO8FpXJN"
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.dataSource = self
+        // Lets the tableView estimight it's height for better performance
+        tableView.estimatedRowHeight = 77
+        // Lets the cells to automatic adjust it's size based on it's content
+        tableView.rowHeight = UITableViewAutomaticDimension
+        empty()
         sendButton.isEnabled = false
         handleTextField()
         loadComments()
@@ -45,8 +55,8 @@ class CommentViewController: UIViewController {
                 return
             }
             let postId = "-LVKMhxW1UyugO8FpXJN"
-            let postCommentRef = Database.database().reference().child("post-comments").child(postId)
-            postCommentRef.setValue(true, withCompletionBlock: { (error, ref) in
+            let postCommentRef = Database.database().reference().child("post-comments").child(postId).child(newCommentId!)
+            postCommentRef.setValue(true, withCompletionBlock: { (error: Error?, ref: DatabaseReference) in
                 if error != nil {
                     ProgressHUD.showError(error!.localizedDescription)
                     return
@@ -60,13 +70,36 @@ class CommentViewController: UIViewController {
     func loadComments() {
         let postCommentRef = Database.database().reference().child("post-comments").child(self.postId)
         postCommentRef.observe(.childAdded) { (snapshot: DataSnapshot) in
+            print("Observe key")
+            print(snapshot.key)
+            // Retriving comments data from Firebase Database
             Database.database().reference().child("comments").child(snapshot.key).observeSingleEvent(of: .value, with: { (snapshotComment: DataSnapshot) in
-                
+                // Creates dictionary from the database loaded from Firebase
+                if let dict = snapshotComment.value as? [String: Any] {
+                    let newComment = Comment.transformComment(dict: dict)
+                    self.fetchUser(uid: newComment.uid!, completed: {
+                        self.comments.append(newComment)
+                        self.tableView.reloadData()
+                    })
+                }
             })
         }
-        
+
+    }
+
+    // Given user ID gives the data
+    func fetchUser(uid: String, completed: @escaping () -> Void) {
+        Database.database().reference().child("users").child(uid).observeSingleEvent(of: DataEventType.value, with:  { (snapshot: DataSnapshot) in
+            // Creates dictionary from the database loaded from Firebase
+            if let dict = snapshot.value as? [String: Any] {
+                let user = User.transformUser(dict: dict)
+                self.users.append(user)
+                completed()
+            }
+        })
     }
     
+    // Clearing the comment section
     func empty() {
         self.commentTextField.text = ""
         sendButton.setTitleColor(UIColor.lightGray, for: UIControlState.normal)
@@ -91,4 +124,21 @@ class CommentViewController: UIViewController {
         sendButton.isEnabled = false
     }
     
+}
+
+extension CommentViewController: UITableViewDataSource {
+    // Sets the number of tableView rows to be the number of comments stored in the Firebase Database
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return comments.count
+    }
+    
+    // Defines how each cell of the tableView should look like
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CommentCell", for: indexPath) as! CommentTableViewCell
+        let comment = comments[indexPath.row]
+        let user = users[indexPath.row]
+        cell.comment = comment
+        cell.user = user
+        return cell
+    }
 }

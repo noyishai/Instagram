@@ -35,7 +35,7 @@ class HomeViewController: UIViewController {
     }
     
     @IBAction func button_TouchUpInside(_ sender: Any) {
-        performSegue(withIdentifier: "commentSegue", sender: nil)
+        performSegue(withIdentifier: "CommentSegue", sender: nil)
     }
     @IBAction func logout_TouchUpInside(_ sender: Any) {
         do {
