@@ -121,7 +121,7 @@ class CameraViewController: UIViewController {
         present(pickerController, animated: true, completion: nil)
     }
     
-    // Clean function
+    // Clean the photo and cation text
     func clean() {
         // Clearing the input after succeccful upload and returns to home view
         self.captionTextView.text = ""

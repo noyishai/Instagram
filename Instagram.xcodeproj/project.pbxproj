@@ -19,6 +19,8 @@
 		3610586A21DE73EA00F9E16A /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3610586921DE73EA00F9E16A /* Post.swift */; };
 		3610586F21DE912F00F9E16A /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3610586E21DE912F00F9E16A /* HomeTableViewCell.swift */; };
 		3610587321DEA79400F9E16A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3610587221DEA79400F9E16A /* User.swift */; };
+		36630D6E21DF3FBC002A168D /* CommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36630D6D21DF3FBC002A168D /* CommentViewController.swift */; };
+		36630D7021DF3FD4002A168D /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36630D6F21DF3FD4002A168D /* CommentTableViewCell.swift */; };
 		36D0DA4421CC3C700065CC58 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36D0DA4321CC3C700065CC58 /* Home.storyboard */; };
 		36D0DA4621CC3CAC0065CC58 /* Discover.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36D0DA4521CC3CAC0065CC58 /* Discover.storyboard */; };
 		36D0DA4821CC3CCD0065CC58 /* Camera.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36D0DA4721CC3CCD0065CC58 /* Camera.storyboard */; };
@@ -72,6 +74,8 @@
 		3610586921DE73EA00F9E16A /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		3610586E21DE912F00F9E16A /* HomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
 		3610587221DEA79400F9E16A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		36630D6D21DF3FBC002A168D /* CommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentViewController.swift; sourceTree = "<group>"; };
+		36630D6F21DF3FD4002A168D /* CommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
 		36D0DA4321CC3C700065CC58 /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		36D0DA4521CC3CAC0065CC58 /* Discover.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Discover.storyboard; sourceTree = "<group>"; };
 		36D0DA4721CC3CCD0065CC58 /* Camera.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Camera.storyboard; sourceTree = "<group>"; };
@@ -154,6 +158,7 @@
 			isa = PBXGroup;
 			children = (
 				3610586E21DE912F00F9E16A /* HomeTableViewCell.swift */,
+				36630D6F21DF3FD4002A168D /* CommentTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -177,6 +182,7 @@
 			children = (
 				84D130FA21BC0B8200589B10 /* SignUpViewController.swift */,
 				849DA6C621C989ED0061C5BD /* HomeViewController.swift */,
+				36630D6D21DF3FBC002A168D /* CommentViewController.swift */,
 				849DA6C821C98A5B0061C5BD /* DiscoverViewController.swift */,
 				849DA6CA21C98A830061C5BD /* CameraViewController.swift */,
 				849DA6CC21C98AC10061C5BD /* ActivityViewController.swift */,
@@ -509,11 +515,13 @@
 				3610586F21DE912F00F9E16A /* HomeTableViewCell.swift in Sources */,
 				84D130C921BBFA3200589B10 /* AppDelegate.swift in Sources */,
 				3610586A21DE73EA00F9E16A /* Post.swift in Sources */,
+				36630D6E21DF3FBC002A168D /* CommentViewController.swift in Sources */,
 				3607E4F921DBBDA30009A196 /* AuthService.swift in Sources */,
 				3610587321DEA79400F9E16A /* User.swift in Sources */,
 				849DA6C721C989ED0061C5BD /* HomeViewController.swift in Sources */,
 				849DA6CD21C98AC10061C5BD /* ActivityViewController.swift in Sources */,
 				3607E50121DBCF6B0009A196 /* ProgressHUD.m in Sources */,
+				36630D7021DF3FD4002A168D /* CommentTableViewCell.swift in Sources */,
 				849DA6C921C98A5B0061C5BD /* DiscoverViewController.swift in Sources */,
 				3607E4FB21DBCB110009A196 /* Config.swift in Sources */,
 				849DA6CF21C98AED0061C5BD /* ProfileViewController.swift in Sources */,

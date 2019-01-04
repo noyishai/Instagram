@@ -29,6 +29,14 @@ class HomeViewController: UIViewController {
         loadPosts()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tabBarController?.tabBar.isHidden = false // Enables the tabBar
+    }
+    
+    @IBAction func button_TouchUpInside(_ sender: Any) {
+        performSegue(withIdentifier: "commentSegue", sender: nil)
+    }
     @IBAction func logout_TouchUpInside(_ sender: Any) {
         do {
             try Auth.auth().signOut()
