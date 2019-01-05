@@ -22,7 +22,7 @@ class CommentTableViewCell: UITableViewCell {
     }
     
     // Ovserver which wait to see if the user instance variable is set
-    var user: User? {
+    var user: UserModel? {
         didSet {
             setupUserInfo()
         }

@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import FirebaseDatabase
-import FirebaseAuth
 
 class HomeTableViewCell: UITableViewCell {
     
@@ -22,7 +20,6 @@ class HomeTableViewCell: UITableViewCell {
     @IBOutlet weak var captionLabel: UILabel!
     
     var homeVC: HomeViewController?
-    var postRef: DatabaseReference!
     
     // Ovserver which wait to see if the post instance variable is set
     var post: Post? {
@@ -32,7 +29,7 @@ class HomeTableViewCell: UITableViewCell {
     }
     
     // Ovserver which wait to see if the user instance variable is set
-    var user: User? {
+    var user: UserModel? {
         didSet {
             setupUserInfo()
         }
@@ -48,17 +45,13 @@ class HomeTableViewCell: UITableViewCell {
         }
         
         // Observe for single change to update the posts while scrolling down so we wont have the image move between posts
-        Api.Post.REF_POSTS.child(post!.id!).observeSingleEvent(of: DataEventType.value) { (snapshot: DataSnapshot) in
-            if let dict = snapshot.value as? [String: Any] {
-                let post = Post.transformPostPhoto(dict: dict, key: snapshot.key)
-                self.updateLike(post: post)
-            }
+        Api.Post.observePost(withId: post!.id!) { (post: Post) in
+            self.updateLike(post: post)
         }
+        
         // Observe for childChanged, in this case for the likesCount to change by other users
-        Api.Post.REF_POSTS.child(post!.id!).observe(DataEventType.childChanged) { (snapshot: DataSnapshot) in
-            if let value = snapshot.value as? Int {
-                self.likeCountButton.setTitle("\(value) Likes", for: UIControlState.normal)
-            }
+        Api.Post.observeLikeCount(withPostId: post!.id!) { (value) in
+            self.likeCountButton.setTitle("\(value) Likes", for: UIControlState.normal)
         }
     }
     
@@ -111,44 +104,10 @@ class HomeTableViewCell: UITableViewCell {
     
     // What to perform when like pressed
     func likeImageView_TouchUpInside() {
-        postRef = Api.Post.REF_POSTS.child(post!.id!)
-        incrementLikes(forRef: postRef)
-    }
-    
-    // Google's runTransactionBlock to increase likes
-    // When you click on like, it creates likes dictionary and likeCount (counter) under the post. The dictionary hold the userId's which liked the phost
-    func incrementLikes(forRef ref: DatabaseReference) {
-        ref.runTransactionBlock({ (currentData: MutableData) -> TransactionResult in
-            if var post = currentData.value as? [String : AnyObject], let uid = Auth.auth().currentUser?.uid {
-                var likes: Dictionary<String, Bool>
-                likes = post["likes"] as? [String : Bool] ?? [:]
-                var likeCount = post["likeCount"] as? Int ?? 0
-                if let _ = likes[uid] {
-                    // Unlike the post and remove self from likes
-                    likeCount -= 1
-                    likes.removeValue(forKey: uid)
-                } else {
-                    // Like the post and add self to likes
-                    likeCount += 1
-                    likes[uid] = true
-                }
-                post["likeCount"] = likeCount as AnyObject?
-                post["likes"] = likes as AnyObject?
-                
-                // Set value and report transaction success
-                currentData.value = post
-                
-                return TransactionResult.success(withValue: currentData)
-            }
-            return TransactionResult.success(withValue: currentData)
-        }) { (error, committed, snapshot) in
-            if let error = error {
-                print(error.localizedDescription)
-            }
-            if let dict = snapshot?.value as? [String: Any] {
-                let post = Post.transformPostPhoto(dict: dict, key: snapshot!.key)
-                self.updateLike(post: post)
-            }
+        Api.Post.incrementLikes(postId:post!.id!, onSuccess: { (post: Post) in
+            self.updateLike(post: post)
+        }) { (errorMessage) in
+            ProgressHUD.showError(errorMessage)
         }
     }
     

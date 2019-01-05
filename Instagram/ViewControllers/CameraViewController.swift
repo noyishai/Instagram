@@ -7,9 +7,6 @@
 //
 
 import UIKit
-import FirebaseStorage
-import FirebaseDatabase
-import FirebaseAuth
 
 class CameraViewController: UIViewController {
     
@@ -42,23 +39,10 @@ class CameraViewController: UIViewController {
         // Using external library ProgressHUD to show the user the sign in progress
         ProgressHUD.show("Sharing...", interaction: false)
         if let profileImg = self.selectedImage, let imageData = UIImageJPEGRepresentation(profileImg, 0.1){
-            // Generates unic ID for the photo
-            let photoIdString = NSUUID().uuidString
-            let storageRef = Storage.storage().reference(forURL: Config.STORAGE_ROOT_REF).child("posts").child(photoIdString)
-            // Puts the photo into Firebase Storage
-            storageRef.putData(imageData, metadata: nil, completion: { (metadata, error) in
-                if error != nil {
-                    ProgressHUD.showError(error!.localizedDescription)
-                    return // error
-                }
-                storageRef.downloadURL( completion: { (url, error) in
-                    if error != nil {
-                        return // error
-                    }
-                    guard let photoUrl = url?.absoluteString else { return }
-                    self.sendDataToDatabase(photoUrl: photoUrl)
-                })
-            })
+            HelperService.uploadDataToServer(data: imageData, caption: captionTextView.text!) {
+                self.clean()
+                self.tabBarController?.selectedIndex = 0
+            }
         } else {
             ProgressHUD.showError("Photo can't be empty")
         }
@@ -69,39 +53,6 @@ class CameraViewController: UIViewController {
         // Clearing the input after succeccful upload and returns to home view
         clean()
         handlePost()
-    }
-    
-    
-    // Sends the data (photo) to Firebase Database
-    func sendDataToDatabase(photoUrl: String) {
-        let ref = Database.database().reference()
-        let postsReference = ref.child("posts")
-        // Creates new random ID for each post
-        let newPostId = postsReference.childByAutoId().key
-        let newPostReference = postsReference.child(newPostId!)
-        guard let currentUser = Auth.auth().currentUser else {
-            return
-        }
-        let currentUserId = currentUser.uid
-        newPostReference.setValue(["uid": currentUserId, "photoUrl": photoUrl, "caption": captionTextView.text!], withCompletionBlock: { (error: Error?, ref: DatabaseReference) in
-            if error != nil {
-                ProgressHUD.showError(error!.localizedDescription)
-                return
-            }
-            let myPostRef = Api.MyPosts.REF_MY_POSTS.child(currentUserId).child(newPostId!)
-            myPostRef.setValue(true, withCompletionBlock: { (error: Error?, ref: DatabaseReference) in
-                if error != nil {
-                    ProgressHUD.showError(error!.localizedDescription)
-                    return
-                }
-            })
-            
-            
-            ProgressHUD.showSuccess("Photo Uploaded")
-            // Clearing the input after succeccful upload and returns to home view
-            self.clean()
-            self.tabBarController?.selectedIndex = 0
-        })
     }
     
     // Enables/Disables the share button and changes it's color depands if photo selected

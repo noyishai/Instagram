@@ -62,4 +62,13 @@ class AuthService {
         onSuccess()
     }
     
+    static func logout(onSuccess: @escaping () -> Void, onError: @escaping (_ errorMessage: String?) -> Void) {
+        do {
+            try Auth.auth().signOut()
+            onSuccess()
+        } catch let logoutError {
+            onError(logoutError.localizedDescription)
+        }
+    }
+    
 }

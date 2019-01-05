@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import FirebaseAuth
 
 class SignInViewController: UIViewController {
     
@@ -54,7 +53,7 @@ class SignInViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         // Automaticly login the user if the credentials already exists
-        if Auth.auth().currentUser != nil {
+        if Api.User.CURRENT_USER != nil {
             self.performSegue(withIdentifier: "SignInToTabBarVC", sender: nil)
         }
     }

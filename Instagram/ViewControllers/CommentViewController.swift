@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import FirebaseDatabase
-import FirebaseAuth
 
 class CommentViewController: UIViewController {
     
@@ -18,7 +16,7 @@ class CommentViewController: UIViewController {
     @IBOutlet weak var constraintToBottom: NSLayoutConstraint!
     
     var comments = [Comment]()
-    var users = [User]()
+    var users = [UserModel]()
     
     var postId: String!
     
@@ -52,22 +50,21 @@ class CommentViewController: UIViewController {
     }
     
     @IBAction func sendButton_TouchUpInside(_ sender: Any) {
-        let ref = Database.database().reference()
         let commentsReference = Api.Comment.REF_COMMENTS
         // Creates new random ID for each post
         let newCommentId = commentsReference.childByAutoId().key
         let newCommentReference = commentsReference.child(newCommentId!)
-        guard let currentUser = Auth.auth().currentUser else {
+        guard let currentUser = Api.User.CURRENT_USER else {
             return
         }
         let currentUserId = currentUser.uid
-        newCommentReference.setValue(["uid": currentUserId, "commentText": commentTextField.text!], withCompletionBlock: { (error: Error?, ref: DatabaseReference) in
+        newCommentReference.setValue(["uid": currentUserId, "commentText": commentTextField.text!], withCompletionBlock: { (error, ref) in
             if error != nil {
                 ProgressHUD.showError(error!.localizedDescription)
                 return
             }
             let postCommentRef = Api.Post_Comment.REF_POSTS_COMMENTS.child(self.postId).child(newCommentId!)
-            postCommentRef.setValue(true, withCompletionBlock: { (error: Error?, ref: DatabaseReference) in
+            postCommentRef.setValue(true, withCompletionBlock: { (error, ref) in
                 if error != nil {
                     ProgressHUD.showError(error!.localizedDescription)
                     return
@@ -102,7 +99,7 @@ class CommentViewController: UIViewController {
     
     // Getting comments and observe for new ones realtime
     func loadComments() {
-            Api.Post_Comment.REF_POSTS_COMMENTS.child(self.postId).observe(.childAdded) { (snapshot: DataSnapshot) in
+            Api.Post_Comment.REF_POSTS_COMMENTS.child(self.postId).observe(.childAdded) { (snapshot) in
             // Retriving comments data from Firebase Database
             Api.Comment.observeComments(withPostId: snapshot.key, completion: { (comment: Comment) in
                 self.fetchUser(uid: comment.uid!, completed: {
@@ -115,7 +112,7 @@ class CommentViewController: UIViewController {
     
     // Given user ID gives the data
     func fetchUser(uid: String, completed: @escaping () -> Void) {
-        Api.User.observeUser(withId: uid) { (user: User) in
+        Api.User.observeUser(withId: uid) { (user: UserModel) in
             self.users.append(user)
             completed()
         }

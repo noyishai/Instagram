@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import FirebaseAuth
-import FirebaseDatabase
 import SDWebImage
 
 class HomeViewController: UIViewController {
@@ -17,7 +15,7 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
     
     var posts = [Post]()
-    var users = [User]()
+    var users = [UserModel]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,13 +28,12 @@ class HomeViewController: UIViewController {
     }
     
     @IBAction func logout_TouchUpInside(_ sender: Any) {
-        do {
-            try Auth.auth().signOut()
+        AuthService.logout(onSuccess: {
             let storyboard = UIStoryboard(name: "Start", bundle: nil)
             let signInVC = storyboard.instantiateViewController(withIdentifier: "SignInViewController")
             self.present(signInVC, animated: true, completion: nil)
-        } catch let logoutError {
-            print(logoutError)
+        }) { (errorMessage) in
+            ProgressHUD.showError(errorMessage)
         }
     }
     
@@ -55,7 +52,7 @@ class HomeViewController: UIViewController {
     
     // Given user ID gives the data
     func fetchUser(uid: String, completed: @escaping () -> Void) {
-        Api.User.observeUser(withId: uid) { (user: User) in
+        Api.User.observeUser(withId: uid) { (user: UserModel) in
             self.users.append(user)
             completed()
         }

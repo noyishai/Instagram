@@ -7,13 +7,12 @@
 //
 
 import UIKit
-import FirebaseAuth
 
 class ProfileViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
     
-    var user: User!
+    var user: UserModel!
     var posts: [Post] = []
     
     override func viewDidLoad() {
@@ -34,7 +33,7 @@ class ProfileViewController: UIViewController {
     
     // Query the posts shared by the user
     func fetchMyPosts() {
-        guard let currentUser = Auth.auth().currentUser else { return }
+        guard let currentUser = Api.User.CURRENT_USER else { return }
         
         // Gets posts keys shared by the user
         Api.MyPosts.REF_MY_POSTS.child(currentUser.uid).observe(.childAdded, with: { snapshot in
