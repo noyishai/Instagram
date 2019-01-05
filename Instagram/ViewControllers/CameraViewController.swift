@@ -88,6 +88,15 @@ class CameraViewController: UIViewController {
                 ProgressHUD.showError(error!.localizedDescription)
                 return
             }
+            let myPostRef = Api.MyPosts.REF_MY_POSTS.child(currentUserId).child(newPostId!)
+            myPostRef.setValue(true, withCompletionBlock: { (error: Error?, ref: DatabaseReference) in
+                if error != nil {
+                    ProgressHUD.showError(error!.localizedDescription)
+                    return
+                }
+            })
+            
+            
             ProgressHUD.showSuccess("Photo Uploaded")
             // Clearing the input after succeccful upload and returns to home view
             self.clean()
