@@ -13,6 +13,7 @@
 		3603B6E821CC3A9C008BCB8C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3603B6E521CC3A9C008BCB8C /* LaunchScreen.storyboard */; };
 		3605DB9121E08E650096F258 /* HeaderProfileCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3605DB9021E08E650096F258 /* HeaderProfileCollectionReusableView.swift */; };
 		3605DB9321E0983F0096F258 /* MyPostApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3605DB9221E0983F0096F258 /* MyPostApi.swift */; };
+		3605DB9521E0A00D0096F258 /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3605DB9421E0A00D0096F258 /* PhotoCollectionViewCell.swift */; };
 		3607E4F921DBBDA30009A196 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3607E4F821DBBDA30009A196 /* AuthService.swift */; };
 		3607E4FB21DBCB110009A196 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3607E4FA21DBCB110009A196 /* Config.swift */; };
 		3607E50021DBCF6B0009A196 /* ProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3607E4FE21DBCF6B0009A196 /* ProgressHUD.bundle */; };
@@ -74,6 +75,7 @@
 		3603B6E521CC3A9C008BCB8C /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3605DB9021E08E650096F258 /* HeaderProfileCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderProfileCollectionReusableView.swift; sourceTree = "<group>"; };
 		3605DB9221E0983F0096F258 /* MyPostApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPostApi.swift; sourceTree = "<group>"; };
+		3605DB9421E0A00D0096F258 /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 		3607E4F821DBBDA30009A196 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		3607E4FA21DBCB110009A196 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		3607E4FC21DBCF6A0009A196 /* Instagram-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Instagram-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -177,6 +179,7 @@
 				3610586E21DE912F00F9E16A /* HomeTableViewCell.swift */,
 				36630D6F21DF3FD4002A168D /* CommentTableViewCell.swift */,
 				3605DB9021E08E650096F258 /* HeaderProfileCollectionReusableView.swift */,
+				3605DB9421E0A00D0096F258 /* PhotoCollectionViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -540,6 +543,7 @@
 				84D130F721BBFCB400589B10 /* SignInViewController.swift in Sources */,
 				3610586F21DE912F00F9E16A /* HomeTableViewCell.swift in Sources */,
 				84D130C921BBFA3200589B10 /* AppDelegate.swift in Sources */,
+				3605DB9521E0A00D0096F258 /* PhotoCollectionViewCell.swift in Sources */,
 				3610586A21DE73EA00F9E16A /* Post.swift in Sources */,
 				36630D7221DF4C0D002A168D /* Comment.swift in Sources */,
 				36630D7A21DF84A8002A168D /* CommentApi.swift in Sources */,
