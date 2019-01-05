@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Instagram" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jtw-WK-YyM">
-                                <rect key="frame" x="105" y="111" width="164" height="57.5"/>
+                                <rect key="frame" x="105" y="111" width="165" height="57.5"/>
                                 <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="40"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -60,7 +60,7 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="81b-Qg-Y8w">
-                                <rect key="frame" x="0.0" y="637" width="375" height="30"/>
+                                <rect key="frame" x="20" y="637" width="335" height="30"/>
                                 <state key="normal" title="Don't have an account?">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                                 </state>
@@ -72,17 +72,16 @@
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="jtw-WK-YyM" firstAttribute="top" secondItem="ZUM-P6-JCu" secondAttribute="top" constant="91" id="47E-Nw-0N3"/>
+                            <constraint firstItem="81b-Qg-Y8w" firstAttribute="leading" secondItem="ZUM-P6-JCu" secondAttribute="leading" constant="20" id="4si-xx-5RJ"/>
                             <constraint firstItem="onx-3Z-ANw" firstAttribute="centerX" secondItem="ZUM-P6-JCu" secondAttribute="centerX" id="5cx-O4-xCv"/>
-                            <constraint firstItem="jtw-WK-YyM" firstAttribute="centerX" secondItem="ZUM-P6-JCu" secondAttribute="centerX" id="6s6-No-ybR"/>
-                            <constraint firstItem="ZUM-P6-JCu" firstAttribute="trailing" secondItem="jtw-WK-YyM" secondAttribute="trailing" constant="106" id="Kbd-Cc-LRQ"/>
+                            <constraint firstItem="jtw-WK-YyM" firstAttribute="centerX" secondItem="onx-3Z-ANw" secondAttribute="centerX" id="8WW-Qv-Jef"/>
+                            <constraint firstItem="ZUM-P6-JCu" firstAttribute="trailing" secondItem="81b-Qg-Y8w" secondAttribute="trailing" constant="20" id="KRe-ib-eN6"/>
                             <constraint firstItem="onx-3Z-ANw" firstAttribute="top" secondItem="jtw-WK-YyM" secondAttribute="bottom" constant="93" id="bwc-uK-S8q"/>
-                            <constraint firstItem="jtw-WK-YyM" firstAttribute="leading" secondItem="ZUM-P6-JCu" secondAttribute="leading" constant="105" id="eKZ-0L-5sd"/>
-                            <constraint firstItem="ZUM-P6-JCu" firstAttribute="trailing" secondItem="81b-Qg-Y8w" secondAttribute="trailing" id="hae-EZ-we8"/>
-                            <constraint firstItem="81b-Qg-Y8w" firstAttribute="leading" secondItem="ZUM-P6-JCu" secondAttribute="leading" id="mS3-qL-pnq"/>
+                            <constraint firstItem="jtw-WK-YyM" firstAttribute="leading" secondItem="ZUM-P6-JCu" secondAttribute="leading" constant="105" id="c07-Pt-gTa"/>
+                            <constraint firstItem="ZUM-P6-JCu" firstAttribute="bottom" secondItem="81b-Qg-Y8w" secondAttribute="bottom" id="f9M-gA-5yP"/>
                             <constraint firstItem="onx-3Z-ANw" firstAttribute="leading" secondItem="ZUM-P6-JCu" secondAttribute="leading" constant="20" id="nRh-6w-sY4"/>
                             <constraint firstItem="onx-3Z-ANw" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="sHG-ct-MrL"/>
                             <constraint firstItem="ZUM-P6-JCu" firstAttribute="trailing" secondItem="onx-3Z-ANw" secondAttribute="trailing" constant="20" id="ukR-jB-dAS"/>
-                            <constraint firstAttribute="bottom" secondItem="81b-Qg-Y8w" secondAttribute="bottom" id="yPC-u7-tp8"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ZUM-P6-JCu"/>
                     </view>
@@ -105,15 +104,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="el5-tb-9Jy">
-                                <rect key="frame" x="0.0" y="637" width="375" height="30"/>
-                                <state key="normal" title="Already have an account? Sign in">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="dismiss_onClick:" destination="ECk-2Z-pt9" eventType="touchUpInside" id="PHh-ei-Kdg"/>
-                                </connections>
-                            </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="03b-p9-rAD">
                                 <rect key="frame" x="36" y="236.5" width="303" height="194"/>
                                 <subviews>
@@ -161,21 +151,28 @@
                                     </button>
                                 </subviews>
                             </stackView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="avatar-1577909_640" translatesAutoresizingMaskIntoConstraints="NO" id="rJv-OH-NID">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="placeholderImg" translatesAutoresizingMaskIntoConstraints="NO" id="rJv-OH-NID">
                                 <rect key="frame" x="147" y="61" width="80" height="80"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="el5-tb-9Jy">
+                                <rect key="frame" x="20" y="637" width="335" height="30"/>
+                                <state key="normal" title="Already have an account? Sign in">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="dismiss_onClick:" destination="ECk-2Z-pt9" eventType="touchUpInside" id="PHh-ei-Kdg"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="03b-p9-rAD" firstAttribute="centerX" secondItem="G21-Ql-2mi" secondAttribute="centerX" id="0Aa-A2-1An"/>
                             <constraint firstItem="03b-p9-rAD" firstAttribute="leading" secondItem="gNT-KL-3B6" secondAttribute="leadingMargin" constant="20" id="8eN-SV-2O9"/>
                             <constraint firstAttribute="trailingMargin" secondItem="03b-p9-rAD" secondAttribute="trailing" constant="20" id="AMe-BI-I86"/>
-                            <constraint firstAttribute="bottom" secondItem="el5-tb-9Jy" secondAttribute="bottom" id="Axn-ZT-dXD"/>
-                            <constraint firstAttribute="bottom" secondItem="el5-tb-9Jy" secondAttribute="bottom" id="C64-CW-YbK"/>
-                            <constraint firstItem="G21-Ql-2mi" firstAttribute="trailing" secondItem="el5-tb-9Jy" secondAttribute="trailing" id="ffr-zS-H04"/>
-                            <constraint firstItem="el5-tb-9Jy" firstAttribute="leading" secondItem="G21-Ql-2mi" secondAttribute="leading" id="gm6-IW-whc"/>
-                            <constraint firstAttribute="bottom" secondItem="el5-tb-9Jy" secondAttribute="bottom" id="hjf-sb-w51"/>
+                            <constraint firstItem="el5-tb-9Jy" firstAttribute="bottom" secondItem="G21-Ql-2mi" secondAttribute="bottom" id="jYi-Ep-QR1"/>
+                            <constraint firstItem="G21-Ql-2mi" firstAttribute="trailing" secondItem="el5-tb-9Jy" secondAttribute="trailing" constant="20" id="kcd-ur-fqF"/>
+                            <constraint firstItem="el5-tb-9Jy" firstAttribute="leading" secondItem="G21-Ql-2mi" secondAttribute="leading" constant="20" id="lDf-bv-BTV"/>
                             <constraint firstItem="03b-p9-rAD" firstAttribute="centerY" secondItem="gNT-KL-3B6" secondAttribute="centerY" id="oKP-ut-UNu"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="G21-Ql-2mi"/>
@@ -192,7 +189,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="u4R-Kh-dxg" sceneMemberID="firstResponder"/>
                 <exit id="Y2n-3s-LVe" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="582" y="741"/>
+            <point key="canvasLocation" x="581.60000000000002" y="740.7796101949026"/>
         </scene>
         <!--TabBarId-->
         <scene sceneID="SQ5-C2-t7u">
@@ -204,9 +201,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="avatar-1577909_640" width="640" height="640"/>
+        <image name="placeholderImg" width="225" height="225"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Amb-3Z-CpY"/>
+        <segue reference="6eg-hD-Phf"/>
     </inferredMetricsTieBreakers>
 </document>
