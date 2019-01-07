@@ -207,10 +207,10 @@
             </objects>
             <point key="canvasLocation" x="5421.6000000000004" y="-643.62818590704649"/>
         </scene>
-        <!--View Controller-->
+        <!--People View Controller-->
         <scene sceneID="aFb-1i-sxq">
             <objects>
-                <viewController id="uy0-dd-V2j" sceneMemberID="viewController">
+                <viewController id="uy0-dd-V2j" customClass="PeopleViewController" customModule="Instagram" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="sF1-H9-EuF">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -219,7 +219,7 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="81" id="XId-zG-LWr">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PeopleTableViewCell" rowHeight="81" id="XId-zG-LWr" userLabel="PeopleCell" customClass="PeopleTableViewCell" customModule="Instagram" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="81"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="XId-zG-LWr" id="fb8-8U-EUW">
@@ -265,8 +265,16 @@
                                                 <constraint firstItem="2Pe-DR-JTu" firstAttribute="centerY" secondItem="3bz-xr-6xq" secondAttribute="centerY" id="zF4-Bf-IzP"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="followButton" destination="Bep-Wj-QRG" id="Hdw-uR-zGk"/>
+                                            <outlet property="nameLable" destination="2Pe-DR-JTu" id="p2T-ny-SX1"/>
+                                            <outlet property="profileImage" destination="3bz-xr-6xq" id="zVI-gG-TMb"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="uy0-dd-V2j" id="hwP-zK-7fD"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -278,6 +286,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="h3f-Om-bty"/>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="fxT-Io-Lkh" id="LJW-J3-wBa"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0lg-D4-ong" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -36,6 +36,16 @@ class UserApi {
         }
     }
     
+    func observeUsers(completion: @escaping (UserModel) -> Void){
+        REF_USERS.observe(.childAdded, with: {
+            snapshot in
+            if let dict = snapshot.value as? [String: Any] {
+                let user = UserModel.transformUser(dict: dict)
+                completion(user)
+            }
+        })
+    }
+    
     // Gets the current user authenticated
     var CURRENT_USER: User? {
         if let currentUser = Auth.auth().currentUser {

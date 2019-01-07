@@ -49,6 +49,8 @@
 		84D130F721BBFCB400589B10 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D130F621BBFCB400589B10 /* SignInViewController.swift */; };
 		84D130FB21BC0B8200589B10 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D130FA21BC0B8200589B10 /* SignUpViewController.swift */; };
 		C471B7BE63DE144B9791E50D /* Pods_Instagram.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2BE7FE0AFCF8665DFF5CC8F /* Pods_Instagram.framework */; };
+		C70A311321E352CC00A73121 /* PeopleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C70A311221E352CC00A73121 /* PeopleTableViewCell.swift */; };
+		C765FCCE21E2997F0061FF48 /* PeopleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C765FCCD21E2997E0061FF48 /* PeopleViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -121,6 +123,8 @@
 		84D130F621BBFCB400589B10 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		84D130FA21BC0B8200589B10 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		A2BE7FE0AFCF8665DFF5CC8F /* Pods_Instagram.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Instagram.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C70A311221E352CC00A73121 /* PeopleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleTableViewCell.swift; sourceTree = "<group>"; };
+		C765FCCD21E2997E0061FF48 /* PeopleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleViewController.swift; sourceTree = "<group>"; };
 		CC14C5B282AE1D0CA52C492B /* Pods_InstagramUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InstagramUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE5483B8F1D942298C1A8B34 /* Pods-InstagramUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstagramUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-InstagramUITests/Pods-InstagramUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		DF41F14187FDC69119A42323 /* Pods-Instagram.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instagram.release.xcconfig"; path = "Pods/Target Support Files/Pods-Instagram/Pods-Instagram.release.xcconfig"; sourceTree = "<group>"; };
@@ -179,6 +183,7 @@
 			isa = PBXGroup;
 			children = (
 				3610586E21DE912F00F9E16A /* HomeTableViewCell.swift */,
+				C70A311221E352CC00A73121 /* PeopleTableViewCell.swift */,
 				36630D6F21DF3FD4002A168D /* CommentTableViewCell.swift */,
 				3605DB9021E08E650096F258 /* HeaderProfileCollectionReusableView.swift */,
 				3605DB9421E0A00D0096F258 /* PhotoCollectionViewCell.swift */,
@@ -211,6 +216,7 @@
 				849DA6CA21C98A830061C5BD /* CameraViewController.swift */,
 				849DA6CC21C98AC10061C5BD /* ActivityViewController.swift */,
 				849DA6CE21C98AED0061C5BD /* ProfileViewController.swift */,
+				C765FCCD21E2997E0061FF48 /* PeopleViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -560,9 +566,11 @@
 				36630D7021DF3FD4002A168D /* CommentTableViewCell.swift in Sources */,
 				849DA6C921C98A5B0061C5BD /* DiscoverViewController.swift in Sources */,
 				3605DB9721E0AD380096F258 /* HelperService.swift in Sources */,
+				C70A311321E352CC00A73121 /* PeopleTableViewCell.swift in Sources */,
 				3607E4FB21DBCB110009A196 /* Config.swift in Sources */,
 				849DA6CF21C98AED0061C5BD /* ProfileViewController.swift in Sources */,
 				36630D7421DF7F40002A168D /* PostApi.swift in Sources */,
+				C765FCCE21E2997F0061FF48 /* PeopleViewController.swift in Sources */,
 				849DA6CB21C98A830061C5BD /* CameraViewController.swift in Sources */,
 				36630D7821DF842D002A168D /* Api.swift in Sources */,
 				36630D7621DF8207002A168D /* UserApi.swift in Sources */,
