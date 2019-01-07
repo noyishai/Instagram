@@ -18,7 +18,7 @@ class UserApi {
         REF_USERS.child(uid).observeSingleEvent(of: DataEventType.value) { (snapshot: DataSnapshot) in
             // Creates dictionary from the database loaded from Firebase
             if let dict = snapshot.value as? [String: Any] {
-                let user = UserModel.transformUser(dict: dict)
+                let user = UserModel.transformUser(dict: dict, key: snapshot.key)
                 completion(user)
             }
         }
@@ -30,7 +30,7 @@ class UserApi {
         REF_USERS.child(currentUser.uid).observeSingleEvent(of: DataEventType.value) { (snapshot: DataSnapshot) in
             // Creates dictionary from the database loaded from Firebase
             if let dict = snapshot.value as? [String: Any] {
-                let user = UserModel.transformUser(dict: dict)
+                let user = UserModel.transformUser(dict: dict, key: snapshot.key)
                 completion(user)
             }
         }
@@ -40,7 +40,7 @@ class UserApi {
         REF_USERS.observe(.childAdded, with: {
             snapshot in
             if let dict = snapshot.value as? [String: Any] {
-                let user = UserModel.transformUser(dict: dict)
+                let user = UserModel.transformUser(dict: dict, key: snapshot.key)
                 completion(user)
             }
         })
