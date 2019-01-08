@@ -28,13 +28,22 @@ class PeopleTableViewCell: UITableViewCell {
             profileImage.sd_setImage(with: photoUrl, placeholderImage: UIImage(named: "placeholderImg"))
         }
         
-        if user!.isFollowing! == true {
+        Api.Follow.isFollowing(userId: user!.id!){(value) in
+            if value {
+                self.configureUnFollowButton()
+            } else {
+                self.configureFollowButton()
+            }
+        }
+        
+/*        if user!.isFollowing! == true {
             configureUnFollowButton()
         } else {
             configureFollowButton()
-        }
+        }*/
         
     }
+        
     func configureFollowButton(){
         followButton.layer.borderWidth = 1
         followButton.layer.borderColor = UIColor(red: 226/255, green: 228/255, blue: 232.255, alpha: 1).cgColor
