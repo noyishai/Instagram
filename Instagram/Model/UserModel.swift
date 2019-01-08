@@ -13,6 +13,7 @@ class UserModel {
     var profileImageUrl: String?
     var username: String?
     var id: String?
+    var isFollowing: Bool?
 }
 
 // Extension to User which will replace inits for more clear coding instead of overriding inits
