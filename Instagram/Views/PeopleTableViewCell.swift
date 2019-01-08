@@ -28,19 +28,13 @@ class PeopleTableViewCell: UITableViewCell {
             profileImage.sd_setImage(with: photoUrl, placeholderImage: UIImage(named: "placeholderImg"))
         }
         
-        Api.Follow.isFollowing(userId: user!.id!){(value) in
-            if value {
-                self.configureUnFollowButton()
-            } else {
-                self.configureFollowButton()
-            }
-        }
+
         
-/*        if user!.isFollowing! == true {
+       if user!.isFollowing! == true {
             configureUnFollowButton()
         } else {
             configureFollowButton()
-        }*/
+        }
         
     }
         
@@ -68,13 +62,19 @@ class PeopleTableViewCell: UITableViewCell {
     }
     
     func followAction(){
-       Api.Follow.followAction(withUser: user!.id!)
-        configureUnFollowButton()
+        if user!.isFollowing! == false{
+            Api.Follow.followAction(withUser: user!.id!)
+            configureUnFollowButton()
+            user!.isFollowing! = true
+        }
     }
     
     func unFollowAction(){
-       Api.Follow.unFollowAction(withUser: user!.id!)
-       configureFollowButton()
+        if user!.isFollowing! == true{
+            Api.Follow.unFollowAction(withUser: user!.id!)
+            configureFollowButton()
+            user!.isFollowing! = false
+        }
     }
     
     override func awakeFromNib() {
