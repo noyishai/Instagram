@@ -45,17 +45,16 @@ class HomeTableViewCell: UITableViewCell {
         }
         
         // Observe for single change to update the posts while scrolling down so we wont have the image move between posts
-        Api.Post.observePost(withId: post!.id!) { (post: Post) in
-            self.updateLike(post: post)
-        }
+       
+            self.updateLike(post: self.post!)
+       
         
         // Observe for childChanged, in this case for the likesCount to change by other users
-        Api.Post.observeLikeCount(withPostId: post!.id!) { (value) in
-            self.likeCountButton.setTitle("\(value) Likes", for: UIControlState.normal)
-        }
+        
     }
     
     // Checks if the post liked or not and change the like image accordingly + increase/decrease the likesCount
+    
     func updateLike(post: Post) {
         let imageName = post.likes == nil || !post.isLiked! ? "like" : "likeSelected"
         likeImageView.image = UIImage(named: imageName)
@@ -106,6 +105,9 @@ class HomeTableViewCell: UITableViewCell {
     func likeImageView_TouchUpInside() {
         Api.Post.incrementLikes(postId:post!.id!, onSuccess: { (post: Post) in
             self.updateLike(post: post)
+            self.post?.likes = post.likes
+            self.post?.isLiked = post.isLiked
+            self.post?.likeCount = post.likeCount
         }) { (errorMessage) in
             ProgressHUD.showError(errorMessage)
         }
