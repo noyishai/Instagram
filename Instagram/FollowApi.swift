@@ -13,7 +13,16 @@ class FollowApi{
     var REF_FOLLOWERS = Database.database().reference().child("followers")
     var REF_FOLLOWING = Database.database().reference().child("following")
     
+    //Update the feed location right after the current user follow someone
     func followAction(withUser id:String){
+        Api.MyPosts.REF_MY_POSTS.child(id).observeSingleEvent(of: .value, with: {
+            snapshot in
+            if let dict = snapshot.value as? [String: Any]{
+                for key in dict.keys{
+               Database.database().reference().child("feed").child(Api.User.CURRENT_USER!.uid).child(key).setValue(true)
+                }
+            }
+        })
         REF_FOLLOWERS.child(id).child(Api.User.CURRENT_USER!.uid).setValue(true)
         REF_FOLLOWING.child(Api.User.CURRENT_USER!.uid).child(id).setValue(true)
     }
