@@ -14,12 +14,13 @@ class FollowApi{
     var REF_FOLLOWING = Database.database().reference().child("following")
     
     //Update the feed location right after the current user follow someone
-    func followAction(withUser id:String){
+    //Update the the feed with the post of the follow user
+    func followAction(withUser id: String) {
         Api.MyPosts.REF_MY_POSTS.child(id).observeSingleEvent(of: .value, with: {
             snapshot in
-            if let dict = snapshot.value as? [String: Any]{
-                for key in dict.keys{
-               Database.database().reference().child("feed").child(Api.User.CURRENT_USER!.uid).child(key).setValue(true)
+            if let dict = snapshot.value as? [String: Any] {
+                for key in dict.keys {
+                    Database.database().reference().child("feed").child(Api.User.CURRENT_USER!.uid).child(key).setValue(true)
                 }
             }
         })
@@ -27,20 +28,30 @@ class FollowApi{
         REF_FOLLOWING.child(Api.User.CURRENT_USER!.uid).child(id).setValue(true)
     }
     
-    func unFollowAction(withUser id : String){
+    //Remove the posts of the unfollow user from our feed
+    func unFollowAction(withUser id: String) {
+        
+        Api.MyPosts.REF_MY_POSTS.child(id).observeSingleEvent(of: .value, with: {
+            snapshot in
+            if let dict = snapshot.value as? [String: Any] {
+                for key in dict.keys {
+                    Database.database().reference().child("feed").child(Api.User.CURRENT_USER!.uid).child(key).removeValue()
+                }
+            }
+        })
+        
         REF_FOLLOWERS.child(id).child(Api.User.CURRENT_USER!.uid).setValue(NSNull())
         REF_FOLLOWING.child(Api.User.CURRENT_USER!.uid).child(id).setValue(NSNull())
     }
     
-    func isFollowing(userId: String, completed: @escaping(Bool) -> Void){
+    func isFollowing(userId: String, completed: @escaping (Bool) -> Void) {
         REF_FOLLOWERS.child(userId).child(Api.User.CURRENT_USER!.uid).observeSingleEvent(of: .value, with: {
             snapshot in
-            if let _ = snapshot.value as? NSNull{
+            if let _ = snapshot.value as? NSNull {
                 completed(false)
             } else {
                 completed(true)
             }
-            
         })
     }
 }

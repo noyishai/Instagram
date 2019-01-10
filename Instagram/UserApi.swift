@@ -46,6 +46,7 @@ class UserApi {
         })
     }
     
+    
     // Gets the current user authenticated
     var CURRENT_USER: User? {
         if let currentUser = Auth.auth().currentUser {

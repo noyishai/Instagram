@@ -39,14 +39,21 @@ class HomeViewController: UIViewController {
     
     // Load posts and observe for new added posts and ignore unchanged posts
     func loadPosts() {
-        activityIndicatorView.startAnimating()
-        Api.Post.observePosts { (post) in
-            guard let postId = post.uid else { return }
+        
+        Api.Feed.observeFeed(withId: Api.User.CURRENT_USER!.uid) { (post) in
+            guard let postId = post.uid else {
+                return
+            }
             self.fetchUser(uid: postId, completed: {
                 self.posts.append(post)
-                self.activityIndicatorView.stopAnimating()
                 self.tableView.reloadData()
             })
+        }
+        
+        Api.Feed.observeFeedRemoved(withId: Api.User.CURRENT_USER!.uid) { (post) in
+            self.posts = self.posts.filter { $0.id != post.id }
+            self.users = self.users.filter { $0.id != post.uid }
+            self.tableView.reloadData()
         }
     }
     
@@ -70,6 +77,8 @@ class HomeViewController: UIViewController {
 extension HomeViewController: UITableViewDataSource {
     // Sets the number of tableView rows to be the number of posts stored in the Firebase Database
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        //print("post count\(posts.count)")
+        //print ("user count\(users.count)")
         return posts.count
     }
     
