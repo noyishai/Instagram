@@ -77,8 +77,6 @@ class HomeViewController: UIViewController {
 extension HomeViewController: UITableViewDataSource {
     // Sets the number of tableView rows to be the number of posts stored in the Firebase Database
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //print("post count\(posts.count)")
-        //print ("user count\(users.count)")
         return posts.count
     }
     
