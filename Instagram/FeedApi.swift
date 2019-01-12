@@ -25,7 +25,7 @@ class FeedApi{
         })
     }
     
-    //will control the post taht remove after the unfollow action
+    //will control the post that remove after the unfollow action
     //each remove will return in a snapshot
     func observeFeedRemoved(withId id: String, completion: @escaping (Post) -> Void){
         REF_FEED.child(id).observe(.childRemoved, with: {

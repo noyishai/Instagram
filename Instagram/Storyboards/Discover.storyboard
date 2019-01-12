@@ -95,6 +95,9 @@
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="QiE-ad-uqV" id="8gE-Je-y4a"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -106,6 +109,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="YsU-0q-IyY"/>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="2FP-8N-TgN" id="eVE-Yx-SDQ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HZh-Jb-54d" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
