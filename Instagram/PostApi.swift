@@ -42,6 +42,20 @@ class PostApi {
         }
     }
     
+    //observer post by likes
+    func observeTopPosts(completion: @escaping (Post) -> Void){
+        REF_POSTS.queryOrdered(byChild: "likeCount").observeSingleEvent(of: .value, with: {
+            snapshot in
+            let arraySnapshot = (snapshot.children.allObjects as! [DataSnapshot]).reversed()
+            arraySnapshot.forEach({(child) in
+                if let dict = child.value as? [String: Any] {
+                    let post = Post.transformPostPhoto(dict: dict, key: snapshot.key)
+                    completion(post)
+                }
+            })
+        })
+    }
+    
     // Google's runTransactionBlock to increase likes
     // When you click on like, it creates likes dictionary and likeCount (counter) under the post. The dictionary hold the userId's which liked the phost
     func incrementLikes(postId: String, onSuccess: @escaping (Post) -> Void, onError: @escaping (_ errorMessage: String?) -> Void) {

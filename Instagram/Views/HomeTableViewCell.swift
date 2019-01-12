@@ -59,7 +59,10 @@ class HomeTableViewCell: UITableViewCell {
         let imageName = post.likes == nil || !post.isLiked! ? "like" : "likeSelected"
         likeImageView.image = UIImage(named: imageName)
         // Checks if someoene liked the post and changes the title benif
-        guard let count = post.likeCount else { return }
+        guard let count = post.likeCount else{
+            return
+            
+        }
         if count != 0 {
             likeCountButton.setTitle("\(count) Likes", for: UIControlState.normal)
         } else {
