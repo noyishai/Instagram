@@ -7,7 +7,9 @@
 //
 
 import UIKit
-
+protocol PeopleTableViewCellDelegate {
+    func goToProfileUserVC(userId: String)
+}
 class PeopleTableViewCell: UITableViewCell {
    
 
@@ -15,7 +17,7 @@ class PeopleTableViewCell: UITableViewCell {
     @IBOutlet weak var nameLable: UILabel!
     @IBOutlet weak var followButton: UIButton!
     
-    var peopleVC: PeopleViewController?
+    var delegate: PeopleTableViewCellDelegate?
     var user: UserModel?{
         didSet {
             updateView()
@@ -87,7 +89,7 @@ class PeopleTableViewCell: UITableViewCell {
     
     func nameLable_TouchUpInside(){
         if let id = user?.id {
-            peopleVC?.performSegue(withIdentifier: "ProfileSegue", sender: id)
+            delegate?.goToProfileUserVC(userId: id)
         }
     }
 

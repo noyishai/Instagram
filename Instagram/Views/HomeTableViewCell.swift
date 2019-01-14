@@ -7,6 +7,10 @@
 //
 
 import UIKit
+protocol  HomeTableViewCellDelegate {
+    func goToCommentVC(postId: String)
+
+}
 
 class HomeTableViewCell: UITableViewCell {
     
@@ -19,8 +23,7 @@ class HomeTableViewCell: UITableViewCell {
     @IBOutlet weak var likeCountButton: UIButton!
     @IBOutlet weak var captionLabel: UILabel!
     
-    var homeVC: HomeViewController?
-    
+    var delegate: HomeTableViewCellDelegate?
     // Ovserver which wait to see if the post instance variable is set
     var post: Post? {
         didSet {
@@ -100,7 +103,7 @@ class HomeTableViewCell: UITableViewCell {
     // What to perform when comment pressed
     func commentImageView_TouchUpInside() {
         if let id = post?.id {
-            homeVC?.performSegue(withIdentifier: "CommentSegue", sender: id)
+            delegate?.goToCommentVC(postId: id)
         }
     }
     

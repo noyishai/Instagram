@@ -87,7 +87,13 @@ extension HomeViewController: UITableViewDataSource {
         let user = users[indexPath.row]
         cell.post = post
         cell.user = user
-        cell.homeVC = self
+        cell.delegate = self
         return cell
+    }
+}
+
+extension HomeViewController: HomeTableViewCellDelegate{
+    func goToCommentVC(postId: String) {
+        performSegue(withIdentifier: "CommentSegue", sender: postId)
     }
 }
