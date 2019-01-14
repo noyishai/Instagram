@@ -15,6 +15,7 @@ class PeopleTableViewCell: UITableViewCell {
     @IBOutlet weak var nameLable: UILabel!
     @IBOutlet weak var followButton: UIButton!
     
+    var peopleVC: PeopleViewController?
     var user: UserModel?{
         didSet {
             updateView()
@@ -79,7 +80,15 @@ class PeopleTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        let tapCommentGesture = UITapGestureRecognizer(target: self, action: #selector(self.nameLable_TouchUpInside))
+        nameLable.addGestureRecognizer(tapCommentGesture)
+        nameLable.isUserInteractionEnabled = true
+    }
+    
+    func nameLable_TouchUpInside(){
+        if let id = user?.id {
+            peopleVC?.performSegue(withIdentifier: "ProfileSegue", sender: id)
+        }
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
