@@ -266,7 +266,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="followButton" destination="Bep-Wj-QRG" id="Hdw-uR-zGk"/>
-                                            <outlet property="nameLable" destination="2Pe-DR-JTu" id="p2T-ny-SX1"/>
+                                            <outlet property="nameLabel" destination="2Pe-DR-JTu" id="p2T-ny-SX1"/>
                                             <outlet property="profileImage" destination="3bz-xr-6xq" id="zVI-gG-TMb"/>
                                         </connections>
                                     </tableViewCell>
@@ -318,7 +318,7 @@
         <!--Profile User View Controller-->
         <scene sceneID="3Rr-J4-GLA">
             <objects>
-                <viewController id="b4g-yW-h4k" customClass="ProfileUserViewController" customModule="Instagram" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ProfileUserViewController" id="b4g-yW-h4k" customClass="ProfileUserViewController" customModule="Instagram" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Mc8-PE-Ed1">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

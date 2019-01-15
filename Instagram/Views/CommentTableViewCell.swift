@@ -8,12 +8,17 @@
 
 import UIKit
 
+protocol CommentTableViewCellDelegate {
+    func goToProfileUserVC(userId: String)
+}
+
 class CommentTableViewCell: UITableViewCell {
 
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var commentLabel: UILabel!
     
+    var delegate: CommentTableViewCellDelegate?
     // Ovserver which wait to see if the post instance variable is set
     var comment: Comment? {
         didSet {
@@ -47,9 +52,17 @@ class CommentTableViewCell: UITableViewCell {
         super.awakeFromNib()
         nameLabel.text = ""
         commentLabel.text = ""
-        // Initialization code
+        let tapGestureForNameLabel = UITapGestureRecognizer(target: self, action: #selector(self.nameLabel_TouchUpInside))
+        nameLabel.addGestureRecognizer(tapGestureForNameLabel)
+        nameLabel.isUserInteractionEnabled = true
     }
     
+    //when you press on the username you will switch view
+    func nameLabel_TouchUpInside(){
+        if let id = user?.id {
+            delegate?.goToProfileUserVC(userId: id)
+        }
+    }
     override func prepareForReuse() {
         super.prepareForReuse()
         print("Reusing cell")

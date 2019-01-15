@@ -125,6 +125,14 @@ class CommentViewController: UIViewController {
         sendButton.isEnabled = false
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "Comment_ProfileSegue" {
+            let profileVC = segue.destination as! ProfileUserViewController
+            let userId = sender as! String
+            profileVC.userId = userId
+        }
+    }
+    
     // Observer to see if user input did change
     func handleTextField() {
         commentTextField.addTarget(self, action: #selector(self.textFieldDidChange), for: UIControlEvents.editingChanged)
@@ -158,6 +166,13 @@ extension CommentViewController: UITableViewDataSource {
         let user = users[indexPath.row]
         cell.comment = comment
         cell.user = user
+        cell.delegate = self
         return cell
+    }
+}
+
+extension CommentViewController: CommentTableViewCellDelegate {
+    func goToProfileUserVC(userId: String) {
+        performSegue(withIdentifier: "Comment_ProfileSegue", sender: userId)
     }
 }

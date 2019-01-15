@@ -7,6 +7,7 @@
 //
 
 import UIKit
+//Protocol with switch view method
 protocol PeopleTableViewCellDelegate {
     func goToProfileUserVC(userId: String)
 }
@@ -14,9 +15,10 @@ class PeopleTableViewCell: UITableViewCell {
    
 
     @IBOutlet weak var profileImage: UIImageView!
-    @IBOutlet weak var nameLable: UILabel!
+    @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var followButton: UIButton!
     
+    //the delegate implimante to switch view and deliver the userId
     var delegate: PeopleTableViewCellDelegate?
     var user: UserModel?{
         didSet {
@@ -25,7 +27,7 @@ class PeopleTableViewCell: UITableViewCell {
     }
     
     func updateView(){
-        nameLable.text = user?.username
+        nameLabel.text = user?.username
         if let photoUrlString = user?.profileImageUrl {
             let photoUrl = URL(string: photoUrlString)
             profileImage.sd_setImage(with: photoUrl, placeholderImage: UIImage(named: "placeholderImg"))
@@ -82,12 +84,12 @@ class PeopleTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        let tapCommentGesture = UITapGestureRecognizer(target: self, action: #selector(self.nameLable_TouchUpInside))
-        nameLable.addGestureRecognizer(tapCommentGesture)
-        nameLable.isUserInteractionEnabled = true
+        let tapCommentGesture = UITapGestureRecognizer(target: self, action: #selector(self.nameLabel_TouchUpInside))
+        nameLabel.addGestureRecognizer(tapCommentGesture)
+        nameLabel.isUserInteractionEnabled = true
     }
     
-    func nameLable_TouchUpInside(){
+    func nameLabel_TouchUpInside(){
         if let id = user?.id {
             delegate?.goToProfileUserVC(userId: id)
         }

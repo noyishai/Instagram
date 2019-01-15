@@ -9,7 +9,7 @@
 import UIKit
 protocol  HomeTableViewCellDelegate {
     func goToCommentVC(postId: String)
-
+    func goToProfileUserVC(userId: String)
 }
 
 class HomeTableViewCell: UITableViewCell {
@@ -97,6 +97,9 @@ class HomeTableViewCell: UITableViewCell {
         likeImageView.addGestureRecognizer(tapLikeGesture)
         likeImageView.isUserInteractionEnabled = true
         
+        let tapGestureForNameLabel = UITapGestureRecognizer(target: self, action: #selector(self.nameLabel_TouchUpInside))
+        nameLabel.addGestureRecognizer(tapGestureForNameLabel)
+        nameLabel.isUserInteractionEnabled = true
 
     }
     
@@ -106,6 +109,14 @@ class HomeTableViewCell: UITableViewCell {
             delegate?.goToCommentVC(postId: id)
         }
     }
+
+    
+    func nameLabel_TouchUpInside(){
+        if let id = user?.id {
+            delegate?.goToProfileUserVC(userId: id)
+        }
+    }
+
     
     // What to perform when like pressed
     func likeImageView_TouchUpInside() {

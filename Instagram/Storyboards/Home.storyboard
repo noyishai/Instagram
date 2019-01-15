@@ -9,6 +9,14 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--ProfileUserViewController-->
+        <scene sceneID="kZV-A6-nSy">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Profile" referencedIdentifier="ProfileUserViewController" id="pTN-OC-Zf4" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LyY-1U-0B8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3363" y="-1133"/>
+        </scene>
         <!--Home-->
         <scene sceneID="IcW-l0-2JY">
             <objects>
@@ -155,6 +163,7 @@
                         <outlet property="activityIndicatorView" destination="byN-gJ-RxH" id="24e-ED-Gpj"/>
                         <outlet property="tableView" destination="4Lv-v8-VOD" id="JuF-wr-IaB"/>
                         <segue destination="sSU-qd-oQl" kind="show" identifier="CommentSegue" id="i5q-Il-jbN"/>
+                        <segue destination="pTN-OC-Zf4" kind="show" identifier="Home_ProfileSegue" id="qZl-5R-fs3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9Fm-JR-cWZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -287,6 +296,7 @@
                         <outlet property="constraintToBottom" destination="CHE-AX-obm" id="dS9-pg-54M"/>
                         <outlet property="sendButton" destination="mnn-Hv-pzc" id="L9y-CQ-ThH"/>
                         <outlet property="tableView" destination="1jh-mI-Iqz" id="nfa-Vc-UsT"/>
+                        <segue destination="pTN-OC-Zf4" kind="show" identifier="Comment_ProfileSegue" id="M8F-M2-peI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1N3-oI-GOt" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -323,4 +333,7 @@
         <image name="placeholderImg" width="225" height="225"/>
         <image name="share" width="37" height="41"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="M8F-M2-peI"/>
+    </inferredMetricsTieBreakers>
 </document>

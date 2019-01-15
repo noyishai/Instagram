@@ -9,6 +9,7 @@
 import UIKit
 
 class DiscoverViewController: UIViewController {
+  
     @IBOutlet weak var collectionView: UICollectionView!
     var posts: [Post] = []
     override func viewDidLoad() {
