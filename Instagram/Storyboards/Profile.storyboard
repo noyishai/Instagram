@@ -647,7 +647,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="37.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pKL-zz-of1">
+                                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pKL-zz-of1">
                                                     <rect key="frame" x="160" y="4" width="55" height="30"/>
                                                     <state key="normal" title="Log Out">
                                                         <color key="titleColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -655,7 +655,6 @@
                                                 </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="pKL-zz-of1" firstAttribute="centerY" secondItem="Gkg-lm-oGx" secondAttribute="centerY" id="CDS-ik-4vB"/>
                                                 <constraint firstItem="pKL-zz-of1" firstAttribute="centerX" secondItem="Gkg-lm-oGx" secondAttribute="centerX" id="aVY-Gk-pDW"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -668,6 +667,11 @@
                             <outlet property="delegate" destination="fv4-2R-AaQ" id="5yF-h7-gVR"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="emailTextFiled" destination="S2W-Hk-xWK" id="RQY-uK-Kp4"/>
+                        <outlet property="profileImageView" destination="LiA-jV-7eK" id="OMf-gR-UFz"/>
+                        <outlet property="usernameTextFiled" destination="U5R-uz-5aj" id="h9f-Ei-hDy"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TC6-0n-Le5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
