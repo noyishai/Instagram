@@ -44,13 +44,13 @@ class ProfileUserViewController: UIViewController {
     
     // Query the posts shared by the user
     func fetchMyPosts() {
-        // Gets posts keys shared by the user
-        Api.MyPosts.REF_MY_POSTS.child(userId).observe(.childAdded, with: { snapshot in
-            Api.Post.observePost(withId: snapshot.key, completion: { (post: Post) in
+         // Gets posts keys shared by the user
+        Api.MyPosts.fetchMyPost(userId: userId){ (key) in
+            Api.Post.observePost(withId: key, completion: { (post: Post) in
                 self.posts.append(post)
                 self.collectionView.reloadData()
             })
-        })
+        }
     }
 }
 

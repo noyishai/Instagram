@@ -36,6 +36,19 @@ class HeaderProfileCollectionReusableView: UICollectionReusableView {
             // Uses SDWebimage to download the photo from the url
             self.profileImage.sd_setImage(with: photoUrl)
         }
+        //take the data from fetchCountMyPosts- show how many post we upload
+        Api.MyPosts.fetchCountMyPosts(userId: user!.id!){ (count) in
+            self.myPostCountLabel.text = "\(count)"
+        }
+        //show how many people we are following
+        Api.Follow.fetchCountFollowing(userId: user!.id!){ (count) in
+            self.followingCountLabel.text = "\(count)"
+        }
+        //show how many people followers after me
+        Api.Follow.fetchCountFollowers(userId: user!.id!){ (count) in
+            self.followersCountLabel.text = "\(count)"
+        }
+    
         
         //Check if user is the current user or not
         if user?.id == Api.User.CURRENT_USER?.uid{
