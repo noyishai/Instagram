@@ -51,6 +51,7 @@
 		C471B7BE63DE144B9791E50D /* Pods_Instagram.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2BE7FE0AFCF8665DFF5CC8F /* Pods_Instagram.framework */; };
 		C70A016921E6145F00098E47 /* FeedApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = C70A016821E6145F00098E47 /* FeedApi.swift */; };
 		C70A311321E352CC00A73121 /* PeopleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C70A311221E352CC00A73121 /* PeopleTableViewCell.swift */; };
+		C70C48C221F0B986008444E3 /* SettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C70C48C121F0B986008444E3 /* SettingTableViewController.swift */; };
 		C70C742A21E7EF2E0029D6A8 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C70C742921E7EF2E0029D6A8 /* SearchViewController.swift */; };
 		C70DEAD221EA5CB000790740 /* ProfileUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C70DEAD121EA5CB000790740 /* ProfileUserViewController.swift */; };
 		C765FCCE21E2997F0061FF48 /* PeopleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C765FCCD21E2997E0061FF48 /* PeopleViewController.swift */; };
@@ -129,6 +130,7 @@
 		A2BE7FE0AFCF8665DFF5CC8F /* Pods_Instagram.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Instagram.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C70A016821E6145F00098E47 /* FeedApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedApi.swift; sourceTree = "<group>"; };
 		C70A311221E352CC00A73121 /* PeopleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleTableViewCell.swift; sourceTree = "<group>"; };
+		C70C48C121F0B986008444E3 /* SettingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewController.swift; sourceTree = "<group>"; };
 		C70C742921E7EF2E0029D6A8 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		C70DEAD121EA5CB000790740 /* ProfileUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileUserViewController.swift; sourceTree = "<group>"; };
 		C765FCCD21E2997E0061FF48 /* PeopleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleViewController.swift; sourceTree = "<group>"; };
@@ -227,6 +229,7 @@
 				849DA6CE21C98AED0061C5BD /* ProfileViewController.swift */,
 				C70DEAD121EA5CB000790740 /* ProfileUserViewController.swift */,
 				C765FCCD21E2997E0061FF48 /* PeopleViewController.swift */,
+				C70C48C121F0B986008444E3 /* SettingTableViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -576,6 +579,7 @@
 				36630D7C21DF86A6002A168D /* Post_CommentApi.swift in Sources */,
 				3607E4F921DBBDA30009A196 /* AuthService.swift in Sources */,
 				3610587321DEA79400F9E16A /* UserModel.swift in Sources */,
+				C70C48C221F0B986008444E3 /* SettingTableViewController.swift in Sources */,
 				849DA6C721C989ED0061C5BD /* HomeViewController.swift in Sources */,
 				849DA6CD21C98AC10061C5BD /* ActivityViewController.swift in Sources */,
 				3607E50121DBCF6B0009A196 /* ProgressHUD.m in Sources */,
