@@ -46,6 +46,7 @@ class AuthService {
                     if error != nil {
                         return // error
                     }
+                
                     guard let profileImageUrl = url?.absoluteString else { return }
                     self.setUserInformation(profileImageUrl: profileImageUrl, username: username, email: email, uid: uid!, onSuccess: onSuccess)
                 })
@@ -62,6 +63,52 @@ class AuthService {
         onSuccess()
     }
     
+    //Update user information
+    static func updateUserInfor(username: String, email: String,imageData: Data, onSuccess: @escaping () -> Void, onError: @escaping (_ errorMessage: String?) -> Void) {
+        //update Authentication
+        Api.User.CURRENT_USER?.updateEmail(to: email, completion: { (error) in
+            if error != nil{
+                onError(error!.localizedDescription)
+            } else{
+                let uid = Api.User.CURRENT_USER?.uid
+                let storageRef = Storage.storage().reference(forURL: Config.STORAGE_ROOT_REF).child("profile_image").child(uid!)
+                
+                // Puts the profile image into Firebase Storage
+                storageRef.putData(imageData, metadata: nil, completion: { (metadata, error) in
+                    if error != nil {
+                        return // error
+                    }
+                    storageRef.downloadURL( completion: { (url, error) in
+                        if error != nil {
+                            return // error
+                        }
+                        guard let profileImageUrl = url?.absoluteString else { return }
+                        
+                        self.updateDatabase(profileImageUrl: profileImageUrl, username: username, email: email,onSuccess: onSuccess, onError: onError)
+                    })
+                })
+                
+            }
+        })
+        
+    }
+    
+    
+    //keep the all unchange data of a user and only overwrite modify data only
+       static func updateDatabase(profileImageUrl: String, username: String, email: String, onSuccess: @escaping () -> Void, onError:  @escaping (_ errorMessage: String?) -> Void){
+        let dict = ["username": username, "username_lowercase": username.lowercased(), "email": email, "profileImageUrl": profileImageUrl]
+        Api.User.REF_CURRENT_USER?.updateChildValues(dict, withCompletionBlock: {(error,ref) in
+            if error != nil{
+                onError(error!.localizedDescription)
+            } else {
+                onSuccess()
+            }
+        })
+    
+        
+    }
+        
+        
     static func logout(onSuccess: @escaping () -> Void, onError: @escaping (_ errorMessage: String?) -> Void) {
         do {
             try Auth.auth().signOut()
@@ -70,5 +117,5 @@ class AuthService {
             onError(logoutError.localizedDescription)
         }
     }
-    
-}
+  }
+

@@ -27,15 +27,6 @@ class HomeViewController: UIViewController {
         loadPosts()
     }
     
-    @IBAction func logout_TouchUpInside(_ sender: Any) {
-        AuthService.logout(onSuccess: {
-            let storyboard = UIStoryboard(name: "Start", bundle: nil)
-            let signInVC = storyboard.instantiateViewController(withIdentifier: "SignInViewController")
-            self.present(signInVC, animated: true, completion: nil)
-        }) { (errorMessage) in
-            ProgressHUD.showError(errorMessage)
-        }
-    }
     
     // Load posts and observe for new added posts and ignore unchanged posts
     func loadPosts() {

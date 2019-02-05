@@ -152,13 +152,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="UmF-rN-O6Z"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Home" id="WeF-rK-zmg">
-                        <barButtonItem key="leftBarButtonItem" title="LogOut" id="HSb-Ro-Mfl">
-                            <connections>
-                                <action selector="logout_TouchUpInside:" destination="AMH-Nt-S8Z" id="fzy-Gl-VqZ"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Home" id="WeF-rK-zmg"/>
                     <connections>
                         <outlet property="activityIndicatorView" destination="byN-gJ-RxH" id="24e-ED-Gpj"/>
                         <outlet property="tableView" destination="4Lv-v8-VOD" id="JuF-wr-IaB"/>

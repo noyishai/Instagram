@@ -44,6 +44,15 @@ class ProfileViewController: UIViewController {
             })
         })
     }
+    
+    //Update userName info on live
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "Profile_SettingSegue" {
+            let settingVC = segue.destination as! SettingTableViewController
+            settingVC.delegate = self
+        }
+        
+    }
 }
 
 extension ProfileViewController: UICollectionViewDataSource {
@@ -92,5 +101,11 @@ extension ProfileViewController: UICollectionViewDelegateFlowLayout {
     // Specifiy the size of the rows in the collection view
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: collectionView.frame.size.width / 3 - 1, height: collectionView.frame.size.height / 3 - 1)
+    }
+}
+
+extension ProfileViewController: SettingTableViewControllerDelegate{
+    func updateUserInfor() {
+        self.fetchUser()
     }
 }
