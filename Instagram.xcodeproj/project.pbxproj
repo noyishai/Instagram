@@ -54,6 +54,7 @@
 		C70C48C221F0B986008444E3 /* SettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C70C48C121F0B986008444E3 /* SettingTableViewController.swift */; };
 		C70C742A21E7EF2E0029D6A8 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C70C742921E7EF2E0029D6A8 /* SearchViewController.swift */; };
 		C70DEAD221EA5CB000790740 /* ProfileUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C70DEAD121EA5CB000790740 /* ProfileUserViewController.swift */; };
+		C71022012209B3D00047B4BC /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71022002209B3D00047B4BC /* DetailViewController.swift */; };
 		C765FCCE21E2997F0061FF48 /* PeopleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C765FCCD21E2997E0061FF48 /* PeopleViewController.swift */; };
 		C7A19AD321E3934200296526 /* FollowApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A19AD221E3934200296526 /* FollowApi.swift */; };
 /* End PBXBuildFile section */
@@ -133,6 +134,7 @@
 		C70C48C121F0B986008444E3 /* SettingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewController.swift; sourceTree = "<group>"; };
 		C70C742921E7EF2E0029D6A8 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		C70DEAD121EA5CB000790740 /* ProfileUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileUserViewController.swift; sourceTree = "<group>"; };
+		C71022002209B3D00047B4BC /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		C765FCCD21E2997E0061FF48 /* PeopleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleViewController.swift; sourceTree = "<group>"; };
 		C7A19AD221E3934200296526 /* FollowApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowApi.swift; sourceTree = "<group>"; };
 		CC14C5B282AE1D0CA52C492B /* Pods_InstagramUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InstagramUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -230,6 +232,7 @@
 				C70DEAD121EA5CB000790740 /* ProfileUserViewController.swift */,
 				C765FCCD21E2997E0061FF48 /* PeopleViewController.swift */,
 				C70C48C121F0B986008444E3 /* SettingTableViewController.swift */,
+				C71022002209B3D00047B4BC /* DetailViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -562,6 +565,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3605DB9321E0983F0096F258 /* MyPostApi.swift in Sources */,
+				C71022012209B3D00047B4BC /* DetailViewController.swift in Sources */,
 				3605DB9121E08E650096F258 /* HeaderProfileCollectionReusableView.swift in Sources */,
 				84D130FB21BC0B8200589B10 /* SignUpViewController.swift in Sources */,
 				84D130F721BBFCB400589B10 /* SignInViewController.swift in Sources */,

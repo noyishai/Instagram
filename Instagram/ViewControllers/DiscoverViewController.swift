@@ -17,20 +17,31 @@ class DiscoverViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.delegate = self
         
+        loadTopPosts()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    @IBAction func refresh_TouchUp(_ sender: Any) {
         loadTopPosts()
     }
     
     //the most popular post will show first
     func loadTopPosts(){
+        ProgressHUD.show("Loading...", interaction: false)
         self.posts.removeAll()
+        self.collectionView.reloadData()
         Api.Post.observeTopPosts(completion: {(post) in
             self.posts.append(post)
             self.collectionView.reloadData()
+            ProgressHUD.dismiss()
         })
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "Discover_DetailSegue" {
+            let detailVC = segue.destination as! DetailViewController
+            let postId = sender as! String
+            detailVC.postId = postId
+        }
     }
 }
 extension DiscoverViewController: UICollectionViewDataSource {
@@ -43,6 +54,7 @@ extension DiscoverViewController: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DiscoverCollectionViewCell", for: indexPath) as! PhotoCollectionViewCell
         let post = posts[indexPath.row]
         cell.post = post
+        cell.delegate=self 
         return cell
     }
 }
@@ -63,5 +75,11 @@ extension DiscoverViewController: UICollectionViewDelegateFlowLayout {
     // Specifiy the size of the rows in the collection view
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: collectionView.frame.size.width / 3 - 1, height: collectionView.frame.size.height / 3 - 1)
+    }
+}
+
+extension DiscoverViewController: PhotoCollectionViewCellDelegate{
+    func goToDetailVC(postId: String) {
+        performSegue(withIdentifier: "Discover_DetailSegue", sender: postId)
     }
 }
