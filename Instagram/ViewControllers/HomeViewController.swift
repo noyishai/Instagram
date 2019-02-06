@@ -32,10 +32,10 @@ class HomeViewController: UIViewController {
     func loadPosts() {
         
         Api.Feed.observeFeed(withId: Api.User.CURRENT_USER!.uid) { (post) in
-            guard let postId = post.uid else {
+            guard let postUid = post.uid else {
                 return
             }
-            self.fetchUser(uid: postId, completed: {
+            self.fetchUser(uid: postUid, completed: {
                 self.posts.append(post)
                 self.tableView.reloadData()
             })
@@ -50,10 +50,11 @@ class HomeViewController: UIViewController {
     
     // Given user ID gives the data
     func fetchUser(uid: String, completed: @escaping () -> Void) {
-        Api.User.observeUser(withId: uid) { (user: UserModel) in
+        Api.User.observeUser(withId: uid, completion: {
+            user in
             self.users.append(user)
             completed()
-        }
+        })
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

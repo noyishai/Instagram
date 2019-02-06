@@ -78,6 +78,7 @@ extension DiscoverViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
+//press on photo will triger the photoCell to go to details
 extension DiscoverViewController: PhotoCollectionViewCellDelegate{
     func goToDetailVC(postId: String) {
         performSegue(withIdentifier: "Discover_DetailSegue", sender: postId)
