@@ -46,7 +46,7 @@ class HelperService {
         for var word in words {
             if word.hasPrefix("#") {
                 word = word.trimmingCharacters(in: CharacterSet.punctuationCharacters) // Removes special characters so we wont crash
-                let newHashTagRef = Api.HashTag.REF_HASHTAG.child("hashTag")
+                let newHashTagRef = Api.HashTag.REF_HASHTAG.child(word.lowercased())
                 newHashTagRef.updateChildValues([newPostId: true])
             }
         }
