@@ -57,6 +57,7 @@ class HomeViewController: UIViewController {
         })
     }
     
+    // Segues of the protocol
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "CommentSegue" {
             let commentVC = segue.destination as! CommentViewController
@@ -68,6 +69,12 @@ class HomeViewController: UIViewController {
             let profileVC = segue.destination as! ProfileUserViewController
             let userId = sender as! String
             profileVC.userId = userId
+        }
+        
+        if segue.identifier == "Home_HashTagSegue" {
+            let hashTagVC = segue.destination as! HashTagViewController
+            let tag = sender as! String
+            hashTagVC.tag = tag
         }
     }
 }
@@ -90,12 +97,17 @@ extension HomeViewController: UITableViewDataSource {
     }
 }
 
+// Home addaptations for the protocols
 extension HomeViewController: HomeTableViewCellDelegate{
     func goToCommentVC(postId: String) {
         performSegue(withIdentifier: "CommentSegue", sender: postId)
     }
+    
     func goToProfileUserVC(userId: String) {
         performSegue(withIdentifier: "Home_ProfileSegue", sender: userId)
+    }
     
+    func goToHashTag(tag: String) {
+        performSegue(withIdentifier: "Home_HashTagSegue", sender: tag)
     }
 }

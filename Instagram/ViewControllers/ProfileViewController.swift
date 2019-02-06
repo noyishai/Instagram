@@ -18,6 +18,7 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.dataSource = self
+        collectionView.dataSource = self
         collectionView.delegate = self
         fetchUser()
         fetchMyPosts()
@@ -45,7 +46,8 @@ class ProfileViewController: UIViewController {
         })
     }
     
-    //Update userName info on live
+    // Update userName info on live
+    // Prepare for segue methods
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "Profile_SettingSegue" {
             let settingVC = segue.destination as! SettingTableViewController

@@ -159,11 +159,81 @@
                         <outlet property="tableView" destination="4Lv-v8-VOD" id="JuF-wr-IaB"/>
                         <segue destination="sSU-qd-oQl" kind="show" identifier="CommentSegue" id="i5q-Il-jbN"/>
                         <segue destination="pTN-OC-Zf4" kind="show" identifier="Home_ProfileSegue" id="qZl-5R-fs3"/>
+                        <segue destination="gG5-dk-HiD" kind="show" identifier="Home_HashTagSegue" id="iKc-hN-a1y"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9Fm-JR-cWZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2509.5999999999999" y="-644.52773613193403"/>
+        </scene>
+        <!--Hash Tag View Controller-->
+        <scene sceneID="WDn-TU-JF5">
+            <objects>
+                <viewController storyboardIdentifier="HashTagViewController" id="gG5-dk-HiD" customClass="HashTagViewController" customModule="Instagram" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="HkS-T6-5N1">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="hio-ye-JLs">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="UYE-mi-wWm">
+                                    <size key="itemSize" width="87" height="85"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PhotoCollectionViewCell" id="FKG-a3-AQ0" customClass="PhotoCollectionViewCell" customModule="Instagram" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="87" height="85"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="87" height="85"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EaJ-fl-zRf">
+                                                    <rect key="frame" x="0.0" y="0.0" width="87" height="85"/>
+                                                </imageView>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="EaJ-fl-zRf" secondAttribute="trailing" id="5EP-NY-33L"/>
+                                            <constraint firstItem="EaJ-fl-zRf" firstAttribute="top" secondItem="FKG-a3-AQ0" secondAttribute="top" id="XIs-gV-5Tc"/>
+                                            <constraint firstItem="EaJ-fl-zRf" firstAttribute="leading" secondItem="FKG-a3-AQ0" secondAttribute="leading" id="a04-em-p8n"/>
+                                            <constraint firstAttribute="bottom" secondItem="EaJ-fl-zRf" secondAttribute="bottom" id="dbm-mU-cFC"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="photo" destination="EaJ-fl-zRf" id="5S0-b1-U9y"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="a68-wY-YuZ" firstAttribute="bottom" secondItem="hio-ye-JLs" secondAttribute="bottom" id="CEp-dK-dqR"/>
+                            <constraint firstItem="hio-ye-JLs" firstAttribute="trailing" secondItem="a68-wY-YuZ" secondAttribute="trailing" id="Jzt-az-a3B"/>
+                            <constraint firstItem="hio-ye-JLs" firstAttribute="top" secondItem="HkS-T6-5N1" secondAttribute="top" id="SWw-27-3ta"/>
+                            <constraint firstItem="hio-ye-JLs" firstAttribute="leading" secondItem="a68-wY-YuZ" secondAttribute="leading" id="TIu-Xw-Ipi"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="a68-wY-YuZ"/>
+                    </view>
+                    <connections>
+                        <outlet property="collectionView" destination="hio-ye-JLs" id="fYr-w8-3m1"/>
+                        <segue destination="j23-4f-Rfg" kind="show" identifier="HashTag_DetailSegue" id="9Mb-em-heb"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hka-jy-7ul" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2510" y="81"/>
+        </scene>
+        <!--DetailViewController-->
+        <scene sceneID="5ZX-Y0-T1r">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Discover" referencedIdentifier="DetailViewController" id="j23-4f-Rfg" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lMM-hx-pWU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3172" y="-68"/>
         </scene>
         <!--Comment View Controller-->
         <scene sceneID="ndc-zn-X8P">
@@ -329,6 +399,6 @@
         <image name="share" width="37" height="41"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="M8F-M2-peI"/>
+        <segue reference="qZl-5R-fs3"/>
     </inferredMetricsTieBreakers>
 </document>

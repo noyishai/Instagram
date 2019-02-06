@@ -67,7 +67,7 @@
                                                         <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </state>
                                                 </button>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fnu-Lt-eQb">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fnu-Lt-eQb" customClass="KILabel">
                                                     <rect key="frame" x="15" y="514" width="345" height="16"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <nil key="textColor"/>
@@ -117,7 +117,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="captionLabel" destination="fnu-Lt-eQb" id="SLO-5q-QpK"/>
+                                            <outlet property="captionLabel" destination="fnu-Lt-eQb" id="C2i-7I-t5F"/>
                                             <outlet property="commentImageView" destination="17Y-Id-GZe" id="x8n-rF-m6D"/>
                                             <outlet property="likeCountButton" destination="c5v-z7-e4V" id="oyo-cP-UQP"/>
                                             <outlet property="likeImageView" destination="wW6-Rg-8Wy" id="bmk-NT-9SQ"/>
@@ -146,11 +146,20 @@
                         <outlet property="tableView" destination="Gfo-3f-7D5" id="wXu-Qh-98z"/>
                         <segue destination="vzE-rz-191" kind="show" identifier="Detail_CommentVC" id="E0j-Z8-5IZ"/>
                         <segue destination="VRO-Z3-npQ" kind="show" identifier="Detail_ProfileUserSegue" id="vtB-XR-VM4"/>
+                        <segue destination="pdt-ue-Un9" kind="show" identifier="Detail_HashTagSegue" id="2oR-MC-eZo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Ls-D8-1rN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3279" y="240"/>
+            <point key="canvasLocation" x="3254" y="117"/>
+        </scene>
+        <!--HashTagViewController-->
+        <scene sceneID="1UM-s5-aZX">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Home" referencedIdentifier="HashTagViewController" id="pdt-ue-Un9" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OBi-2J-C1i" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3915" y="-27"/>
         </scene>
         <!--CommentViewController-->
         <scene sceneID="DgE-R3-RTt">
@@ -158,7 +167,7 @@
                 <viewControllerPlaceholder storyboardName="Home" referencedIdentifier="CommentViewController" id="vzE-rz-191" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4ft-3e-uVk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3884" y="187"/>
+            <point key="canvasLocation" x="3921" y="116"/>
         </scene>
         <!--ProfileUserViewController-->
         <scene sceneID="xs4-F7-YLn">
@@ -166,7 +175,7 @@
                 <viewControllerPlaceholder storyboardName="Profile" referencedIdentifier="ProfileUserViewController" id="VRO-Z3-npQ" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wb1-ul-Frf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3903" y="283"/>
+            <point key="canvasLocation" x="3928" y="288"/>
         </scene>
         <!--Discover-->
         <scene sceneID="uQo-Qd-Ev1">

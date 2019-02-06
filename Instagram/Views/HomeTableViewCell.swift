@@ -8,9 +8,12 @@
 
 import UIKit
 import KILabel
-protocol  HomeTableViewCellDelegate {
+
+// Protocol for switching between view controllers
+protocol HomeTableViewCellDelegate {
     func goToCommentVC(postId: String)
     func goToProfileUserVC(userId: String)
+    func goToHashTag(tag: String)
 }
 
 class HomeTableViewCell: UITableViewCell {
@@ -43,6 +46,21 @@ class HomeTableViewCell: UITableViewCell {
     // Updates the cells with posts data
     func updateView() {
         captionLabel.text = post?.caption
+        // Makes Hashtags captions sensitive for clicking
+        captionLabel.hashtagLinkTapHandler = { label, string, range in
+            print(string)
+            let tag = String(string.characters.dropFirst())
+            self.delegate?.goToHashTag(tag: tag)
+        }
+        // Makes username mention clickable and delegate via protocol segue to their profile
+        captionLabel.userHandleLinkTapHandler = { label, string, range in
+            print(string)
+            let mention = String(string.characters.dropFirst())
+            print(mention)
+            Api.User.observeUserByUsername(username: mention.lowercased(), completion: { (user) in
+                self.delegate?.goToProfileUserVC(userId: user.id!)
+            })
+        }
         print("ratio: \(String(describing: post?.ratio))")
         //ratio = widthPhoto / heightPhoto
         //heightPhoto = widthPhoto / ratio
@@ -58,16 +76,15 @@ class HomeTableViewCell: UITableViewCell {
         }
         
         // Observe for single change to update the posts while scrolling down so we wont have the image move between posts
-       
-            self.updateLike(post: self.post!)
-       
+        
+        self.updateLike(post: self.post!)
+        
         
         // Observe for childChanged, in this case for the likesCount to change by other users
         
     }
     
     // Checks if the post liked or not and change the like image accordingly + increase/decrease the likesCount
-    
     func updateLike(post: Post) {
         let imageName = post.likes == nil || !post.isLiked! ? "like" : "likeSelected"
         likeImageView.image = UIImage(named: imageName)
@@ -110,7 +127,7 @@ class HomeTableViewCell: UITableViewCell {
         let tapGestureForNameLabel = UITapGestureRecognizer(target: self, action: #selector(self.nameLabel_TouchUpInside))
         nameLabel.addGestureRecognizer(tapGestureForNameLabel)
         nameLabel.isUserInteractionEnabled = true
-
+        
     }
     
     // What to perform when comment pressed
@@ -119,14 +136,14 @@ class HomeTableViewCell: UITableViewCell {
             delegate?.goToCommentVC(postId: id)
         }
     }
-
     
+    // Clicking username label will segue to their profile
     func nameLabel_TouchUpInside(){
         if let id = user?.id {
             delegate?.goToProfileUserVC(userId: id)
         }
     }
-
+    
     
     // What to perform when like pressed
     func likeImageView_TouchUpInside() {
@@ -145,11 +162,11 @@ class HomeTableViewCell: UITableViewCell {
         print("Reusing cell")
         profileImageView.image = UIImage(named: "placeholderImg")
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
-
+    
 }

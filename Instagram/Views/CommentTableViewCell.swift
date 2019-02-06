@@ -36,6 +36,16 @@ class CommentTableViewCell: UITableViewCell {
     // Updates the cells with comment data when it recieves it
     func updateView() {
         commentLabel.text = comment?.commentText
+        
+        // Makes username mention clickable and delegate via protocol segue to their profile
+        commentLabel.userHandleLinkTapHandler = { label, string, range in
+            print(string)
+            let mention = String(string.characters.dropFirst())
+            print(mention)
+            Api.User.observeUserByUsername(username: mention.lowercased(), completion: { (user) in
+                self.delegate?.goToProfileUserVC(userId: user.id!)
+            })
+        }
     }
     
     // Gets the user data
