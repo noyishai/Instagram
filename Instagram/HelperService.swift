@@ -13,7 +13,7 @@ import FirebaseDatabase
 class HelperService {
     
     // Uploades the data to Firebase storage and database
-    static func uploadDataToServer(data: Data, caption: String, onSuccess: @escaping () -> Void) {
+    static func uploadDataToServer(data: Data,ratio: CGFloat , caption: String, onSuccess: @escaping () -> Void) {
         let photoIdString = NSUUID().uuidString
         let storageRef = Storage.storage().reference(forURL: Config.STORAGE_ROOT_REF).child("posts").child(photoIdString)
         storageRef.putData(data, metadata: nil, completion: { (metadata, error) in
@@ -26,19 +26,19 @@ class HelperService {
                     return // error
                 }
                 guard let photoUrl = url?.absoluteString else { return }
-                self.sendDataToDatabase(photoUrl: photoUrl, caption: caption, onSuccess: onSuccess)
+                self.sendDataToDatabase(photoUrl: photoUrl, ratio: ratio, caption: caption, onSuccess: onSuccess)
             })
         })
     }
     
-    static func sendDataToDatabase(photoUrl: String, caption: String, onSuccess: @escaping () -> Void) {
+    static func sendDataToDatabase(photoUrl: String,ratio: CGFloat, caption: String, onSuccess: @escaping () -> Void) {
         let newPostId = Api.Post.REF_POSTS.childByAutoId().key
         let newPostReference = Api.Post.REF_POSTS.child(newPostId!)
         
         guard let currentUser = Api.User.CURRENT_USER else { return }
         
         let currentUserId = currentUser.uid
-        newPostReference.setValue(["uid": currentUserId, "photoUrl": photoUrl, "caption": caption, "likesCount": 0], withCompletionBlock: { (error, ref) in
+        newPostReference.setValue(["uid": currentUserId, "photoUrl": photoUrl, "caption": caption, "likesCount": 0, "ratio": ratio], withCompletionBlock: { (error, ref) in
             if error != nil {
                 ProgressHUD.showError(error!.localizedDescription)
                 return

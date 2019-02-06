@@ -22,7 +22,7 @@ class HomeTableViewCell: UITableViewCell {
     @IBOutlet weak var shareImageView: UIImageView!
     @IBOutlet weak var likeCountButton: UIButton!
     @IBOutlet weak var captionLabel: UILabel!
-    
+    @IBOutlet weak var heightConstraint: NSLayoutConstraint!
     var delegate: HomeTableViewCellDelegate?
     // Ovserver which wait to see if the post instance variable is set
     var post: Post? {
@@ -41,6 +41,14 @@ class HomeTableViewCell: UITableViewCell {
     // Updates the cells with posts data
     func updateView() {
         captionLabel.text = post?.caption
+        print("ratio: \(String(describing: post?.ratio))")
+        //ratio = widthPhoto / heightPhoto
+        //heightPhoto = widthPhoto / ratio
+        
+        //extract photo ratio
+        if let ratio = post?.ratio{
+            heightConstraint.constant = UIScreen.main.bounds.width / ratio
+        }
         if let photoUrlString = post?.photoUrl {
             let photoUrl = URL(string: photoUrlString)
             // Uses SDWebimage to download the photo from the url

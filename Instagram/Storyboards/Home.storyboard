@@ -127,6 +127,7 @@
                                         <connections>
                                             <outlet property="captionLabel" destination="q5n-0P-LeS" id="9wT-IF-CMu"/>
                                             <outlet property="commentImageView" destination="SVJ-Ki-PY9" id="SSY-Fc-xgR"/>
+                                            <outlet property="heightConstraint" destination="dN9-VN-ASx" id="107-j9-pHu"/>
                                             <outlet property="likeCountButton" destination="zfd-Y7-O3I" id="xPf-YA-Yvo"/>
                                             <outlet property="likeImageView" destination="rpH-rH-zZ0" id="R2r-jD-2rV"/>
                                             <outlet property="nameLabel" destination="2Ue-5O-m8l" id="Y7N-fM-PRJ"/>

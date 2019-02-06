@@ -39,10 +39,11 @@ class CameraViewController: UIViewController {
         // Using external library ProgressHUD to show the user the sign in progress
         ProgressHUD.show("Sharing...", interaction: false)
         if let profileImg = self.selectedImage, let imageData = UIImageJPEGRepresentation(profileImg, 0.1){
-            HelperService.uploadDataToServer(data: imageData, caption: captionTextView.text!) {
+            let ratio = profileImg.size.width / profileImg.size.height
+            HelperService.uploadDataToServer(data: imageData, ratio: ratio, caption: captionTextView.text!, onSuccess: {
                 self.clean()
                 self.tabBarController?.selectedIndex = 0
-            }
+            })
         } else {
             ProgressHUD.showError("Photo can't be empty")
         }
