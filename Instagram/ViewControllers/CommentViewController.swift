@@ -137,11 +137,18 @@ class CommentViewController: UIViewController {
         sendButton.isEnabled = false
     }
     
+    // Segues of the protocol
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "Comment_ProfileSegue" {
             let profileVC = segue.destination as! ProfileUserViewController
             let userId = sender as! String
             profileVC.userId = userId
+        }
+        
+        if segue.identifier == "Comment_HashTagSegue" {
+            let hashTagVC = segue.destination as! HashTagViewController
+            let tag = sender as! String
+            hashTagVC.tag = tag
         }
     }
     
@@ -186,5 +193,9 @@ extension CommentViewController: UITableViewDataSource {
 extension CommentViewController: CommentTableViewCellDelegate {
     func goToProfileUserVC(userId: String) {
         performSegue(withIdentifier: "Comment_ProfileSegue", sender: userId)
+    }
+    
+    func goToHashTag(tag: String) {
+        performSegue(withIdentifier: "Comment_HashTagSegue", sender: tag)
     }
 }

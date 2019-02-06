@@ -225,7 +225,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hka-jy-7ul" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2510" y="81"/>
+            <point key="canvasLocation" x="2510" y="190"/>
         </scene>
         <!--DetailViewController-->
         <scene sceneID="5ZX-Y0-T1r">
@@ -362,6 +362,7 @@
                         <outlet property="sendButton" destination="mnn-Hv-pzc" id="L9y-CQ-ThH"/>
                         <outlet property="tableView" destination="1jh-mI-Iqz" id="nfa-Vc-UsT"/>
                         <segue destination="pTN-OC-Zf4" kind="show" identifier="Comment_ProfileSegue" id="M8F-M2-peI"/>
+                        <segue destination="gG5-dk-HiD" kind="show" identifier="Comment_HashTagSegue" id="DfV-An-n9a"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1N3-oI-GOt" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -399,6 +400,7 @@
         <image name="share" width="37" height="41"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="qZl-5R-fs3"/>
+        <segue reference="DfV-An-n9a"/>
+        <segue reference="M8F-M2-peI"/>
     </inferredMetricsTieBreakers>
 </document>

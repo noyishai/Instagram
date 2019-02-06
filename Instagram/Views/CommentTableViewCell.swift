@@ -8,8 +8,11 @@
 
 import UIKit
 import KILabel
+
+// Protocol for switching between view controllers
 protocol CommentTableViewCellDelegate {
     func goToProfileUserVC(userId: String)
+    func goToHashTag(tag: String)
 }
 
 class CommentTableViewCell: UITableViewCell {
@@ -36,6 +39,13 @@ class CommentTableViewCell: UITableViewCell {
     // Updates the cells with comment data when it recieves it
     func updateView() {
         commentLabel.text = comment?.commentText
+        
+        // Makes Hashtags captions sensitive for clicking
+        commentLabel.hashtagLinkTapHandler = { label, string, range in
+            print(string)
+            let tag = String(string.characters.dropFirst())
+            self.delegate?.goToHashTag(tag: tag)
+        }
         
         // Makes username mention clickable and delegate via protocol segue to their profile
         commentLabel.userHandleLinkTapHandler = { label, string, range in
