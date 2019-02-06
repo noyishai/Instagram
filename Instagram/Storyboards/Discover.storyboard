@@ -12,7 +12,7 @@
         <!--Detail View Controller-->
         <scene sceneID="Akf-lD-Zyw">
             <objects>
-                <viewController id="Qhh-Hn-QJm" customClass="DetailViewController" customModule="Instagram" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DetailViewController" id="Qhh-Hn-QJm" customClass="DetailViewController" customModule="Instagram" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Bmj-VP-0t3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

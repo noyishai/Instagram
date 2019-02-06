@@ -203,6 +203,7 @@
                     <connections>
                         <outlet property="collectionView" destination="3yD-RX-6i8" id="D3g-Rc-XxR"/>
                         <segue destination="fv4-2R-AaQ" kind="show" identifier="Profile_SettingSegue" id="DUP-M3-Jhl"/>
+                        <segue destination="AEy-Wy-ffd" kind="show" identifier="Profile_DetailSegue" id="oib-wV-P1N"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BEV-5l-vBa" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -505,6 +506,7 @@
                     <connections>
                         <outlet property="collectionView" destination="f2M-CL-tuD" id="H7U-m2-xTm"/>
                         <segue destination="fv4-2R-AaQ" kind="show" identifier="ProfileUser_SettingSegue" id="kYl-To-ya8"/>
+                        <segue destination="AEy-Wy-ffd" kind="show" identifier="ProfileUser_DetailSegue" id="IYS-GO-AOo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dxi-SB-ewL" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -686,6 +688,14 @@
             </objects>
             <point key="canvasLocation" x="6200.8000000000002" y="80.50974512743629"/>
         </scene>
+        <!--DetailViewController-->
+        <scene sceneID="lL3-Re-YOf">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Discover" referencedIdentifier="DetailViewController" id="AEy-Wy-ffd" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0yV-Iu-mnh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5539" y="107"/>
+        </scene>
     </scenes>
     <resources>
         <image name="Profile" width="48" height="48"/>
@@ -694,6 +704,7 @@
         <image name="placeholderImg" width="225" height="225"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="IYS-GO-AOo"/>
         <segue reference="kYl-To-ya8"/>
     </inferredMetricsTieBreakers>
 </document>
