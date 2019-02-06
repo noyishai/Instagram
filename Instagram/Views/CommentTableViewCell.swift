@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import KILabel
 protocol CommentTableViewCellDelegate {
     func goToProfileUserVC(userId: String)
 }
@@ -16,7 +16,7 @@ class CommentTableViewCell: UITableViewCell {
 
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var commentLabel: UILabel!
+    @IBOutlet weak var commentLabel: KILabel!
     
     var delegate: CommentTableViewCellDelegate?
     // Ovserver which wait to see if the post instance variable is set

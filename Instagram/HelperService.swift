@@ -31,6 +31,7 @@ class HelperService {
         })
     }
     
+    // Sends the data to the database
     static func sendDataToDatabase(photoUrl: String,ratio: CGFloat, caption: String, onSuccess: @escaping () -> Void) {
         let newPostId = Api.Post.REF_POSTS.childByAutoId().key
         let newPostReference = Api.Post.REF_POSTS.child(newPostId!)
@@ -38,6 +39,19 @@ class HelperService {
         guard let currentUser = Api.User.CURRENT_USER else { return }
         
         let currentUserId = currentUser.uid
+        
+        // Creats "words" array and seperate them into "word" to look for HashTags (#)
+        let words = caption.components(separatedBy: CharacterSet.whitespacesAndNewlines)
+        
+        for var word in words {
+            if word.hasPrefix("#") {
+                word = word.trimmingCharacters(in: CharacterSet.punctuationCharacters) // Removes special characters so we wont crash
+                let newHashTagRef = Api.HashTag.REF_HASHTAG.child("hashTag")
+                newHashTagRef.updateChildValues([newPostId: true])
+            }
+        }
+        
+        // Creats post reference
         newPostReference.setValue(["uid": currentUserId, "photoUrl": photoUrl, "caption": caption, "likesCount": 0, "ratio": ratio], withCompletionBlock: { (error, ref) in
             if error != nil {
                 ProgressHUD.showError(error!.localizedDescription)
@@ -46,7 +60,7 @@ class HelperService {
             
             Api.Feed.REF_FEED.child(Api.User.CURRENT_USER!.uid).child(newPostId!).setValue(true)
             
-            
+            // Creats post-feed reference
             let myPostRef = Api.MyPosts.REF_MY_POSTS.child(currentUserId).child(newPostId!)
             myPostRef.setValue(true, withCompletionBlock: { (error, ref) in
                 if error != nil {
@@ -54,8 +68,6 @@ class HelperService {
                     return
                 }
             })
-            
-            
             ProgressHUD.showSuccess("Photo Uploaded")
             onSuccess()
         })

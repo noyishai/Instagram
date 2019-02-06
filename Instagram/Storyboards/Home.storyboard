@@ -75,7 +75,7 @@
                                                         <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </state>
                                                 </button>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q5n-0P-LeS">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q5n-0P-LeS" customClass="KILabel">
                                                     <rect key="frame" x="15" y="514" width="345" height="16"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <nil key="textColor"/>
@@ -125,7 +125,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="captionLabel" destination="q5n-0P-LeS" id="9wT-IF-CMu"/>
+                                            <outlet property="captionLabel" destination="q5n-0P-LeS" id="VT0-G2-cJs"/>
                                             <outlet property="commentImageView" destination="SVJ-Ki-PY9" id="SSY-Fc-xgR"/>
                                             <outlet property="heightConstraint" destination="dN9-VN-ASx" id="107-j9-pHu"/>
                                             <outlet property="likeCountButton" destination="zfd-Y7-O3I" id="xPf-YA-Yvo"/>
@@ -202,7 +202,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QJE-Cp-E7b">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QJE-Cp-E7b" customClass="KILabel">
                                                     <rect key="frame" x="59" y="40" width="293" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <nil key="textColor"/>
@@ -231,7 +231,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="commentLabel" destination="QJE-Cp-E7b" id="4Kc-iJ-805"/>
+                                            <outlet property="commentLabel" destination="QJE-Cp-E7b" id="DdH-Ns-exI"/>
                                             <outlet property="nameLabel" destination="dNR-1w-4r6" id="tAT-J4-xgo"/>
                                             <outlet property="profileImageView" destination="5MP-bV-oJP" id="2In-qP-kN8"/>
                                         </connections>

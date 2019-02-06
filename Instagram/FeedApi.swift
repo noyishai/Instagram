@@ -9,10 +9,9 @@
 import Foundation
 import FirebaseDatabase
 class FeedApi{
-    var REF_FEED =
-        Database.database().reference().child("feed")
+    var REF_FEED = Database.database().reference().child("feed")
     
-    
+    // Gets the feed and observes for new posts addedd to it
     func observeFeed(withId id:String, completion: @escaping (Post) -> Void){
         REF_FEED.child(id).observe(.childAdded, with: {
             snapshot in
@@ -20,7 +19,6 @@ class FeedApi{
             Api.Post.observePost(withId: key, completion: { (post)
                 in
                 completion(post)
-                
             })
         })
     }

@@ -63,6 +63,18 @@ class CommentViewController: UIViewController {
                 ProgressHUD.showError(error!.localizedDescription)
                 return
             }
+            
+            // Creats "words" array and seperate them into "word" to look for HashTags (#)
+            let words = self.commentTextField.text!.components(separatedBy: CharacterSet.whitespacesAndNewlines)
+            
+            for var word in words {
+                if word.hasPrefix("#") {
+                    word = word.trimmingCharacters(in: CharacterSet.punctuationCharacters) // Removes special characters so we wont crash
+                    let newHashTagRef = Api.HashTag.REF_HASHTAG.child("hashTag")
+                    newHashTagRef.updateChildValues([self.postId: true])
+                }
+            }
+            
             let postCommentRef = Api.Post_Comment.REF_POSTS_COMMENTS.child(self.postId).child(newCommentId!)
             postCommentRef.setValue(true, withCompletionBlock: { (error, ref) in
                 if error != nil {

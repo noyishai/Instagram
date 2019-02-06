@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import KILabel
 protocol  HomeTableViewCellDelegate {
     func goToCommentVC(postId: String)
     func goToProfileUserVC(userId: String)
@@ -21,8 +22,9 @@ class HomeTableViewCell: UITableViewCell {
     @IBOutlet weak var commentImageView: UIImageView!
     @IBOutlet weak var shareImageView: UIImageView!
     @IBOutlet weak var likeCountButton: UIButton!
-    @IBOutlet weak var captionLabel: UILabel!
+    @IBOutlet weak var captionLabel: KILabel!
     @IBOutlet weak var heightConstraint: NSLayoutConstraint!
+    
     var delegate: HomeTableViewCellDelegate?
     // Ovserver which wait to see if the post instance variable is set
     var post: Post? {

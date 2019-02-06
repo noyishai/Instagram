@@ -44,6 +44,7 @@ class FollowApi{
         REF_FOLLOWING.child(Api.User.CURRENT_USER!.uid).child(id).setValue(NSNull())
     }
     
+    // Checks if the userId is following
     func isFollowing(userId: String, completed: @escaping (Bool) -> Void) {
         REF_FOLLOWERS.child(userId).child(Api.User.CURRENT_USER!.uid).observeSingleEvent(of: .value, with: {
             snapshot in
@@ -55,6 +56,7 @@ class FollowApi{
         })
     }
     
+    // Gets the following count of this userId
     func fetchCountFollowing(userId: String, completion: @escaping(Int) -> Void) {
         REF_FOLLOWING.child(userId).observe(.value, with: {
             snapshot in
@@ -63,6 +65,7 @@ class FollowApi{
         })
     }
     
+    // Gets the followers count of this userId
     func fetchCountFollowers(userId: String, completion: @escaping(Int) -> Void) {
         REF_FOLLOWERS.child(userId).observe(.value, with: {
             snapshot in

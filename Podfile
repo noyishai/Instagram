@@ -9,7 +9,7 @@ target 'Instagram' do
   pod 'Firebase/Database'
   pod 'Firebase/Storage'
   pod 'SDWebImage'
-
+  pod 'KILabel'
   # Pods for Instagram
 
   target 'InstagramTests' do
