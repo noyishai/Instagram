@@ -85,6 +85,12 @@
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UOG-ZE-nJc">
+                                                    <rect key="frame" x="324" y="24.5" width="36" height="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="wW6-Rg-8Wy" firstAttribute="leading" secondItem="0Q9-A0-8V7" secondAttribute="leading" constant="15" id="0PB-uq-ppk"/>
@@ -97,6 +103,7 @@
                                                 <constraint firstItem="c5v-z7-e4V" firstAttribute="top" secondItem="iWc-wP-VuM" secondAttribute="bottom" constant="7" id="D6Y-g4-Lkt"/>
                                                 <constraint firstAttribute="trailing" secondItem="fnu-Lt-eQb" secondAttribute="trailing" constant="15" id="H4g-7l-2KW"/>
                                                 <constraint firstItem="ReA-c3-CeF" firstAttribute="height" secondItem="wW6-Rg-8Wy" secondAttribute="height" id="Isg-V9-gn8"/>
+                                                <constraint firstAttribute="trailing" secondItem="UOG-ZE-nJc" secondAttribute="trailing" constant="15" id="Lex-i6-qdk"/>
                                                 <constraint firstItem="JrG-OS-I8g" firstAttribute="top" secondItem="uN7-0A-4YJ" secondAttribute="bottom" constant="8" id="MCv-sh-Yn1"/>
                                                 <constraint firstItem="17Y-Id-GZe" firstAttribute="width" secondItem="wW6-Rg-8Wy" secondAttribute="width" id="Ogs-Mu-p6z"/>
                                                 <constraint firstItem="iWc-wP-VuM" firstAttribute="leading" secondItem="0Q9-A0-8V7" secondAttribute="leading" constant="15" id="Xba-AL-fbv"/>
@@ -114,6 +121,7 @@
                                                 <constraint firstItem="17Y-Id-GZe" firstAttribute="height" secondItem="wW6-Rg-8Wy" secondAttribute="height" id="r3s-df-Mrp"/>
                                                 <constraint firstItem="uN7-0A-4YJ" firstAttribute="leading" secondItem="0Q9-A0-8V7" secondAttribute="leading" constant="15" id="ssF-2a-SIV"/>
                                                 <constraint firstItem="17Y-Id-GZe" firstAttribute="centerY" secondItem="wW6-Rg-8Wy" secondAttribute="centerY" id="t2d-HI-inf"/>
+                                                <constraint firstItem="UOG-ZE-nJc" firstAttribute="centerY" secondItem="voP-1v-Ayg" secondAttribute="centerY" id="v7J-5c-dzQ"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -125,6 +133,7 @@
                                             <outlet property="postImageView" destination="JrG-OS-I8g" id="Z2y-a4-MgK"/>
                                             <outlet property="profileImageView" destination="uN7-0A-4YJ" id="Lq8-ZT-XEB"/>
                                             <outlet property="shareImageView" destination="ReA-c3-CeF" id="BMY-dO-voZ"/>
+                                            <outlet property="timeLabel" destination="UOG-ZE-nJc" id="tb5-yQ-c4s"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -151,7 +160,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Ls-D8-1rN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3254" y="117"/>
+            <point key="canvasLocation" x="3253.5999999999999" y="116.49175412293854"/>
         </scene>
         <!--HashTagViewController-->
         <scene sceneID="1UM-s5-aZX">

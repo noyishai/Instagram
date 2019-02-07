@@ -50,9 +50,12 @@ class HelperService {
                 newHashTagRef.updateChildValues([newPostId: true])
             }
         }
+        //will present the current time
+        let timestamp = Int(Date().timeIntervalSince1970)
+        print(timestamp)
         
         // Creats post reference
-        newPostReference.setValue(["uid": currentUserId, "photoUrl": photoUrl, "caption": caption, "likesCount": 0, "ratio": ratio], withCompletionBlock: { (error, ref) in
+        newPostReference.setValue(["uid": currentUserId, "photoUrl": photoUrl, "caption": caption, "likesCount": 0, "ratio": ratio, "timestamp": timestamp ], withCompletionBlock: { (error, ref) in
             if error != nil {
                 ProgressHUD.showError(error!.localizedDescription)
                 return

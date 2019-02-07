@@ -36,7 +36,7 @@ class HomeViewController: UIViewController {
                 return
             }
             self.fetchUser(uid: postUid, completed: {
-                self.posts.append(post)
+                self.posts.insert(post, at: 0)
                 self.tableView.reloadData()
             })
         }
@@ -52,7 +52,7 @@ class HomeViewController: UIViewController {
     func fetchUser(uid: String, completed: @escaping () -> Void) {
         Api.User.observeUser(withId: uid, completion: {
             user in
-            self.users.append(user)
+            self.users.insert(user, at: 0)
             completed()
         })
     }

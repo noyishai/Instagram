@@ -93,8 +93,15 @@
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="muP-Be-ZPp">
+                                                    <rect key="frame" x="309" y="24.5" width="36" height="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="muP-Be-ZPp" firstAttribute="centerY" secondItem="2Ue-5O-m8l" secondAttribute="centerY" id="0qt-FA-JAR"/>
                                                 <constraint firstItem="rpH-rH-zZ0" firstAttribute="top" secondItem="ss8-xi-vQ8" secondAttribute="bottom" constant="15" id="2sU-iT-Yhs"/>
                                                 <constraint firstItem="ptc-cC-U89" firstAttribute="leading" secondItem="DId-4G-kze" secondAttribute="leading" constant="15" id="3sk-c3-0yO"/>
                                                 <constraint firstItem="X8p-j0-XoD" firstAttribute="width" secondItem="rpH-rH-zZ0" secondAttribute="width" id="6G4-5R-7Vn"/>
@@ -116,6 +123,7 @@
                                                 <constraint firstItem="SVJ-Ki-PY9" firstAttribute="leading" secondItem="rpH-rH-zZ0" secondAttribute="trailing" constant="20" id="j3T-vo-WBW"/>
                                                 <constraint firstItem="X8p-j0-XoD" firstAttribute="centerY" secondItem="rpH-rH-zZ0" secondAttribute="centerY" id="jgj-1R-Beb"/>
                                                 <constraint firstAttribute="trailing" secondItem="ptc-cC-U89" secondAttribute="trailing" id="lIm-yT-8xS"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="muP-Be-ZPp" secondAttribute="trailing" constant="15" id="mJy-zJ-Olw"/>
                                                 <constraint firstAttribute="trailing" secondItem="q5n-0P-LeS" secondAttribute="trailing" constant="15" id="otZ-gE-piB"/>
                                                 <constraint firstItem="4PC-HW-7U9" firstAttribute="top" secondItem="DId-4G-kze" secondAttribute="top" constant="15" id="rkl-bT-M58"/>
                                                 <constraint firstItem="SVJ-Ki-PY9" firstAttribute="width" secondItem="rpH-rH-zZ0" secondAttribute="width" id="tCy-jg-bLn"/>
@@ -134,6 +142,7 @@
                                             <outlet property="postImageView" destination="ss8-xi-vQ8" id="YzB-kl-XT4"/>
                                             <outlet property="profileImageView" destination="4PC-HW-7U9" id="VQh-XL-GLR"/>
                                             <outlet property="shareImageView" destination="X8p-j0-XoD" id="TIm-z1-aD1"/>
+                                            <outlet property="timeLabel" destination="muP-Be-ZPp" id="79g-Fs-mdm"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -400,7 +409,7 @@
         <image name="share" width="37" height="41"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="DfV-An-n9a"/>
-        <segue reference="M8F-M2-peI"/>
+        <segue reference="iKc-hN-a1y"/>
+        <segue reference="qZl-5R-fs3"/>
     </inferredMetricsTieBreakers>
 </document>
