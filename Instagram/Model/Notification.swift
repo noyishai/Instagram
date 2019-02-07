@@ -17,7 +17,7 @@ class Notification {
 }
 
 
-extension Post {
+extension Notification {
     // Static func to let us use this transform without creating notification instance
     static func transform(dict: [String: Any], key: String) -> Notification {
         let notification = Notification()
@@ -25,6 +25,7 @@ extension Post {
         notification.objectId = dict["objectId"] as? String
         notification.type = dict["type"] as? String
         notification.timestamp = dict["timestamp"] as? Int
+        notification.from = dict["from"] as? String
         return notification
     }
 }

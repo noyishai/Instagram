@@ -15,6 +15,31 @@ class ActivityTableViewCell: UITableViewCell {
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var photo: UIImageView!
     
+    var notification: Notification? {
+        didSet {
+            updateView()
+        }
+    }
+    
+    // Ovserver which wait to see if the user instance variable is set
+    var user: UserModel? {
+        didSet {
+            setupUserInfo()
+        }
+    }
+    
+    func updateView(){
+        
+    }
+    
+    func setupUserInfo(){
+        nameLabel.text = user?.username
+        if let photoUrlString = user?.profileImageUrl {
+            let photoUrl = URL(string: photoUrlString)
+            profileImage.sd_setImage(with: photoUrl, placeholderImage: UIImage(named: "placeholderImg"))
+        }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
