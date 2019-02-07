@@ -57,6 +57,7 @@
 		C70C742A21E7EF2E0029D6A8 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C70C742921E7EF2E0029D6A8 /* SearchViewController.swift */; };
 		C70DEAD221EA5CB000790740 /* ProfileUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C70DEAD121EA5CB000790740 /* ProfileUserViewController.swift */; };
 		C71022012209B3D00047B4BC /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71022002209B3D00047B4BC /* DetailViewController.swift */; };
+		C73733CC220C7387004232C3 /* ActivityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73733CB220C7387004232C3 /* ActivityTableViewCell.swift */; };
 		C765FCCE21E2997F0061FF48 /* PeopleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C765FCCD21E2997E0061FF48 /* PeopleViewController.swift */; };
 		C7A19AD321E3934200296526 /* FollowApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A19AD221E3934200296526 /* FollowApi.swift */; };
 /* End PBXBuildFile section */
@@ -139,6 +140,7 @@
 		C70C742921E7EF2E0029D6A8 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		C70DEAD121EA5CB000790740 /* ProfileUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileUserViewController.swift; sourceTree = "<group>"; };
 		C71022002209B3D00047B4BC /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		C73733CB220C7387004232C3 /* ActivityTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityTableViewCell.swift; sourceTree = "<group>"; };
 		C765FCCD21E2997E0061FF48 /* PeopleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleViewController.swift; sourceTree = "<group>"; };
 		C7A19AD221E3934200296526 /* FollowApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowApi.swift; sourceTree = "<group>"; };
 		CC14C5B282AE1D0CA52C492B /* Pods_InstagramUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InstagramUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -203,6 +205,7 @@
 				36630D6F21DF3FD4002A168D /* CommentTableViewCell.swift */,
 				3605DB9021E08E650096F258 /* HeaderProfileCollectionReusableView.swift */,
 				3605DB9421E0A00D0096F258 /* PhotoCollectionViewCell.swift */,
+				C73733CB220C7387004232C3 /* ActivityTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -600,6 +603,7 @@
 				36119180220B6423003F1D28 /* HashTagApi.swift in Sources */,
 				849DA6C921C98A5B0061C5BD /* DiscoverViewController.swift in Sources */,
 				3605DB9721E0AD380096F258 /* HelperService.swift in Sources */,
+				C73733CC220C7387004232C3 /* ActivityTableViewCell.swift in Sources */,
 				C70A311321E352CC00A73121 /* PeopleTableViewCell.swift in Sources */,
 				3607E4FB21DBCB110009A196 /* Config.swift in Sources */,
 				849DA6CF21C98AED0061C5BD /* ProfileViewController.swift in Sources */,
