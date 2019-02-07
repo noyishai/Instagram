@@ -58,6 +58,8 @@
 		C70DEAD221EA5CB000790740 /* ProfileUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C70DEAD121EA5CB000790740 /* ProfileUserViewController.swift */; };
 		C71022012209B3D00047B4BC /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71022002209B3D00047B4BC /* DetailViewController.swift */; };
 		C73733CC220C7387004232C3 /* ActivityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73733CB220C7387004232C3 /* ActivityTableViewCell.swift */; };
+		C73733CE220C7CF9004232C3 /* NotificationApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73733CD220C7CF9004232C3 /* NotificationApi.swift */; };
+		C73733D0220C80CB004232C3 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73733CF220C80CB004232C3 /* Notification.swift */; };
 		C765FCCE21E2997F0061FF48 /* PeopleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C765FCCD21E2997E0061FF48 /* PeopleViewController.swift */; };
 		C7A19AD321E3934200296526 /* FollowApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A19AD221E3934200296526 /* FollowApi.swift */; };
 /* End PBXBuildFile section */
@@ -141,6 +143,8 @@
 		C70DEAD121EA5CB000790740 /* ProfileUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileUserViewController.swift; sourceTree = "<group>"; };
 		C71022002209B3D00047B4BC /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		C73733CB220C7387004232C3 /* ActivityTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityTableViewCell.swift; sourceTree = "<group>"; };
+		C73733CD220C7CF9004232C3 /* NotificationApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationApi.swift; sourceTree = "<group>"; };
+		C73733CF220C80CB004232C3 /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		C765FCCD21E2997E0061FF48 /* PeopleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleViewController.swift; sourceTree = "<group>"; };
 		C7A19AD221E3934200296526 /* FollowApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowApi.swift; sourceTree = "<group>"; };
 		CC14C5B282AE1D0CA52C492B /* Pods_InstagramUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InstagramUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -193,6 +197,7 @@
 				3610586921DE73EA00F9E16A /* Post.swift */,
 				36630D7121DF4C0D002A168D /* Comment.swift */,
 				3610587221DEA79400F9E16A /* UserModel.swift */,
+				C73733CF220C80CB004232C3 /* Notification.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -283,6 +288,7 @@
 				C70A016821E6145F00098E47 /* FeedApi.swift */,
 				C7A19AD221E3934200296526 /* FollowApi.swift */,
 				3611917F220B6423003F1D28 /* HashTagApi.swift */,
+				C73733CD220C7CF9004232C3 /* NotificationApi.swift */,
 				3610586D21DE8FC700F9E16A /* Views */,
 				3610586821DE73CE00F9E16A /* Model */,
 				36D0DA4E21CC47EE0065CC58 /* ViewControllers */,
@@ -595,6 +601,7 @@
 				3607E4F921DBBDA30009A196 /* AuthService.swift in Sources */,
 				3610587321DEA79400F9E16A /* UserModel.swift in Sources */,
 				C70C48C221F0B986008444E3 /* SettingTableViewController.swift in Sources */,
+				C73733D0220C80CB004232C3 /* Notification.swift in Sources */,
 				849DA6C721C989ED0061C5BD /* HomeViewController.swift in Sources */,
 				36119182220B749C003F1D28 /* HashTagViewController.swift in Sources */,
 				849DA6CD21C98AC10061C5BD /* ActivityViewController.swift in Sources */,
@@ -610,6 +617,7 @@
 				36630D7421DF7F40002A168D /* PostApi.swift in Sources */,
 				C765FCCE21E2997F0061FF48 /* PeopleViewController.swift in Sources */,
 				849DA6CB21C98A830061C5BD /* CameraViewController.swift in Sources */,
+				C73733CE220C7CF9004232C3 /* NotificationApi.swift in Sources */,
 				36630D7821DF842D002A168D /* Api.swift in Sources */,
 				36630D7621DF8207002A168D /* UserApi.swift in Sources */,
 			);

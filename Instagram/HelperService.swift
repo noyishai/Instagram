@@ -52,7 +52,7 @@ class HelperService {
         }
         //will present the current time
         let timestamp = Int(Date().timeIntervalSince1970)
-        print(timestamp)
+        
         
         // Creats post reference
         newPostReference.setValue(["uid": currentUserId, "photoUrl": photoUrl, "caption": caption, "likesCount": 0, "ratio": ratio, "timestamp": timestamp ], withCompletionBlock: { (error, ref) in
@@ -62,6 +62,19 @@ class HelperService {
             }
             
             Api.Feed.REF_FEED.child(Api.User.CURRENT_USER!.uid).child(newPostId!).setValue(true)
+            //When user will upload a new post all his followers can view it on real time.
+            Api.Follow.REF_FOLLOWERS.child(Api.User.CURRENT_USER!.uid).observeSingleEvent(of: .value, with: {
+                snapshot in
+                let arraySnapshot = snapshot.children.allObjects as! [DataSnapshot]
+                arraySnapshot.forEach({ (child) in
+                    print(child.key)
+                    Api.Feed.REF_FEED.child(child.key).updateChildValues(["\(String(describing: newPostId))": true])
+                    let newNotificationId = Api.Notification.REF_NOTIFICATION.child(child.key).childByAutoId().key
+                    let newNotificatioReference = Api.Notification.REF_NOTIFICATION.child(child.key).child(newNotificationId!)
+                    newNotificatioReference.setValue(["from": Api.User.CURRENT_USER!.uid, "type": "feed", "objectId": newPostId, "timestamp": timestamp])
+                })
+                
+            })
             
             // Creats post-feed reference
             let myPostRef = Api.MyPosts.REF_MY_POSTS.child(currentUserId).child(newPostId!)
