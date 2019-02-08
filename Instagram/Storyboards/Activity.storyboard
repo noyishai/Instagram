@@ -120,6 +120,8 @@
                     <connections>
                         <outlet property="tableView" destination="SJM-cp-ZyH" id="yYl-X6-aeq"/>
                         <segue destination="kMc-c6-QNW" kind="show" identifier="Activity_DetailSegue" id="mGK-dw-prM"/>
+                        <segue destination="cuB-Zd-ldB" kind="show" identifier="Activity_ProfileSegue" id="OUL-FM-Xo5"/>
+                        <segue destination="zIt-3e-vqx" kind="show" identifier="Activity_CommentSegue" id="dbq-uy-WMX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fm1-I8-cEL" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -132,7 +134,23 @@
                 <viewControllerPlaceholder storyboardName="Discover" referencedIdentifier="DetailViewController" id="kMc-c6-QNW" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hKj-J7-08R" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5319" y="-774"/>
+            <point key="canvasLocation" x="5328" y="-764"/>
+        </scene>
+        <!--ProfileUserViewController-->
+        <scene sceneID="ftr-0Q-BUx">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Profile" referencedIdentifier="ProfileUserViewController" id="cuB-Zd-ldB" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EG0-ud-6gS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5334" y="-644"/>
+        </scene>
+        <!--CommentViewController-->
+        <scene sceneID="Y6B-XG-BSQ">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Home" referencedIdentifier="CommentViewController" id="zIt-3e-vqx" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Suc-Re-uzW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5334" y="-525"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="pmc-4l-DcY">

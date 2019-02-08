@@ -10,7 +10,8 @@ import UIKit
 
 protocol ActivityTableViewCellDelegate {
     func goToDetailVC(postId: String)
-//    func goToProfile(userId: String)
+    func goToProfileVC(userId: String)
+    func goToCommentVC(postId: String)
 }
 
 class ActivityTableViewCell: UITableViewCell {
@@ -40,12 +41,34 @@ class ActivityTableViewCell: UITableViewCell {
         case "feed":
             descriptionLabel.text = "add a new post"
             let postId = notification!.objectId!
-            Api.Post.observePost(withId: postId) { (post: Post) in
+            Api.Post.observePost(withId: postId, completion: { (post: Post) in
                 if let photoUrlString = post.photoUrl {
                     let photoUrl = URL(string: photoUrlString)
                     self.photo.sd_setImage(with: photoUrl, placeholderImage: UIImage(named: "placeholderImg"))
                 }
-            }
+            })
+            
+        case "comment":
+            descriptionLabel.text = "left a comment on your post"
+            let objectId = notification!.objectId!
+            Api.Post.observePost(withId: objectId, completion: { (post) in
+                if let photoUrlString = post.photoUrl {
+                    let photoUrl = URL(string: photoUrlString)
+                    self.photo.sd_setImage(with: photoUrl, placeholderImage: UIImage(named: "placeholderImg"))
+                }
+            })
+            
+        case "follow":
+            descriptionLabel.text = "started following you"
+            let objectId = notification!.objectId!
+            Api.Post.observePost(withId: objectId, completion: { (post) in
+                if let photoUrlString = post.photoUrl {
+                    let photoUrl = URL(string: photoUrlString)
+                    self.photo.sd_setImage(with: photoUrl, placeholderImage: UIImage(named: "placeholderImg"))
+                    
+                }
+            })
+            
         default:
             print("")
         }
@@ -88,7 +111,13 @@ class ActivityTableViewCell: UITableViewCell {
     
     func cell_TouchUpInside() {
         if let id = notification?.objectId {
-            delegate?.goToDetailVC(postId: id)
+            if notification!.type! == "follow" {
+                delegate?.goToProfileVC(userId: id)
+            } else if notification!.type! == "comment" {
+                delegate?.goToCommentVC(postId: id)
+            } else {
+                delegate?.goToDetailVC(postId: id)
+            }
         }
     }
     

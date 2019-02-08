@@ -48,6 +48,17 @@ class ActivityViewController: UIViewController {
             let postId = sender as! String
             detailVC.postId = postId
         }
+        if segue.identifier == "Activity_ProfileSegue" {
+            let profileVC = segue.destination as! ProfileUserViewController
+            let userId = sender  as! String
+            profileVC.userId = userId
+        }
+        
+        if segue.identifier == "Activity_CommentSegue" {
+            let commentVC = segue.destination as! CommentViewController
+            let postId = sender  as! String
+            commentVC.postId = postId
+        }
     }
 }
 
@@ -74,5 +85,12 @@ extension ActivityViewController: UITableViewDataSource {
 extension ActivityViewController: ActivityTableViewCellDelegate {
     func goToDetailVC(postId: String) {
         performSegue(withIdentifier: "Activity_DetailSegue", sender: postId)
+    }
+    func goToProfileVC(userId: String) {
+        performSegue(withIdentifier: "Activity_ProfileSegue", sender: userId)
+    }
+    
+    func goToCommentVC(postId: String) {
+        performSegue(withIdentifier: "Activity_CommentSegue", sender: postId)
     }
 }
