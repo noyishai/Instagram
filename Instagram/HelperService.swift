@@ -53,8 +53,8 @@ class HelperService {
         for var word in words {
             if word.hasPrefix("#") {
                 word = word.trimmingCharacters(in: CharacterSet.punctuationCharacters) // Removes special characters so we wont crash
-                let newHashTagRef = Api.HashTag.REF_HASHTAG.child(word.lowercased())
-                newHashTagRef.updateChildValues([newPostId: true])
+                Api.HashTag.REF_HASHTAG.child(word.lowercased()).child(newPostId!).setValue(true)
+//                newHashTagRef.updateChildValues([newPostId: true])
             }
         }
         //will present the current time
@@ -78,9 +78,8 @@ class HelperService {
                     Api.Feed.REF_FEED.child(child.key).updateChildValues(["\(String(describing: newPostId))": true])
                     let newNotificationId = Api.Notification.REF_NOTIFICATION.child(child.key).childByAutoId().key
                     let newNotificatioReference = Api.Notification.REF_NOTIFICATION.child(child.key).child(newNotificationId!)
-                    newNotificatioReference.setValue(["from": Api.User.CURRENT_USER!.uid, "type": "feed", "objectId": newPostId, "timestamp": timestamp])
+                    newNotificatioReference.setValue(["from": Api.User.CURRENT_USER!.uid, "type": "feed", "objectId": newPostId!, "timestamp": timestamp])
                 })
-                
             })
             
             // Creats post-feed reference
