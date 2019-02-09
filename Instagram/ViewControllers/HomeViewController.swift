@@ -16,7 +16,7 @@ class HomeViewController: UIViewController {
     
     var posts = [Post]()
     var users = [UserModel]()
-    
+    var isLoading = false
     override func viewDidLoad() {
         super.viewDidLoad()
         // Lets the tableView estimight it's height for better performance
@@ -24,6 +24,7 @@ class HomeViewController: UIViewController {
         // Lets the cells to automatic adjust it's size based on it's content
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.dataSource = self
+        tableView.delegate = self
         loadPosts()
     }
     
@@ -40,7 +41,8 @@ class HomeViewController: UIViewController {
 //                self.tableView.reloadData()
 //            })
 //        }
-
+        
+        isLoading = true
         Api.Feed.getRecentFeed(withId: Api.User.CURRENT_USER!.uid, start: posts.first?.timestamp, limit: 5) { (results) in
             if results.count > 0 {
                 results.forEach({ (result) in
@@ -48,12 +50,35 @@ class HomeViewController: UIViewController {
                     self.users.append(result.1)
                 })
             }
+            self.isLoading = false
             self.tableView.reloadData()
         }
         
         Api.Feed.observeFeedRemoved(withId: Api.User.CURRENT_USER!.uid) { (post) in
             self.posts = self.posts.filter { $0.id != post.id }
             self.users = self.users.filter { $0.id != post.uid }
+            self.tableView.reloadData()
+        }
+    }
+    
+    func loadMore() {
+        guard !isLoading else {
+            return
+        }
+        isLoading = true
+        guard let latestPostTimestamp = self.posts.last?.timestamp else {
+            isLoading = false
+            return
+        }
+        Api.Feed.getOldFeed(withId: Api.User.CURRENT_USER!.uid, start: latestPostTimestamp, limit: 5) { (results) in
+            if results.count == 0 {
+                return
+            }
+            for result in results {
+                self.posts.append(result.0)
+                self.users.append(result.1)
+            }
+            self.isLoading = false
             self.tableView.reloadData()
         }
     }
@@ -104,6 +129,15 @@ extension HomeViewController: UITableViewDataSource {
         cell.user = user
         cell.delegate = self
         return cell
+    }
+}
+
+// Extension to let the home feed scoll load new posts
+extension HomeViewController: UITableViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView.contentOffset.y + self.view.frame.size.height >= scrollView.contentSize.height {
+            loadMore()
+        }
     }
 }
 
