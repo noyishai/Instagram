@@ -21,7 +21,7 @@ class FeedApi{
         })
     }
     
-    // Gets the recent feed and displays limited (5) posts
+    // Gets the recent feed and displays limited (@limit) posts
     func getRecentFeed(withId id: String, start timestamp: Int? = nil, limit: UInt, completion: @escaping ([(Post, UserModel)]) -> Void) {
         var feedQuery = REF_FEED.child(id).queryOrdered(byChild: "timestamp")
         if let latestPostTimestamp = timestamp, latestPostTimestamp > 0 {
@@ -55,7 +55,7 @@ class FeedApi{
     }
     
     // Gets extra posts to the feed after you got to the bottom of the feed.
-    // Limited number set to 5 means that when we will scroll down we will get new(old) 5 posts
+    // Limited number set to 5 means that when we will scroll down we will get new(old) limited (@limit) posts
     func getOldFeed(withId id: String, start timestamp: Int, limit: UInt, completion: @escaping ([(Post, UserModel)]) -> Void) {
         let feedOrderQuery = REF_FEED.child(id).queryOrdered(byChild: "timestamp")
         let feedLimitedQuery = feedOrderQuery.queryEnding(atValue: timestamp - 1, childKey: "timestamp").queryLimited(toLast: limit)
