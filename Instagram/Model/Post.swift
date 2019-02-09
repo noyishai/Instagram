@@ -55,6 +55,7 @@ extension Post {
     }
 }
 
+// Extension to handle SQlite
 extension Post {
     static func createTable(database: OpaquePointer?)  {
         var errormsg: UnsafeMutablePointer<Int8>? = nil
@@ -93,7 +94,7 @@ extension Post {
     
     static func addNew(database: OpaquePointer?, post: Post){
         var sqlite3_stmt: OpaquePointer? = nil
-        if (sqlite3_prepare_v2(database,"INSERT OR REPLACE INTO FEED(UID, POST) VALUES (?,?);",-1, &sqlite3_stmt,nil) == SQLITE_OK){
+        if (sqlite3_prepare_v2(database,"INSERT OR REPLACE INTO POSTS(ID, CAPTION, PHOTOURL, UID) VALUES (?,?,?,?);",-1, &sqlite3_stmt,nil) == SQLITE_OK){
             let id = post.id!.cString(using: .utf8)
             let caption = post.caption!.cString(using: .utf8)
             let photoUrl = post.photoUrl!.cString(using: .utf8)
