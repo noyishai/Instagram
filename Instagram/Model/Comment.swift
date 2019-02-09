@@ -85,7 +85,7 @@ extension Comment {
         sqlite3_finalize(sqlite3_stmt)
     }
     
-    static func get(database: OpaquePointer?, byId:String)->Post?{
+    static func get(database: OpaquePointer?, byId:String)->Comment?{
         return nil;
     }
     

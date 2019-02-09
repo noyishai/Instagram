@@ -83,8 +83,8 @@ extension Post {
             while(sqlite3_step(sqlite3_stmt) == SQLITE_ROW){
                 let id = String(cString:sqlite3_column_text(sqlite3_stmt,0)!)
                 let caption = String(cString:sqlite3_column_text(sqlite3_stmt,1)!)
-                let photoUrl = String(cString:sqlite3_column_text(sqlite3_stmt,3)!)
-                let userId = String(cString:sqlite3_column_text(sqlite3_stmt,5)!)
+                let photoUrl = String(cString:sqlite3_column_text(sqlite3_stmt,2)!)
+                let userId = String(cString:sqlite3_column_text(sqlite3_stmt,3)!)
                 data.append(Post(newCaption: caption, newPhotoUrl: photoUrl, newUserId: userId, newId: id))
             }
         }
@@ -102,8 +102,8 @@ extension Post {
 
             sqlite3_bind_text(sqlite3_stmt, 1, id,-1,nil);
             sqlite3_bind_text(sqlite3_stmt, 2, caption,-1,nil);
-            sqlite3_bind_text(sqlite3_stmt, 4, photoUrl,-1,nil);
-            sqlite3_bind_text(sqlite3_stmt, 6, userId,-1,nil);
+            sqlite3_bind_text(sqlite3_stmt, 3, photoUrl,-1,nil);
+            sqlite3_bind_text(sqlite3_stmt, 4, userId,-1,nil);
 
             if(sqlite3_step(sqlite3_stmt) == SQLITE_DONE){
                 print("new row added succefully")

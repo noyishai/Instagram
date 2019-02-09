@@ -8,8 +8,12 @@
 
 import Foundation
 import FirebaseDatabase
+import SQLite
+
 class FeedApi{
     var REF_FEED = Database.database().reference().child("feed")
+    
+    var modelSql = ModelSql()
     
     // Gets the feed and observes for new posts addedd to it querying by timestamp
     func observeFeed(withId id:String, completion: @escaping (Post) -> Void){
@@ -30,6 +34,11 @@ class FeedApi{
             feedQuery = feedQuery.queryLimited(toLast: limit)
         }
         
+        var postsLastUpdated = Post.getLastUpdateDate(database: modelSql.database)
+        var usersLastUpdated = Comment.getLastUpdateDate(database: modelSql.database)
+        postsLastUpdated += 1
+        usersLastUpdated += 1
+        
         // Call Firebase API to retrieve the latest records
         feedQuery.observeSingleEvent(of: .value) { (snapshot: DataSnapshot) in
             let items = snapshot.children.allObjects
@@ -38,7 +47,26 @@ class FeedApi{
             for (_, item) in (items as! [DataSnapshot]).enumerated() {
                 myGroup.enter()
                 Api.Post.observePost(withId: item.key, completion: { (post) in
+                    Post.addNew(database: self.modelSql.database, post: post)
+                    if (post.lastUpdated != nil && post.lastUpdated! > postsLastUpdated) {
+                        postsLastUpdated = post.lastUpdated!
+                    }
+                    Post.setLastUpdateDate(database: self.modelSql.database, date: postsLastUpdated)
+                    let postsFullData = Post.getAll(database: self.modelSql.database)
                     Api.User.observeUser(withId: post.uid!, completion: { (user) in
+                        UserModel.addNew(database: self.modelSql.database, user: user)
+                        if (user.lastUpdated != nil && user.lastUpdated! > usersLastUpdated) {
+                            usersLastUpdated = user.lastUpdated!
+                        }
+                        UserModel.setLastUpdateDate(database: self.modelSql.database, date: usersLastUpdated)
+                        let usersFullData = UserModel.getAll(database: self.modelSql.database)
+//                        for user in usersFullData {
+//                            for post in postsFullData {
+//                                if post.uid == user.id {
+//                                    results.append((post, user))
+//                                }
+//                            }
+//                        }
                         if post.uid == user.id {
                             results.append((post, user))
                         }
@@ -96,5 +124,39 @@ class FeedApi{
             })
         })
     }
+    
+}
+
+class ModelSql {
+    var database: OpaquePointer? = nil
+    
+    init() {
+        // initialize the DB
+        let dbFileName = "localDB.db"
+        if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
+            let path = dir.appendingPathComponent(dbFileName)
+            if sqlite3_open(path.absoluteString, &database) != SQLITE_OK {
+                print("Failed to open db file: \(path.absoluteString)")
+                return
+            }
+            //dropTables()
+            createTables()
+        }
+    }
+    
+    func createTables() {
+        Post.createTable(database: database)
+//        Comment.createTable(database: database)
+        UserModel.createTable(database: database)
+        LastUpdateDates.createTable(database: database)
+    }
+    
+    func dropTables(){
+        Post.drop(database: database)
+//        Comment.drop(database: database)
+        UserModel.createTable(database: database)
+        LastUpdateDates.drop(database: database)
+    }
+    
     
 }
