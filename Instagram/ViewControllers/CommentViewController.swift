@@ -27,14 +27,14 @@ class CommentViewController: UIViewController {
         // Lets the tableView estimight it's height for better performance
         tableView.estimatedRowHeight = 77
         // Lets the cells to automatic adjust it's size based on it's content
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
         empty()
         sendButton.isEnabled = false
         handleTextField()
         loadComments()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     // What to do when the view appears
@@ -94,15 +94,15 @@ class CommentViewController: UIViewController {
         print("test")
     }
     
-    func keyboardWillShow(_ notification: NSNotification){
-        let keyboardFrame = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as AnyObject).cgRectValue
+    @objc func keyboardWillShow(_ notification: NSNotification){
+        let keyboardFrame = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as AnyObject).cgRectValue
         UIView.animate(withDuration: 0.3) {
             self.constraintToBottom.constant = -(keyboardFrame!.height)
             self.view.layoutIfNeeded()
         }
     }
     
-    func keyboardWillHide(_ notification: NSNotification){
+    @objc func keyboardWillHide(_ notification: NSNotification){
         UIView.animate(withDuration: 0.3) {
             self.constraintToBottom.constant = 0
             self.view.layoutIfNeeded()
@@ -133,7 +133,7 @@ class CommentViewController: UIViewController {
     // Clearing the comment section
     func empty() {
         self.commentTextField.text = ""
-        sendButton.setTitleColor(UIColor.lightGray, for: UIControlState.normal)
+        sendButton.setTitleColor(UIColor.lightGray, for: UIControl.State.normal)
         sendButton.isEnabled = false
     }
     
@@ -154,19 +154,19 @@ class CommentViewController: UIViewController {
     
     // Observer to see if user input did change
     func handleTextField() {
-        commentTextField.addTarget(self, action: #selector(self.textFieldDidChange), for: UIControlEvents.editingChanged)
+        commentTextField.addTarget(self, action: #selector(self.textFieldDidChange), for: UIControl.Event.editingChanged)
     }
     
     // Checking if the userinputs are not empty and if not changing the Sign Up botton color and enables is
-    func textFieldDidChange() {
+    @objc func textFieldDidChange() {
         // If the comment field has text, enable the button
         if let commentText = commentTextField.text, !commentText.isEmpty {
-            sendButton.setTitleColor(UIColor.black, for: UIControlState.normal)
+            sendButton.setTitleColor(UIColor.black, for: UIControl.State.normal)
             sendButton.isEnabled = true
             return
         }
         // If the comment field has no text, disable the button
-        sendButton.setTitleColor(UIColor.lightGray, for: UIControlState.normal)
+        sendButton.setTitleColor(UIColor.lightGray, for: UIControl.State.normal)
         sendButton.isEnabled = false
     }
     

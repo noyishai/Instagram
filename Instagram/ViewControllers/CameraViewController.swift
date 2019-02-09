@@ -38,7 +38,7 @@ class CameraViewController: UIViewController {
         view.endEditing(true)
         // Using external library ProgressHUD to show the user the sign in progress
         ProgressHUD.show("Sharing...", interaction: false)
-        if let profileImg = self.selectedImage, let imageData = UIImageJPEGRepresentation(profileImg, 0.1){
+        if let profileImg = self.selectedImage, let imageData = profileImg.jpegData(compressionQuality: 0.1){
             let ratio = profileImg.size.width / profileImg.size.height
             HelperService.uploadDataToServer(data: imageData, ratio: ratio, caption: captionTextView.text!, onSuccess: {
                 self.clean()
@@ -76,7 +76,7 @@ class CameraViewController: UIViewController {
     }
     
     // Photo selector
-    func handleSelectPhoto() {
+    @objc func handleSelectPhoto() {
         let pickerController = UIImagePickerController()
         pickerController.delegate = self
         present(pickerController, animated: true, completion: nil)
@@ -93,7 +93,10 @@ class CameraViewController: UIViewController {
 
 // Sets the photo to be the selectedImage from the gallery
 extension CameraViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+// Local variable inserted by Swift 4.2 migrator.
+let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
+
         if let image = info["UIImagePickerControllerOriginalImage"] as? UIImage{
             selectedImage = image
             photo.image = image
@@ -102,3 +105,8 @@ extension CameraViewController: UIImagePickerControllerDelegate, UINavigationCon
     }
 }
 
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromUIImagePickerControllerInfoKeyDictionary(_ input: [UIImagePickerController.InfoKey: Any]) -> [String: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map {key, value in (key.rawValue, value)})
+}

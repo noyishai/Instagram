@@ -39,7 +39,7 @@ class SettingTableViewController: UITableViewController {
     }
     //Press on the 'save' button will update the information
     @IBAction func saveBtn_TouchUp(_ sender: Any) {
-        if let profileImg = self.profileImageView.image, let imageData = UIImageJPEGRepresentation(profileImg, 0.1){
+        if let profileImg = self.profileImageView.image, let imageData = profileImg.jpegData(compressionQuality: 0.1){
             ProgressHUD.show("Waiting...")
             AuthService.updateUserInfor(username: usernameTextFiled.text!, email: emailTextFiled.text!, imageData: imageData, onSuccess: {
                 //if we success to save daya we will show success and if there is an error we will show an error
@@ -70,7 +70,10 @@ class SettingTableViewController: UITableViewController {
 }
 
 extension SettingTableViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+// Local variable inserted by Swift 4.2 migrator.
+let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
+
         if let image = info["UIImagePickerControllerOriginalImage"] as? UIImage{
             profileImageView.image = image
         }
@@ -85,4 +88,9 @@ extension SettingTableViewController:UITextFieldDelegate {
         textField.resignFirstResponder()
         return true
     }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromUIImagePickerControllerInfoKeyDictionary(_ input: [UIImagePickerController.InfoKey: Any]) -> [String: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map {key, value in (key.rawValue, value)})
 }

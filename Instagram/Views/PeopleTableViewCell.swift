@@ -49,10 +49,10 @@ class PeopleTableViewCell: UITableViewCell {
         followButton.layer.cornerRadius = 5
         followButton.clipsToBounds = true
         
-        followButton.setTitleColor(UIColor.white, for: UIControlState.normal)
+        followButton.setTitleColor(UIColor.white, for: UIControl.State.normal)
         followButton.backgroundColor = UIColor(red: 69/255, green: 142/255, blue: 255/255, alpha: 1)
-        self.followButton.setTitle("Follow", for: UIControlState.normal)
-        followButton.addTarget(self, action: #selector(self.followAction), for: UIControlEvents.touchUpInside)
+        self.followButton.setTitle("Follow", for: UIControl.State.normal)
+        followButton.addTarget(self, action: #selector(self.followAction), for: UIControl.Event.touchUpInside)
     }
     func configureUnFollowButton(){
         followButton.layer.borderWidth = 1
@@ -60,13 +60,13 @@ class PeopleTableViewCell: UITableViewCell {
         followButton.layer.cornerRadius = 5
         followButton.clipsToBounds = true
         
-        followButton.setTitleColor(UIColor.black, for: UIControlState.normal)
+        followButton.setTitleColor(UIColor.black, for: UIControl.State.normal)
         followButton.backgroundColor = UIColor.clear
-        self.followButton.setTitle("Following", for: UIControlState.normal)
-        followButton.addTarget(self, action: #selector(self.unFollowAction), for: UIControlEvents.touchUpInside)
+        self.followButton.setTitle("Following", for: UIControl.State.normal)
+        followButton.addTarget(self, action: #selector(self.unFollowAction), for: UIControl.Event.touchUpInside)
     }
     
-    func followAction(){
+    @objc func followAction(){
         if user!.isFollowing! == false{
             Api.Follow.followAction(withUser: user!.id!)
             configureUnFollowButton()
@@ -74,7 +74,7 @@ class PeopleTableViewCell: UITableViewCell {
         }
     }
     
-    func unFollowAction(){
+    @objc func unFollowAction(){
         if user!.isFollowing! == true{
             Api.Follow.unFollowAction(withUser: user!.id!)
             configureFollowButton()
@@ -89,7 +89,7 @@ class PeopleTableViewCell: UITableViewCell {
         nameLabel.isUserInteractionEnabled = true
     }
     
-    func nameLabel_TouchUpInside(){
+    @objc func nameLabel_TouchUpInside(){
         if let id = user?.id {
             delegate?.goToProfileUserVC(userId: id)
         }

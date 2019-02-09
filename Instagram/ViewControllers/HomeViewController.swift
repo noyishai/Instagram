@@ -24,7 +24,7 @@ class HomeViewController: UIViewController {
         // Lets the tableView estimight it's height for better performance
         tableView.estimatedRowHeight = 521
         // Lets the cells to automatic adjust it's size based on it's content
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
         tableView.dataSource = self
         tableView.delegate = self
         refreshControl.addTarget(self, action:#selector(refresh),for: .valueChanged)

@@ -78,7 +78,7 @@ class CommentTableViewCell: UITableViewCell {
     }
     
     //when you press on the username you will switch view
-    func nameLabel_TouchUpInside(){
+    @objc func nameLabel_TouchUpInside(){
         if let id = user?.id {
             delegate?.goToProfileUserVC(userId: id)
         }

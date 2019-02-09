@@ -123,9 +123,9 @@ class HomeTableViewCell: UITableViewCell {
             
         }
         if count != 0 {
-            likeCountButton.setTitle("\(count) Likes", for: UIControlState.normal)
+            likeCountButton.setTitle("\(count) Likes", for: UIControl.State.normal)
         } else {
-            likeCountButton.setTitle("Like First", for: UIControlState.normal)
+            likeCountButton.setTitle("Like First", for: UIControl.State.normal)
         }
     }
     
@@ -160,14 +160,14 @@ class HomeTableViewCell: UITableViewCell {
     }
     
     // What to perform when comment pressed
-    func commentImageView_TouchUpInside() {
+    @objc func commentImageView_TouchUpInside() {
         if let id = post?.id {
             delegate?.goToCommentVC(postId: id)
         }
     }
     
     // Clicking username label will segue to their profile
-    func nameLabel_TouchUpInside(){
+    @objc func nameLabel_TouchUpInside(){
         if let id = user?.id {
             delegate?.goToProfileUserVC(userId: id)
         }
@@ -175,7 +175,7 @@ class HomeTableViewCell: UITableViewCell {
     
     
     // What to perform when like pressed
-    func likeImageView_TouchUpInside() {
+    @objc func likeImageView_TouchUpInside() {
         Api.Post.incrementLikes(postId:post!.id!, onSuccess: { (post: Post) in
             self.updateLike(post: post)
             self.post?.likes = post.likes

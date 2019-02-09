@@ -109,7 +109,7 @@ class ActivityTableViewCell: UITableViewCell {
         isUserInteractionEnabled = true
     }
     
-    func cell_TouchUpInside() {
+    @objc func cell_TouchUpInside() {
         if let id = notification?.objectId {
             if notification!.type! == "follow" {
                 delegate?.goToProfileVC(userId: id)
