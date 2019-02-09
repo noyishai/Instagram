@@ -68,14 +68,14 @@ class HelperService {
                 return
             }
             
-            Api.Feed.REF_FEED.child(Api.User.CURRENT_USER!.uid).child(newPostId!).setValue(true)
+            Api.Feed.REF_FEED.child(Api.User.CURRENT_USER!.uid).child(newPostId!).setValue(["timestamp" : timestamp])
             //When user will upload a new post all his followers can view it on real time.
             Api.Follow.REF_FOLLOWERS.child(Api.User.CURRENT_USER!.uid).observeSingleEvent(of: .value, with: {
                 snapshot in
                 let arraySnapshot = snapshot.children.allObjects as! [DataSnapshot]
                 arraySnapshot.forEach({ (child) in
                     print(child.key)
-                    Api.Feed.REF_FEED.child(child.key).updateChildValues(["\(String(describing: newPostId))": true])
+                    Api.Feed.REF_FEED.child(child.key).child(newPostId!).setValue(["timestamp" : timestamp])
                     let newNotificationId = Api.Notification.REF_NOTIFICATION.child(child.key).childByAutoId().key
                     let newNotificatioReference = Api.Notification.REF_NOTIFICATION.child(child.key).child(newNotificationId!)
                     newNotificatioReference.setValue(["from": Api.User.CURRENT_USER!.uid, "type": "feed", "objectId": newPostId!, "timestamp": timestamp])
@@ -84,7 +84,7 @@ class HelperService {
             
             // Creats post-feed reference
             let myPostRef = Api.MyPosts.REF_MY_POSTS.child(currentUserId).child(newPostId!)
-            myPostRef.setValue(true, withCompletionBlock: { (error, ref) in
+            myPostRef.setValue(["timestamp" : timestamp], withCompletionBlock: { (error, ref) in
                 if error != nil {
                     ProgressHUD.showError(error!.localizedDescription)
                     return

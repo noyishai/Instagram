@@ -20,12 +20,19 @@ class FollowApi{
             snapshot in
             if let dict = snapshot.value as? [String: Any] {
                 for key in dict.keys {
-                    Database.database().reference().child("feed").child(Api.User.CURRENT_USER!.uid).child(key).setValue(true)
+                    if let value = dict[key] as? [String : Any] {
+                        let timestampPost = value["timestamp"] as! Int
+                        Database.database().reference().child("feed").child(Api.User.CURRENT_USER!.uid).child(key).setValue(["timestamp": timestampPost])
+                    }
                 }
             }
         })
         REF_FOLLOWERS.child(id).child(Api.User.CURRENT_USER!.uid).setValue(true)
         REF_FOLLOWING.child(Api.User.CURRENT_USER!.uid).child(id).setValue(true)
+        let timestamp = NSNumber(value: Int(Date().timeIntervalSince1970))
+        
+        let newNotificationReference = Api.Notification.REF_NOTIFICATION.child(id).child("\(id)-\(Api.User.CURRENT_USER!.uid)")
+        newNotificationReference.setValue(["from": Api.User.CURRENT_USER!.uid, "objectId": Api.User.CURRENT_USER!.uid, "type": "follow", "timestamp": timestamp])
     }
     
     //Remove the posts of the unfollow user from our feed

@@ -69,6 +69,7 @@ class HomeTableViewCell: UITableViewCell {
         //extract photo ratio
         if let ratio = post?.ratio{
             heightConstraint.constant = UIScreen.main.bounds.width / ratio
+            layoutIfNeeded()
         }
         if let photoUrlString = post?.photoUrl {
             let photoUrl = URL(string: photoUrlString)
@@ -108,13 +109,8 @@ class HomeTableViewCell: UITableViewCell {
             timeLabel.text = timeText
         }
         
-        // Observe for single change to update the posts while scrolling down so we wont have the image move between posts
-        
+        // Observes for single change to update the posts while scrolling down so we wont have the image move between posts
         self.updateLike(post: self.post!)
-        
-        
-        // Observe for childChanged, in this case for the likesCount to change by other users
-        
     }
     
     // Checks if the post liked or not and change the like image accordingly + increase/decrease the likesCount

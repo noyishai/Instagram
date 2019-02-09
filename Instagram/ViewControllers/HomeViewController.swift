@@ -30,15 +30,25 @@ class HomeViewController: UIViewController {
     
     // Load posts and observe for new added posts and ignore unchanged posts
     func loadPosts() {
-        
-        Api.Feed.observeFeed(withId: Api.User.CURRENT_USER!.uid) { (post) in
-            guard let postUid = post.uid else {
-                return
+
+//        Api.Feed.observeFeed(withId: Api.User.CURRENT_USER!.uid) { (post) in
+//            guard let postUid = post.uid else {
+//                return
+//            }
+//            self.fetchUser(uid: postUid, completed: {
+//                self.posts.insert(post, at: 0)
+//                self.tableView.reloadData()
+//            })
+//        }
+
+        Api.Feed.getRecentFeed(withId: Api.User.CURRENT_USER!.uid, start: posts.first?.timestamp, limit: 5) { (results) in
+            if results.count > 0 {
+                results.forEach({ (result) in
+                    self.posts.append(result.0)
+                    self.users.append(result.1)
+                })
             }
-            self.fetchUser(uid: postUid, completed: {
-                self.posts.insert(post, at: 0)
-                self.tableView.reloadData()
-            })
+            self.tableView.reloadData()
         }
         
         Api.Feed.observeFeedRemoved(withId: Api.User.CURRENT_USER!.uid) { (post) in
