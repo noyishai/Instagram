@@ -21,7 +21,7 @@ class FeedApi{
         })
     }
     
-    // Gets the recent feed and displays limited posts
+    // Gets the recent feed and displays limited (5) posts
     func getRecentFeed(withId id: String, start timestamp: Int? = nil, limit: UInt, completion: @escaping ([(Post, UserModel)]) -> Void) {
         var feedQuery = REF_FEED.child(id).queryOrdered(byChild: "timestamp")
         if let latestPostTimestamp = timestamp, latestPostTimestamp > 0 {
@@ -29,56 +29,60 @@ class FeedApi{
         } else {
             feedQuery = feedQuery.queryLimited(toLast: limit)
         }
-        var results: [(post: Post, user: UserModel)] = []
-        feedQuery.observeSingleEvent(of: DataEventType.value) { (snapshot: DataSnapshot) in
-            let items = snapshot.children.allObjects as! [DataSnapshot]
+        
+        // Call Firebase API to retrieve the latest records
+        feedQuery.observeSingleEvent(of: .value) { (snapshot: DataSnapshot) in
+            let items = snapshot.children.allObjects
             let myGroup = DispatchGroup()
-            for (index, item) in items.enumerated() {
+            var results: [(post: Post, user: UserModel)] = []
+            for (_, item) in (items as! [DataSnapshot]).enumerated() {
                 myGroup.enter()
                 Api.Post.observePost(withId: item.key, completion: { (post) in
                     Api.User.observeUser(withId: post.uid!, completion: { (user) in
-                        if post.uid! == user.id {
+                        if post.uid == user.id {
                             results.append((post, user))
-//                            results.insert((post, user), at: index)
                         }
-                        print(index)
+                        //  results.insert((post, user), at: index)
                         myGroup.leave()
                     })
                 })
-                myGroup.notify(queue: DispatchQueue.main, execute: {
-                    results.sort(by: {$0.0.timestamp! > $1.0.timestamp!})
-                    completion(results)
-                })
             }
+            myGroup.notify(queue: DispatchQueue.main, execute: {
+                results.sort(by: {$0.0.timestamp! > $1.0.timestamp!})
+                completion(results)
+            })
         }
     }
     
-    // Gets the old feed after finished the recent feed
+    // Gets extra posts to the feed after you got to the bottom of the feed.
+    // Limited number set to 5 means that when we will scroll down we will get new(old) 5 posts
     func getOldFeed(withId id: String, start timestamp: Int, limit: UInt, completion: @escaping ([(Post, UserModel)]) -> Void) {
         let feedOrderQuery = REF_FEED.child(id).queryOrdered(byChild: "timestamp")
         let feedLimitedQuery = feedOrderQuery.queryEnding(atValue: timestamp - 1, childKey: "timestamp").queryLimited(toLast: limit)
-        feedLimitedQuery.observeSingleEvent(of: .value) { (snapshot: DataSnapshot) in
+        
+        // Call Firebase API to retrieve the latest records
+        feedLimitedQuery.observeSingleEvent(of: .value, with: { (snapshot) in
             let items = snapshot.children.allObjects as! [DataSnapshot]
             let myGroup = DispatchGroup()
             var results: [(post: Post, user: UserModel)] = []
-            for (index, item) in items.enumerated() {
+            
+            for (_, item) in items.enumerated() {
+                print(item)
                 myGroup.enter()
                 Api.Post.observePost(withId: item.key, completion: { (post) in
                     Api.User.observeUser(withId: post.uid!, completion: { (user) in
-                        if post.uid! == user.id {
+                        if post.uid == user.id {
                             results.append((post, user))
-//                            results.insert((post, user), at: index)
                         }
-                        print(index)
                         myGroup.leave()
                     })
                 })
-                myGroup.notify(queue: DispatchQueue.main, execute: {
-                    results.sort(by: {$0.0.timestamp! > $1.0.timestamp!})
-                    completion(results)
-                })
             }
-        }
+            myGroup.notify(queue: DispatchQueue.main, execute: {
+                results.sort(by: {$0.0.timestamp! > $1.0.timestamp!})
+                completion(results)
+            })
+        })
     }
     
     //will control the post that remove after the unfollow action
