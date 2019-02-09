@@ -62,9 +62,7 @@ class FeedApi{
                         let usersFullData = UserModel.getAll(database: self.modelSql.database)
 //                        for user in usersFullData {
 //                            for post in postsFullData {
-//                                if post.uid == user.id {
 //                                    results.append((post, user))
-//                                }
 //                            }
 //                        }
                         if post.uid == user.id {
@@ -139,22 +137,22 @@ class ModelSql {
                 print("Failed to open db file: \(path.absoluteString)")
                 return
             }
-            //dropTables()
+            dropTables()
             createTables()
         }
     }
     
     func createTables() {
         Post.createTable(database: database)
-//        Comment.createTable(database: database)
         UserModel.createTable(database: database)
+        //        Comment.createTable(database: database)
         LastUpdateDates.createTable(database: database)
     }
     
     func dropTables(){
         Post.drop(database: database)
-//        Comment.drop(database: database)
         UserModel.createTable(database: database)
+        //        Comment.drop(database: database)
         LastUpdateDates.drop(database: database)
     }
     

@@ -42,7 +42,7 @@ extension UserModel {
 extension UserModel {
     static func createTable(database: OpaquePointer?)  {
         var errormsg: UnsafeMutablePointer<Int8>? = nil
-        let res = sqlite3_exec(database, "CREATE TABLE IF NOT EXISTS USERS (ID TEXT PRIMARY KEY, USERNMAE TEXT)", nil, nil, &errormsg);
+        let res = sqlite3_exec(database, "CREATE TABLE IF NOT EXISTS USERS (ID TEXT PRIMARY KEY, USERNAME TEXT)", nil, nil, &errormsg);
         if(res != 0){
             print("error creating table");
             return
@@ -83,7 +83,7 @@ extension UserModel {
             sqlite3_bind_text(sqlite3_stmt, 2, username,-1,nil);
             
             if(sqlite3_step(sqlite3_stmt) == SQLITE_DONE){
-                print("new row added succefully")
+                print("new user row added succefully")
             }
         }
         sqlite3_finalize(sqlite3_stmt)

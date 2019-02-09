@@ -79,7 +79,7 @@ extension Comment {
             sqlite3_bind_text(sqlite3_stmt, 2, userId,-1,nil);
             
             if(sqlite3_step(sqlite3_stmt) == SQLITE_DONE){
-                print("new row added succefully")
+                print("new comment row added succefully")
             }
         }
         sqlite3_finalize(sqlite3_stmt)

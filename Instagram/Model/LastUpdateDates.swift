@@ -50,7 +50,7 @@ class LastUpdateDates{
             sqlite3_bind_text(sqlite3_stmt, 1, name,-1,nil);
             sqlite3_bind_double(sqlite3_stmt, 2, date);
             if(sqlite3_step(sqlite3_stmt) == SQLITE_DONE){
-                print("new row added succefully")
+                print("new  lastUpdate row added succefully")
             }
         }
         sqlite3_finalize(sqlite3_stmt)
