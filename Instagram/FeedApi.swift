@@ -34,9 +34,9 @@ class FeedApi{
             feedQuery = feedQuery.queryLimited(toLast: limit)
         }
         
-        // SQL Last Updated
+        // SQL Local Last Updated
         var postsLastUpdated = Post.getLastUpdateDate(database: modelSql.database)
-        var usersLastUpdated = Comment.getLastUpdateDate(database: modelSql.database)
+        var usersLastUpdated = UserModel.getLastUpdateDate(database: modelSql.database)
         postsLastUpdated += 1
         usersLastUpdated += 1
         
