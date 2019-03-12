@@ -73,8 +73,28 @@ class HomeTableViewCell: UITableViewCell {
         }
         if let photoUrlString = post?.photoUrl {
             let photoUrl = URL(string: photoUrlString)
+            
+//            //Caching images
+//            let localImageName = photoUrl!.lastPathComponent
+//            if let image = HelperService.getImageFromFile(name: localImageName) {
+//                let imageView = UIImageView(image: image)
+//                postImageView.addSubview(imageView)
+//                print("got image from cache \(localImageName)")
+//            }else {
+//                //2. get the image from Firebase
+//                HelperService.getImageFromFirebase(url: photoUrlString){(image:UIImage?) in
+//                    if (image != nil){
+//                        //3. save the image localy
+//                        HelperService.saveImageToFile(image: image!, name: localImageName)
+//                    }
+//                    // Uses SDWebimage to download the photo from the url
+//                    self.postImageView.sd_setImage(with: photoUrl)
+//                    print("got image from firebase \(localImageName)")
+//                }
+//            }
+            
             // Uses SDWebimage to download the photo from the url
-            postImageView.sd_setImage(with: photoUrl)
+            self.postImageView.sd_setImage(with: photoUrl)
         }
         
         //unwarp and print the timestamp
@@ -134,6 +154,27 @@ class HomeTableViewCell: UITableViewCell {
         nameLabel.text = user?.username
         if let photoUrlString = user?.profileImageUrl {
             let photoUrl = URL(string: photoUrlString)
+            
+//            //Caching images
+//            let localImageName = photoUrl!.lastPathComponent
+//            if let image = HelperService.getImageFromFile(name: localImageName) {
+//                let imageView = UIImageView(image: image)
+//                postImageView.addSubview(imageView)
+//                print("got image from cache \(localImageName)")
+//            }else {
+//                //2. get the image from Firebase
+//                HelperService.getImageFromFirebase(url: photoUrlString){(image:UIImage?) in
+//                    if (image != nil){
+//                        //3. save the image localy
+//                        HelperService.saveImageToFile(image: image!, name: localImageName)
+//                    }
+//                    // Uses SDWebimage to download the photo from the url
+//                    self.postImageView.sd_setImage(with: photoUrl)
+//                    print("got image from firebase \(localImageName)")
+//                }
+//            }
+            
+            // Uses SDWebimage to download the photo from the url
             profileImageView.sd_setImage(with: photoUrl, placeholderImage: UIImage(named: "placeholderImg"))
         }
     }

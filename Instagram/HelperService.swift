@@ -93,6 +93,36 @@ class HelperService {
             ProgressHUD.showSuccess("Photo Uploaded")
             onSuccess()
         })
-        
+    }
+    
+    /// File handling
+    static func saveImageToFile(image:UIImage, name:String){
+        if let data = image.jpegData(compressionQuality: 0.8){
+            let filename = getDocumentsDirectory().appendingPathComponent(name)
+            try? data.write(to: filename)
+        }
+    }
+    static func getDocumentsDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in:
+            .userDomainMask)
+        let documentsDirectory = paths[0]
+        return documentsDirectory
+    }
+    
+    static func getImageFromFile(name:String)->UIImage?{
+        let filename = getDocumentsDirectory().appendingPathComponent(name)
+        return UIImage(contentsOfFile:filename.path)
+    }
+    
+    static func getImageFromFirebase(url:String, callback:@escaping (UIImage?)->Void){
+        let ref = Storage.storage().reference(forURL: url)
+        ref.getData(maxSize: 10 * 1024 * 1024) { data, error in
+            if error != nil {
+                callback(nil)
+            } else {
+                let image = UIImage(data: data!)
+                callback(image)
+            }
+        }
     }
 }

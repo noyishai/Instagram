@@ -26,6 +26,7 @@
 		36119180220B6423003F1D28 /* HashTagApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3611917F220B6423003F1D28 /* HashTagApi.swift */; };
 		36119182220B749C003F1D28 /* HashTagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36119181220B749C003F1D28 /* HashTagViewController.swift */; };
 		3616D8552237D720002C6AFB /* ModelSQL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3616D8542237D720002C6AFB /* ModelSQL.swift */; };
+		3616D8592237FB89002C6AFB /* Post_CommentApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3616D8582237FB89002C6AFB /* Post_CommentApi.swift */; };
 		36630D6E21DF3FBC002A168D /* CommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36630D6D21DF3FBC002A168D /* CommentViewController.swift */; };
 		36630D7021DF3FD4002A168D /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36630D6F21DF3FD4002A168D /* CommentTableViewCell.swift */; };
 		36630D7221DF4C0D002A168D /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36630D7121DF4C0D002A168D /* Comment.swift */; };
@@ -33,7 +34,6 @@
 		36630D7621DF8207002A168D /* UserApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36630D7521DF8207002A168D /* UserApi.swift */; };
 		36630D7821DF842D002A168D /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36630D7721DF842D002A168D /* Api.swift */; };
 		36630D7A21DF84A8002A168D /* CommentApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36630D7921DF84A8002A168D /* CommentApi.swift */; };
-		36630D7C21DF86A6002A168D /* Post_CommentApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36630D7B21DF86A6002A168D /* Post_CommentApi.swift */; };
 		367E7B5E220F1184008BA111 /* LastUpdateDates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367E7B5D220F1184008BA111 /* LastUpdateDates.swift */; };
 		36D0DA4421CC3C700065CC58 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36D0DA4321CC3C700065CC58 /* Home.storyboard */; };
 		36D0DA4621CC3CAC0065CC58 /* Discover.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36D0DA4521CC3CAC0065CC58 /* Discover.storyboard */; };
@@ -106,6 +106,7 @@
 		3611917F220B6423003F1D28 /* HashTagApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HashTagApi.swift; sourceTree = "<group>"; };
 		36119181220B749C003F1D28 /* HashTagViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HashTagViewController.swift; sourceTree = "<group>"; };
 		3616D8542237D720002C6AFB /* ModelSQL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelSQL.swift; sourceTree = "<group>"; };
+		3616D8582237FB89002C6AFB /* Post_CommentApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post_CommentApi.swift; sourceTree = "<group>"; };
 		36630D6D21DF3FBC002A168D /* CommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentViewController.swift; sourceTree = "<group>"; };
 		36630D6F21DF3FD4002A168D /* CommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
 		36630D7121DF4C0D002A168D /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
@@ -113,7 +114,6 @@
 		36630D7521DF8207002A168D /* UserApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserApi.swift; sourceTree = "<group>"; };
 		36630D7721DF842D002A168D /* Api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
 		36630D7921DF84A8002A168D /* CommentApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentApi.swift; sourceTree = "<group>"; };
-		36630D7B21DF86A6002A168D /* Post_CommentApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post_CommentApi.swift; sourceTree = "<group>"; };
 		367E7B5D220F1184008BA111 /* LastUpdateDates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastUpdateDates.swift; sourceTree = "<group>"; };
 		36D0DA4321CC3C700065CC58 /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		36D0DA4521CC3CAC0065CC58 /* Discover.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Discover.storyboard; sourceTree = "<group>"; };
@@ -288,7 +288,7 @@
 				36630D7321DF7F40002A168D /* PostApi.swift */,
 				36630D7521DF8207002A168D /* UserApi.swift */,
 				36630D7921DF84A8002A168D /* CommentApi.swift */,
-				36630D7B21DF86A6002A168D /* Post_CommentApi.swift */,
+				3616D8582237FB89002C6AFB /* Post_CommentApi.swift */,
 				3605DB9221E0983F0096F258 /* MyPostApi.swift */,
 				36630D7721DF842D002A168D /* Api.swift */,
 				C70A016821E6145F00098E47 /* FeedApi.swift */,
@@ -604,7 +604,6 @@
 				36630D7221DF4C0D002A168D /* Comment.swift in Sources */,
 				36630D7A21DF84A8002A168D /* CommentApi.swift in Sources */,
 				36630D6E21DF3FBC002A168D /* CommentViewController.swift in Sources */,
-				36630D7C21DF86A6002A168D /* Post_CommentApi.swift in Sources */,
 				3607E4F921DBBDA30009A196 /* AuthService.swift in Sources */,
 				3610587321DEA79400F9E16A /* UserModel.swift in Sources */,
 				C70C48C221F0B986008444E3 /* SettingTableViewController.swift in Sources */,
@@ -615,6 +614,7 @@
 				3607E50121DBCF6B0009A196 /* ProgressHUD.m in Sources */,
 				36630D7021DF3FD4002A168D /* CommentTableViewCell.swift in Sources */,
 				36119180220B6423003F1D28 /* HashTagApi.swift in Sources */,
+				3616D8592237FB89002C6AFB /* Post_CommentApi.swift in Sources */,
 				849DA6C921C98A5B0061C5BD /* DiscoverViewController.swift in Sources */,
 				3605DB9721E0AD380096F258 /* HelperService.swift in Sources */,
 				C73733CC220C7387004232C3 /* ActivityTableViewCell.swift in Sources */,
