@@ -20,9 +20,11 @@ class UserModel {
     init() {
     }
     
-    init(userId: String, newUsername: String) {
-        id = userId
+    init(newEmail: String, newProfileImageUrl: String, userId: String, newUsername: String) {
+        email = newEmail
+        profileImageUrl = newProfileImageUrl
         username = newUsername
+        id = userId
     }
 }
 
@@ -42,7 +44,7 @@ extension UserModel {
 extension UserModel {
     static func createTable(database: OpaquePointer?)  {
         var errormsg: UnsafeMutablePointer<Int8>? = nil
-        let res = sqlite3_exec(database, "CREATE TABLE IF NOT EXISTS USERS (ID TEXT PRIMARY KEY, USERNAME TEXT)", nil, nil, &errormsg);
+        let res = sqlite3_exec(database, "CREATE TABLE IF NOT EXISTS USERS (ID TEXT PRIMARY KEY,EMAIL TEXT, PROFILEIMAGEURL TEXT, USERNAME TEXT)", nil, nil, &errormsg);
         if(res != 0){
             print("error creating table");
             return
@@ -67,8 +69,10 @@ extension UserModel {
             == SQLITE_OK){
             while(sqlite3_step(sqlite3_stmt) == SQLITE_ROW){
                 let userId = String(cString:sqlite3_column_text(sqlite3_stmt,0)!)
-                let username = String(cString:sqlite3_column_text(sqlite3_stmt,1)!)
-                data.append(UserModel(userId: userId, newUsername: username))
+                let email = String(cString:sqlite3_column_text(sqlite3_stmt,1)!)
+                let profileImageUrl = String(cString:sqlite3_column_text(sqlite3_stmt,2)!)
+                let username = String(cString:sqlite3_column_text(sqlite3_stmt,3)!)
+                data.append(UserModel(newEmail: email, newProfileImageUrl: profileImageUrl, userId: userId, newUsername: username))
             }
         }
         sqlite3_finalize(sqlite3_stmt)
@@ -77,12 +81,17 @@ extension UserModel {
     
     static func addNew(database: OpaquePointer?, user: UserModel){
         var sqlite3_stmt: OpaquePointer? = nil
-        if (sqlite3_prepare_v2(database,"INSERT OR REPLACE INTO USERS(ID, USERNAME) VALUES (?,?);",-1, &sqlite3_stmt,nil) == SQLITE_OK){
+        if (sqlite3_prepare_v2(database,"INSERT OR REPLACE INTO USERS(ID, EMAIL, PROFILEIMAGEURL, USERNAME) VALUES (?,?,?,?);",-1, &sqlite3_stmt,nil) == SQLITE_OK){
             let userId = user.id!.cString(using: .utf8)
+            let email = user.email!.cString(using: .utf8)
+            let profileImageUrl = user.profileImageUrl!.cString(using: .utf8)
             let username = user.username!.cString(using: .utf8)
             
+            
             sqlite3_bind_text(sqlite3_stmt, 1, userId,-1,nil);
-            sqlite3_bind_text(sqlite3_stmt, 2, username,-1,nil);
+            sqlite3_bind_text(sqlite3_stmt, 2, email,-1,nil);
+            sqlite3_bind_text(sqlite3_stmt, 3, profileImageUrl,-1,nil);
+            sqlite3_bind_text(sqlite3_stmt, 4, username,-1,nil);
             
             if(sqlite3_step(sqlite3_stmt) == SQLITE_DONE){
                 print("new user row added succefully")
