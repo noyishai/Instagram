@@ -47,15 +47,17 @@ extension UserModel {
             print("error creating table");
             return
         }
+        print("USERS Table Created")
     }
     
     static func drop(database: OpaquePointer?)  {
         var errormsg: UnsafeMutablePointer<Int8>? = nil
         let res = sqlite3_exec(database, "DROP TABLE USERS;", nil, nil, &errormsg);
         if(res != 0){
-            print("error creating table");
+            print("error droping USERS table");
             return
         }
+        print("USERS Table Dropped")
     }
     
     static func getAll(database: OpaquePointer?)->[UserModel]{
