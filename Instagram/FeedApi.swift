@@ -56,25 +56,25 @@ class FeedApi{
 //                    }
 //                    Post.setLastUpdateDate(database: self.modelSql.database, date: postsLastUpdated)
 //                    let postsFullData = Post.getAll(database: self.modelSql.database)
-//
+
                     Api.User.observeUser(withId: post.uid!, completion: { (user) in
                         
                         // SQL add new user
-                        UserModel.addNew(database: self.modelSql.database, user: user)
-                        if (user.lastUpdated != nil && user.lastUpdated! > usersLastUpdated) {
-                            usersLastUpdated = user.lastUpdated!
-                        }
-
-                        UserModel.setLastUpdateDate(database: self.modelSql.database, date: usersLastUpdated)
-                        let usersFullData = UserModel.getAll(database: self.modelSql.database)
-                        for user in usersFullData {
-//                            for post in postsFullData {
-                                    results.append((post, user))
-//                            }
-                        }
-//                        if post.uid == user.id {
-//                            results.append((post, user))
+//                        UserModel.addNew(database: self.modelSql.database, user: user)
+//                        if (user.lastUpdated != nil && user.lastUpdated! > usersLastUpdated) {
+//                            usersLastUpdated = user.lastUpdated!
 //                        }
+//
+//                        UserModel.setLastUpdateDate(database: self.modelSql.database, date: usersLastUpdated)
+//                        let usersFullData = UserModel.getAll(database: self.modelSql.database)
+//                        for user in usersFullData {
+//                            for post in postsFullData {
+//                                    results.append((post, user))
+//                            }
+//                        }
+                        if post.uid == user.id {
+                            results.append((post, user))
+                        }
                         //  results.insert((post, user), at: index)
                         myGroup.leave()
                     })
